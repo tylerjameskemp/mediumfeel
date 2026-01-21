@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POST_TITLE | Medium Feel Lab</title>
+    <meta name="description" content="POST_EXCERPT">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="POST_TITLE | Medium Feel Lab">
+    <meta property="og:description" content="POST_EXCERPT">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://mediumfeel.com/lab/posts/POST_SLUG.html">
+
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Caveat:wght@500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar scrolled">
+        <div class="nav-container">
+            <a href="../../index.html" class="nav-wordmark">Medium Feel</a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="../index.html" class="active">Lab</a></li>
+                <li><a href="../../index.html#about">About</a></li>
+                <li><a href="../../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Post Header -->
+    <article class="post">
+        <header class="post-header">
+            <div class="container">
+                <a href="../index.html" class="back-link">&larr; Back to Lab</a>
+                <div class="post-meta">
+                    <span class="post-status status-exploring">Exploring</span>
+                    <!-- Options: status-exploring, status-building, status-shipped -->
+                    <time datetime="YYYY-MM-DD">Month DD, YYYY</time>
+                </div>
+                <h1>POST_TITLE</h1>
+                <p class="post-excerpt">POST_EXCERPT</p>
+            </div>
+        </header>
+
+        <!-- Post Content -->
+        <div class="post-content">
+            <div class="container">
+
+                <!-- WRITE YOUR CONTENT HERE -->
+
+                <p>Your post content goes here. Write in HTML or paste from your editor.</p>
+
+                <h2>Section Heading</h2>
+                <p>More content...</p>
+
+                <blockquote>
+                    <p>Blockquotes look like this.</p>
+                </blockquote>
+
+                <h3>Smaller Heading</h3>
+                <p>Supporting content...</p>
+
+                <ul>
+                    <li>List item one</li>
+                    <li>List item two</li>
+                    <li>List item three</li>
+                </ul>
+
+                <!-- END CONTENT -->
+
+            </div>
+        </div>
+
+        <!-- Post Footer -->
+        <footer class="post-footer">
+            <div class="container">
+                <div class="post-nav">
+                    <a href="../index.html" class="btn-secondary">View All Posts</a>
+                    <a href="../../index.html#contact" class="btn-primary">Get in Touch</a>
+                </div>
+            </div>
+        </footer>
+    </article>
+
+    <!-- Site Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="../../assets/logo-primary.png" alt="Medium Feel" class="footer-logo">
+                    <p>A lab for brand & marketing</p>
+                    <p class="location">Portland, Maine</p>
+                </div>
+                <div class="footer-links">
+                    <a href="../index.html">Lab</a>
+                    <a href="../../index.html#about">About</a>
+                    <a href="../../index.html#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Medium Feel</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuBtn.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
