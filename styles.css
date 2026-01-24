@@ -431,6 +431,7 @@ p.large {
     justify-content: center;
     align-items: center;
     height: 0;
+    margin: 80px 0;
     z-index: 100;
 }
 
@@ -1313,6 +1314,36 @@ p.large {
         max-width: 280px;
     }
 
+    .hero-content {
+        font-size: 1rem;
+    }
+
+    .hero-text:first-child {
+        font-size: 1.1rem;
+    }
+
+    .vinyl-divider {
+        margin: 60px 0;
+    }
+
+    .vinyl-record {
+        width: 120px;
+        height: 120px;
+    }
+
+    .vinyl-label {
+        width: 42px;
+        height: 42px;
+    }
+
+    .vinyl-brand {
+        font-size: 0.4rem;
+    }
+
+    .vinyl-track {
+        font-size: 0.3rem;
+    }
+
     .services,
     .about,
     .work,
@@ -1444,7 +1475,7 @@ p.large {
 
 /* Hero Content */
 .hero-content {
-    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Courier New', 'Courier', monospace;
     font-size: 1.1rem;
     line-height: 1.7;
     color: var(--color-text);
