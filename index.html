@@ -52,16 +52,9 @@
         </div>
     </section>
 
-    <!-- Vinyl Record Divider -->
-    <div class="vinyl-divider" id="spinLogo">
-        <div class="vinyl-record">
-            <div class="vinyl-grooves"></div>
-            <div class="vinyl-label">
-                <span class="vinyl-brand">Medium Feel</span>
-                <span class="vinyl-track">Now Playing</span>
-            </div>
-            <div class="vinyl-hole"></div>
-        </div>
+    <!-- Peppermint Divider -->
+    <div class="peppermint-divider">
+        <img src="assets/object-peppermint.png" alt="Peppermint candy" class="peppermint-spinner">
     </div>
 
     <!-- Lab Preview Section -->
@@ -197,8 +190,8 @@
             });
         });
 
-        // ===== Navbar Scroll + Vinyl Spin + Sticker Wiggle =====
-        const vinylRecord = document.querySelector('.vinyl-record');
+        // ===== Navbar Scroll + Peppermint Spin + Sticker Wiggle =====
+        const peppermintSpinner = document.querySelector('.peppermint-spinner');
         const stickerDivider = document.querySelector('.sticker-divider img');
 
         window.addEventListener('scroll', () => {
@@ -209,9 +202,10 @@
                 navbar.classList.remove('scrolled');
             }
 
-            if (vinylRecord) {
-                const rotation = window.scrollY * 0.5;
-                vinylRecord.style.transform = `rotate(${rotation}deg)`;
+            if (peppermintSpinner) {
+                // Spin clockwise quickly (positive rotation)
+                const rotation = window.scrollY * 1.5;
+                peppermintSpinner.style.transform = `rotate(${rotation}deg)`;
             }
 
             if (stickerDivider) {
