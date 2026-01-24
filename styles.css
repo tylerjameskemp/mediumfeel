@@ -752,10 +752,7 @@ p.large {
 }
 
 .about-layout {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: 80px;
-    align-items: start;
+    max-width: 800px;
 }
 
 .about-content p {
@@ -1225,18 +1222,6 @@ p.large {
         gap: 32px 24px;
     }
 
-    .about-layout {
-        grid-template-columns: 1fr;
-        gap: 48px;
-    }
-
-    .about-image {
-        order: -1;
-    }
-
-    .sticker-logo img {
-        width: 220px;
-    }
 
     .cta-layout {
         grid-template-columns: 1fr;
