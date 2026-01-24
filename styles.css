@@ -300,6 +300,7 @@ h2 {
     font-size: clamp(1.75rem, 3.5vw, 2.5rem);
     line-height: 1.2;
     margin-bottom: 24px;
+    text-align: center;
 }
 
 h3 {
@@ -753,6 +754,7 @@ p.large {
 
 .about-layout {
     max-width: 800px;
+    margin: 0 auto;
 }
 
 .about-content p {
@@ -996,6 +998,7 @@ p.large {
     margin: 48px 0 24px;
     padding-bottom: 12px;
     border-bottom: 2px solid var(--color-border);
+    text-align: center;
 }
 
 .kanban {
@@ -1278,6 +1281,16 @@ p.large {
         max-width: 280px;
     }
 
+    .section-header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+    }
+
+    .view-all {
+        position: static;
+    }
+
     .services,
     .about,
     .work,
@@ -1413,7 +1426,7 @@ p.large {
     font-size: 1.1rem;
     line-height: 1.7;
     color: var(--color-text);
-    margin-bottom: 32px;
+    margin: 0 auto 32px;
     max-width: 720px;
 }
 
@@ -1470,16 +1483,20 @@ p.large {
 
 .section-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: baseline;
     margin-bottom: 32px;
+    position: relative;
 }
 
 .section-header h2 {
     margin-bottom: 0;
+    text-align: center;
 }
 
 .view-all {
+    position: absolute;
+    right: 0;
     font-size: 0.9rem;
     color: var(--color-green);
     text-decoration: none;
@@ -1500,8 +1517,9 @@ p.large {
 .lab-intro {
     font-size: 1.05rem;
     color: var(--color-text-muted);
-    margin-bottom: 40px;
-    max-width: 560px;
+    margin: 0 auto 40px;
+    max-width: 660px;
+    text-align: center;
 }
 
 .kanban-card.placeholder {
