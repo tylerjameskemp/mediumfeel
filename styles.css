@@ -1511,7 +1511,11 @@ p.large {
 /* Page Header */
 .page-header {
     padding: 120px 0 60px;
-    background: var(--color-bg);
+    background-color: var(--color-white);
+    background-image:
+        linear-gradient(var(--color-rule) 1px, transparent 1px),
+        linear-gradient(90deg, var(--color-rule) 1px, transparent 1px);
+    background-size: 32px 32px;
 }
 
 .page-header h1 {
@@ -2130,7 +2134,11 @@ p.large {
 /* ===== Lab Archive Grid ===== */
 .lab-archive {
     padding: 60px 0 100px;
-    background: var(--color-bg);
+    background-color: var(--color-white);
+    background-image:
+        linear-gradient(var(--color-rule) 1px, transparent 1px),
+        linear-gradient(90deg, var(--color-rule) 1px, transparent 1px);
+    background-size: 32px 32px;
 }
 
 .archive-grid {
