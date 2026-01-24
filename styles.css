@@ -1093,56 +1093,31 @@ p.large {
 
 /* ===== Footer ===== */
 .footer {
-    padding: 48px 0 32px;
+    padding: 32px 0;
     background: var(--color-bg);
     border-top: 1px solid var(--color-border);
 }
 
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 40px;
-}
-
-.footer-logo {
-    height: 56px;
-    width: auto;
-    margin-bottom: 12px;
-}
-
-.footer-brand p {
+.footer-single-line {
+    text-align: center;
     font-size: 0.85rem;
     color: var(--color-text-muted);
-    margin-bottom: 2px;
+    margin: 0;
 }
 
-.footer-brand .location {
+.footer-separator {
+    margin: 0 8px;
     color: var(--color-text-light);
 }
 
-.footer-links {
-    display: flex;
-    gap: 28px;
-}
-
-.footer-links a {
-    font-size: 0.85rem;
+.footer-single-line a {
     color: var(--color-text-muted);
+    text-decoration: none;
     transition: color var(--transition);
 }
 
-.footer-links a:hover {
+.footer-single-line a:hover {
     color: var(--color-green);
-}
-
-.footer-bottom {
-    text-align: center;
-}
-
-.footer-bottom p {
-    font-size: 0.8rem;
-    color: var(--color-text-light);
 }
 
 /* ===== Mobile Styles ===== */
@@ -1498,6 +1473,16 @@ p.large {
     grid-template-columns: repeat(3, 1fr);
 }
 
+.kanban-wip {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.kanban-shipped {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
 .kanban-card-link {
     text-decoration: none;
     display: block;
@@ -1793,6 +1778,14 @@ p.large {
 
     .kanban-preview {
         grid-template-columns: 1fr;
+    }
+
+    .kanban-wip {
+        grid-template-columns: 1fr;
+    }
+
+    .kanban-shipped {
+        max-width: 100%;
     }
 
     .kanban-full {
