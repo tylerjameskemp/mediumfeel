@@ -38,14 +38,16 @@
         </div>
     </nav>
 
-    <!-- Hero Section with Typewriter -->
+    <!-- Hero Section -->
     <section class="hero hero-home bg-grid">
         <div class="container">
-            <div class="hero-markdown">
-                <p class="typewriter-line" id="typewriter-1"></p>
-                <p class="typewriter-line" id="typewriter-2"></p>
-                <p class="typewriter-line iteration-line" id="typewriter-3"></p>
-                <span class="cursor">|</span>
+            <div class="hero-playdough">
+                <img src="assets/logo-playdo.png" alt="Medium Feel Play-Doh">
+            </div>
+            <div class="hero-content">
+                <p class="hero-text">Medium Feel is a lab for brand, marketing, and the questions that sit between them.</p>
+                <p class="hero-text">Exploring how communication is changing as AI reshapes how brands think, make, and show up. Some of this is writing. Some of this is building.</p>
+                <p class="hero-text">Most of it is curiosity in progress.</p>
             </div>
         </div>
     </section>
@@ -117,10 +119,6 @@
                 </div>
             </div>
         </div>
-        <!-- 3D Crayon artifact -->
-        <div class="medium-artifact crayon-3d">
-            <img src="assets/illustration-crayon-3d.png" alt="Medium Feel Crayon">
-        </div>
     </section>
 
     <!-- About Section -->
@@ -189,99 +187,6 @@
     </footer>
 
     <script>
-        // ===== Typewriter Effect =====
-        const lines = [
-            { element: 'typewriter-1', text: 'Medium Feel is a lab for brand, marketing, and the questions that sit between them.' },
-            { element: 'typewriter-2', text: 'Exploring how communication is changing as AI reshapes how brands think, make, and show up. Some of this is writing. Some of this is building.' },
-        ];
-
-        // Iteration sequence: type text, pause, strikethrough, type next
-        const iterations = [
-            { text: 'Done.', strike: true },
-            { text: 'Almost there.', strike: true },
-            { text: 'Always iterating.', strike: false },
-            { text: 'Most of it is curiosity in progress.', strike: false, append: true }
-        ];
-
-        let iterationIndex = 0;
-        const cursor = document.querySelector('.cursor');
-
-        function moveCursor(element) {
-            element.appendChild(cursor);
-        }
-
-        function typeText(elementId, text, callback) {
-            const element = document.getElementById(elementId);
-            moveCursor(element);
-            let i = 0;
-
-            function typeChar() {
-                if (i < text.length) {
-                    const textNode = document.createTextNode(text.charAt(i));
-                    element.insertBefore(textNode, cursor);
-                    i++;
-                    setTimeout(typeChar, 40);
-                } else if (callback) {
-                    callback();
-                }
-            }
-            typeChar();
-        }
-
-        function typeIteration() {
-            const line3 = document.getElementById('typewriter-3');
-            const iteration = iterations[iterationIndex];
-
-            const span = document.createElement('span');
-            if (iteration.strike) span.className = 'iteration-text';
-            line3.insertBefore(span, cursor);
-            moveCursor(span);
-
-            let i = 0;
-            function typeChar() {
-                if (i < iteration.text.length) {
-                    const textNode = document.createTextNode(iteration.text.charAt(i));
-                    span.insertBefore(textNode, cursor);
-                    i++;
-                    setTimeout(typeChar, 40);
-                } else {
-                    line3.appendChild(cursor);
-
-                    if (iteration.strike) {
-                        setTimeout(() => {
-                            span.classList.add('struck');
-                            setTimeout(() => {
-                                line3.insertBefore(document.createTextNode(' '), cursor);
-                                iterationIndex++;
-                                if (iterationIndex < iterations.length) {
-                                    typeIteration();
-                                }
-                            }, 400);
-                        }, 600);
-                    } else {
-                        line3.insertBefore(document.createTextNode(' '), cursor);
-                        iterationIndex++;
-                        if (iterationIndex < iterations.length) {
-                            setTimeout(typeIteration, 200);
-                        }
-                    }
-                }
-            }
-            typeChar();
-        }
-
-        function startTypewriter() {
-            typeText(lines[0].element, lines[0].text, () => {
-                setTimeout(() => {
-                    typeText(lines[1].element, lines[1].text, () => {
-                        setTimeout(typeIteration, 300);
-                    });
-                }, 200);
-            });
-        }
-
-        setTimeout(startTypewriter, 500);
-
         // ===== Mobile Menu =====
         const menuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');

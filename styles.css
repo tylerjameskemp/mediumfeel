@@ -1305,6 +1305,14 @@ p.large {
         padding: 100px 0 60px;
     }
 
+    .hero-playdough {
+        margin-bottom: 32px;
+    }
+
+    .hero-playdough img {
+        max-width: 280px;
+    }
+
     .services,
     .about,
     .work,
@@ -1421,62 +1429,38 @@ p.large {
     max-width: 700px;
 }
 
-/* Markdown-style Hero */
-.hero-markdown {
+/* Hero Playdough */
+.hero-playdough {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 48px;
+}
+
+.hero-playdough img {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+}
+
+/* Hero Content */
+.hero-content {
     font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Consolas', monospace;
     font-size: 1.1rem;
     line-height: 1.7;
     color: var(--color-text);
     margin-bottom: 32px;
     max-width: 720px;
-    position: relative;
 }
 
-.typewriter-line {
+.hero-text {
     margin: 0 0 0.75em 0;
-    min-height: 1.7em;
 }
 
-.typewriter-line:first-child {
+.hero-text:first-child {
     font-weight: 600;
     font-size: 1.25rem;
 }
 
-.iteration-line {
-    color: var(--color-text-muted);
-}
-
-/* Strikethrough Animation */
-.iteration-text {
-    position: relative;
-    transition: color 0.3s ease;
-}
-
-.iteration-text.struck {
-    color: var(--color-text-muted);
-    text-decoration: line-through;
-    text-decoration-color: var(--color-green);
-    text-decoration-thickness: 2px;
-}
-
-/* Typewriter Cursor */
-.cursor {
-    display: inline;
-    font-weight: 300;
-    color: var(--color-green);
-    animation: blink 1s step-end infinite;
-    margin-left: 1px;
-    font-family: 'JetBrains Mono', 'SF Mono', monospace;
-}
-
-.cursor-done {
-    animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
 
 .hero-byline {
     font-size: 1rem;
