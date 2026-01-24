@@ -434,6 +434,23 @@ p.large {
     z-index: 100;
 }
 
+/* ===== Sticker Divider ===== */
+.sticker-divider {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 0;
+    z-index: 100;
+}
+
+.sticker-divider img {
+    width: 160px;
+    height: 160px;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+    transition: transform 0.1s ease-out;
+}
+
 .vinyl-record {
     width: 160px;
     height: 160px;

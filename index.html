@@ -121,6 +121,11 @@
         </div>
     </section>
 
+    <!-- Sticker Divider -->
+    <div class="sticker-divider" id="wiggleSticker">
+        <img src="assets/logo-distressed-sticker.png" alt="Medium Feel">
+    </div>
+
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
@@ -197,8 +202,9 @@
             });
         });
 
-        // ===== Navbar Scroll + Vinyl Spin =====
+        // ===== Navbar Scroll + Vinyl Spin + Sticker Wiggle =====
         const vinylRecord = document.querySelector('.vinyl-record');
+        const stickerDivider = document.querySelector('.sticker-divider img');
 
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');
@@ -211,6 +217,12 @@
             if (vinylRecord) {
                 const rotation = window.scrollY * 0.5;
                 vinylRecord.style.transform = `rotate(${rotation}deg)`;
+            }
+
+            if (stickerDivider) {
+                // Create a wiggle effect that oscillates between -15 and 15 degrees
+                const wiggle = Math.sin(window.scrollY * 0.02) * 15;
+                stickerDivider.style.transform = `rotate(${wiggle}deg)`;
             }
         });
 
