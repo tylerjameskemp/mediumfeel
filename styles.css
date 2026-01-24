@@ -817,6 +817,10 @@ p.large {
     align-items: center;
 }
 
+.cta-content {
+    text-align: center;
+}
+
 .cta-content h2 {
     margin-bottom: 16px;
 }
@@ -1459,6 +1463,7 @@ p.large {
     display: flex;
     gap: 16px;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .btn-secondary {
