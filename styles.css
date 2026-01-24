@@ -937,20 +937,20 @@ p.large {
     border-radius: 20px;
 }
 
-.featured-content h3 {
+.featured-post h3 {
     font-family: var(--font-serif);
     font-size: 1.75rem;
     line-height: 1.3;
     margin: 16px 0 12px;
 }
 
-.featured-content h3 a {
+.featured-post h3 a {
     color: var(--color-text);
     text-decoration: none;
     transition: color var(--transition);
 }
 
-.featured-content h3 a:hover {
+.featured-post h3 a:hover {
     color: var(--color-green);
 }
 
@@ -1309,7 +1309,14 @@ p.large {
         margin: 24px 0 40px;
     }
 
-    .featured-content h3 {
+    .featured-badge {
+        font-size: 0.7rem;
+        padding: 5px 14px;
+        top: -10px;
+        left: 16px;
+    }
+
+    .featured-post h3 {
         font-size: 1.4rem;
     }
 
