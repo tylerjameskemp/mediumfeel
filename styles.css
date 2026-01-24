@@ -380,10 +380,48 @@ p.large {
     color: var(--color-green);
     text-decoration: none;
     letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 2px;
 }
 
 .nav-wordmark:hover {
     color: var(--color-green-light);
+}
+
+.nav-cursor {
+    animation: blink 1s infinite;
+    color: var(--color-green);
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+.nav-iteration {
+    display: inline;
+}
+
+.nav-iteration.struck {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.nav-iteration.italic {
+    font-style: italic;
+}
+
+.nav-iteration.bold {
+    font-weight: 600;
+}
+
+.nav-iteration.spaced {
+    letter-spacing: 0.15em;
+}
+
+.nav-iteration.tight {
+    letter-spacing: -0.05em;
 }
 
 /* ===== Vinyl Record Divider ===== */
