@@ -848,13 +848,23 @@ p.large {
 
 /* ===== CTA Section ===== */
 .cta {
-    padding: 100px 0 80px;
+    padding: 100px 0;
     position: relative;
     background-color: var(--color-white);
     background-image:
         linear-gradient(var(--color-rule) 1px, transparent 1px),
         linear-gradient(90deg, var(--color-rule) 1px, transparent 1px);
     background-size: 32px 32px;
+}
+
+.cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--color-green);
 }
 
 .cta-layout {
@@ -1136,7 +1146,8 @@ p.large {
 /* ===== Footer ===== */
 .footer {
     padding: 48px 0 32px;
-    background: var(--color-bg-alt);
+    background: var(--color-bg);
+    border-top: 1px solid var(--color-border);
 }
 
 .footer-content {
