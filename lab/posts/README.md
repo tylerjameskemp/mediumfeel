@@ -18,13 +18,19 @@
    ```
 
 3. **Update all placeholders in HTML**
+
+   **Meta tags (in `<head>`):**
    - `[Post Title]` → Your post title
    - `[Brief description]` → 1-2 sentence summary (150-160 chars for SEO)
    - `[post-slug]` → URL-friendly slug (e.g., "my-new-post")
-   - `[YYYY-MM-DD]` → Publication date
-   - `Month DD, YYYY` → Formatted date display
+   - `[YYYY-MM-DD]` → Publication date (format: 2026-01-28)
    - `[Tag 1]`, `[Tag 2]`, `[Tag 3]` → Article tags
-   - `[X] min read` → Calculated read time
+   - `[word count]` → Total words in post content (use calculator from step 2)
+   - `[X]` → Minutes for read time (in timeRequired: "PT[X]M")
+
+   **Content (in `<body>`):**
+   - `Month DD, YYYY` → Formatted date display (e.g., "January 28, 2026")
+   - `[X] min read` → Calculated read time (e.g., "7 min read")
    - `POST_TITLE` → Title in header
    - `POST_EXCERPT` → Excerpt/subtitle
    - Status: Choose `status-exploring`, `status-building`, or `status-shipped`

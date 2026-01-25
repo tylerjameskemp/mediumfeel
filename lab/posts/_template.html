@@ -47,6 +47,40 @@
     <meta name="twitter:image" content="https://www.mediumfeel.com/assets/social/[post-slug].png">
     <meta name="twitter:image:alt" content="Medium Feel - [Post Title]">
 
+    <!-- Schema.org Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[Post Title]",
+        "description": "[Brief description of the post]",
+        "image": "https://www.mediumfeel.com/assets/social/[post-slug].png",
+        "author": {
+            "@type": "Person",
+            "name": "Tyler Kemp",
+            "url": "https://www.mediumfeel.com"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Medium Feel",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.mediumfeel.com/assets/logo-playdo.png"
+            }
+        },
+        "datePublished": "[YYYY-MM-DD]T00:00:00Z",
+        "dateModified": "[YYYY-MM-DD]T00:00:00Z",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://www.mediumfeel.com/lab/posts/[post-slug].html"
+        },
+        "keywords": "[Tag 1], [Tag 2], [Tag 3]",
+        "articleSection": "Brand & Marketing",
+        "wordCount": "[word count]",
+        "timeRequired": "PT[X]M"
+    }
+    </script>
+
     <link rel="stylesheet" href="../../styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
