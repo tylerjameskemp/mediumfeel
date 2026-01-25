@@ -1142,6 +1142,17 @@ p.large {
     margin-bottom: 16px;
 }
 
+.post-meta .read-time {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+}
+
+.post-meta .read-time::before {
+    content: "•";
+    margin: 0 8px;
+    color: var(--color-text-light);
+}
+
 .post-status {
     display: inline-block;
     font-size: 0.75rem;
@@ -1195,6 +1206,10 @@ p.large {
     padding: 64px 0;
     background: var(--color-white);
     position: relative;
+    /* Better text rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 .post-content::before {
@@ -1216,6 +1231,9 @@ p.large {
     line-height: 1.75;
     margin-bottom: 1.5em;
     color: var(--color-text);
+    /* Prevent orphans and widows */
+    orphans: 3;
+    widows: 3;
 }
 
 .post-content h2 {
@@ -1264,10 +1282,22 @@ p.large {
     text-decoration: underline;
     text-decoration-color: var(--color-green-pale);
     text-underline-offset: 2px;
+    font-weight: 500; /* Better scannability */
 }
 
 .post-content a:hover {
     text-decoration-color: var(--color-green);
+}
+
+/* Better emphasis styling */
+.post-content strong {
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.post-content em {
+    font-style: italic;
+    color: var(--color-text-muted);
 }
 
 .post-content code {
@@ -1544,6 +1574,93 @@ p.large {
     .post-nav {
         flex-direction: column;
         align-items: center;
+    }
+
+    /* Mobile reading optimizations */
+    .post-content .container {
+        padding: 0 20px;
+    }
+
+    .post-content p {
+        font-size: 1rem;
+    }
+
+    /* Larger touch targets for links */
+    .post-content a {
+        padding: 2px 0;
+        display: inline-block;
+    }
+
+    /* Better code block scrolling on mobile */
+    .post-content pre {
+        padding: 16px;
+        font-size: 0.85rem;
+    }
+
+    /* Adjust image margins */
+    .post-content img,
+    .post-content figure {
+        margin: 1.5em 0;
+    }
+
+    /* Tighter heading spacing on mobile */
+    .post-content h2 {
+        margin-top: 2em;
+        font-size: 1.5rem;
+    }
+}
+
+/* Mobile hyphenation for very narrow screens */
+@media (max-width: 480px) {
+    .post-content p {
+        hyphens: auto;
+        -webkit-hyphens: auto;
+    }
+}
+
+/* ===== Print Styles ===== */
+@media print {
+    .navbar,
+    .post-footer,
+    .footer,
+    .back-link,
+    .peppermint-divider,
+    .sticker-divider {
+        display: none;
+    }
+
+    .post-content {
+        padding: 0;
+    }
+
+    .post-header {
+        padding: 24px 0;
+    }
+
+    .post-content a {
+        color: var(--color-text);
+        text-decoration: underline;
+    }
+
+    /* Show URLs for external links */
+    .post-content a[href^="http"]:after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+        color: var(--color-text-muted);
+    }
+
+    /* Prevent page breaks inside elements */
+    .post-content h2,
+    .post-content h3,
+    .post-content p,
+    .post-content blockquote {
+        page-break-inside: avoid;
+    }
+
+    /* Keep headings with following content */
+    .post-content h2,
+    .post-content h3 {
+        page-break-after: avoid;
     }
 }
 
