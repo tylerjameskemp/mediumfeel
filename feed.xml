@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Medium Feel</title>
+    <link>https://www.mediumfeel.com/</link>
+    <description>A lab for brand, marketing, and AI. Exploring how communication is changing as AI reshapes how brands think, make, and show up.</description>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 21 Jan 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://www.mediumfeel.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <image>
+      <url>https://www.mediumfeel.com/assets/logo-playdo.png</url>
+      <title>Medium Feel</title>
+      <link>https://www.mediumfeel.com/</link>
+    </image>
+
+    <!-- POSTS - Newest first -->
+
+    <item>
+      <title>Shipping the Lab: A Build Log</title>
+      <link>https://www.mediumfeel.com/lab/posts/shipping-the-lab.html</link>
+      <guid isPermaLink="true">https://www.mediumfeel.com/lab/posts/shipping-the-lab.html</guid>
+      <description>How I built and shipped the Medium Feel website in a half-day using Claude Code, with no coding experience. A build log documenting the first experiment.</description>
+      <author>tyler@mediumfeel.com (Tyler Kemp)</author>
+      <pubDate>Tue, 21 Jan 2026 00:00:00 GMT</pubDate>
+      <category>AI</category>
+      <category>Brand Strategy</category>
+      <category>Web Development</category>
+    </item>
+
+  </channel>
+</rss>
