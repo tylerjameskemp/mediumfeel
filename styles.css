@@ -662,7 +662,7 @@ p.large {
 /* ===== About Section ===== */
 .about {
     padding: 100px 0;
-    background-color: var(--color-green);
+    background: linear-gradient(135deg, #5B8F4A 0%, #7FB068 100%);
     color: var(--color-white);
     position: relative;
 }
