@@ -1,6 +1,14 @@
 # Publishing a New Lab Post
 
-## Quick Start
+> **💡 Easy Way:** Just tell Claude Code "I want to publish a new lab post" and follow the conversation. Everything below is handled automatically.
+>
+> See: [PUBLISH-WORKFLOW.md](PUBLISH-WORKFLOW.md) for the automated publishing process.
+
+---
+
+## Manual Process (if not using Claude Code)
+
+### Quick Start
 
 1. **Copy the template**
    ```bash
