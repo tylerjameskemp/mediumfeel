@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}} | Medium Feel</title>
+    <meta name="description" content="{{EXCERPT}}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.mediumfeel.com/lab/posts/{{POST_SLUG}}.html">
+    <meta property="og:title" content="{{TITLE}}">
+    <meta property="og:description" content="{{EXCERPT}}">
+    <meta property="og:image" content="https://www.mediumfeel.com/assets/blog/{{POST_SLUG}}/hero-{{POST_SLUG}}.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.mediumfeel.com/lab/posts/{{POST_SLUG}}.html">
+    <meta property="twitter:title" content="{{TITLE}}">
+    <meta property="twitter:description" content="{{EXCERPT}}">
+    <meta property="twitter:image" content="https://www.mediumfeel.com/assets/blog/{{POST_SLUG}}/hero-{{POST_SLUG}}.png">
+
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+    :root {
+        /* Typography Scale (1.25 ratio) */
+        --text-xs: 0.64rem;
+        --text-sm: 0.8rem;
+        --text-base: 1rem;
+        --text-lg: 1.25rem;
+        --text-xl: 1.563rem;
+        --text-2xl: 1.953rem;
+        --text-3xl: 2.441rem;
+
+        /* Spacing Scale (8px base) */
+        --space-xs: 0.25rem;
+        --space-sm: 0.5rem;
+        --space-md: 1rem;
+        --space-lg: 1.5rem;
+        --space-xl: 2rem;
+        --space-2xl: 3rem;
+        --space-3xl: 4rem;
+
+        /* Content Width */
+        --content-width: 680px;
+
+        /* Brand Colors */
+        --color-green: #2d5a3d;
+        --green-primary: #4a8f5c;
+        --green-light: #7cd92e;
+
+        --gray-50: #fafafa;
+        --gray-100: #f5f5f5;
+        --gray-400: #9ca3af;
+        --gray-600: #4b5563;
+        --gray-900: #111827;
+    }
+
+    /* --- BASE: Clean Background --- */
+    .post {
+        background-color: #ffffff;
+    }
+
+    /* --- HEADER: Bright gradient zone --- */
+    .post-header {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        margin-left: -50vw;
+        background:
+            radial-gradient(ellipse 150% 120% at var(--gradient-x, 30%) var(--gradient-y, 50%),
+                #2d5a3d 0%,
+                #3a6b47 15%,
+                #4a8f5c 25%,
+                #6db33f 35%,
+                #7cd92e 45%,
+                #adff2f 50%,
+                #7cd92e 55%,
+                #6db33f 65%,
+                #4a8f5c 75%,
+                #3a6b47 85%,
+                #2d5a3d 100%
+            );
+        background-size: 200% 200%;
+        background-position: 15% 35%;
+        animation: gradient-shift 12s ease-in-out infinite;
+        padding: var(--space-lg) var(--space-md) var(--space-lg);
+        margin-bottom: 0;
+        margin-top: -80px;
+        padding-top: calc(80px + var(--space-lg));
+        border: none !important;
+        border-bottom: none !important;
+    }
+
+    .post-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background:
+            linear-gradient(0deg, rgba(173, 255, 47, 0.3) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(173, 255, 47, 0.3) 1px, transparent 1px);
+        background-size: 20px 20px;
+        background-attachment: fixed;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .post-header-inner {
+        max-width: var(--content-width);
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Hero image inside header */
+    .post-header .post-hero {
+        max-width: 320px;
+        margin: 0 auto var(--space-lg);
+    }
+
+    .post-header .post-hero img {
+        width: 100%;
+        height: auto;
+    }
+
+    .post-header h1 {
+        font-family: var(--font-serif);
+        font-size: var(--text-2xl);
+        font-weight: 400;
+        line-height: 1.2;
+        color: white;
+        margin: 0 0 var(--space-md) 0;
+    }
+
+    .post-header .post-excerpt {
+        font-size: var(--text-sm);
+        line-height: 1.5;
+        color: rgba(255,255,255,0.9);
+        margin: 0;
+        max-width: 540px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .post-header .post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-xs);
+        font-size: var(--text-sm);
+        color: white !important;
+        margin-bottom: var(--space-sm);
+    }
+
+    .post-header .post-meta time,
+    .post-header .post-meta span {
+        color: white !important;
+    }
+
+    .post-header .post-status {
+        background: rgba(255,255,255,0.2);
+        padding: 2px 10px;
+        border-radius: 12px;
+        font-size: var(--text-sm);
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    @keyframes gradient-shift {
+        0% {
+            background-position: 15% 35%;
+        }
+        20% {
+            background-position: 85% 45%;
+        }
+        40% {
+            background-position: 60% 75%;
+        }
+        60% {
+            background-position: 30% 65%;
+        }
+        80% {
+            background-position: 70% 25%;
+        }
+        100% {
+            background-position: 15% 35%;
+        }
+    }
+
+    /* --- CONTENT AREA --- */
+    .post-content {
+        max-width: var(--content-width);
+        margin: 0 auto;
+        padding: var(--space-md) var(--space-md) 0;
+        position: relative;
+    }
+
+    .post-content::before {
+        display: none !important;
+    }
+
+    /* --- SECTIONS --- */
+    .post-section {
+        margin-bottom: var(--space-2xl);
+    }
+
+    /* Last section (What's Next) should be compact */
+    .post-section:last-of-type {
+        margin-bottom: var(--space-lg);
+    }
+
+    .post-section:last-of-type .section-content {
+        font-size: 0.8rem;
+    }
+
+    .post-section:last-of-type .section-content p {
+        margin-bottom: var(--space-sm);
+        font-size: 0.8rem;
+    }
+
+    .post-section:last-of-type .section-content ul {
+        font-size: 0.8rem;
+        line-height: 1.5;
+        margin-bottom: var(--space-sm);
+    }
+
+    .post-section:last-of-type .section-content li {
+        margin-bottom: 2px;
+    }
+
+    .section-label {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: var(--text-sm);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--green-light);
+        margin-bottom: var(--space-md);
+    }
+
+    .section-content {
+        /* No background, just clean typography */
+    }
+
+    /* --- TYPOGRAPHY --- */
+    .post-content p {
+        font-size: var(--text-base);
+        line-height: 1.7;
+        color: var(--gray-900);
+        margin: 0 0 var(--space-md) 0;
+    }
+
+    .post-content ul {
+        margin: 0 0 var(--space-md) 0;
+        padding-left: var(--space-lg);
+    }
+
+    .post-content li {
+        margin-bottom: var(--space-xs);
+        line-height: 1.7;
+    }
+
+    .post-content strong {
+        font-weight: 700;
+        color: var(--gray-900);
+    }
+
+    /* Subsection headers in bold paragraphs (only when followed by a list) */
+    .section-content > p:has(+ ul) > strong:only-child,
+    .section-content > p:has(+ ol) > strong:only-child {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: var(--text-sm);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--green-light);
+    }
+
+    .post-content em {
+        font-style: italic;
+    }
+
+    .post-content a {
+        color: var(--green-primary);
+        text-decoration: underline;
+        transition: color 0.2s;
+    }
+
+    .post-content a:hover {
+        color: var(--green-light);
+    }
+
+    .post-content mark {
+        background: linear-gradient(
+            180deg,
+            transparent 0%,
+            transparent 30%,
+            #adff2f 30%,
+            #adff2f 70%,
+            transparent 70%
+        );
+        padding: 0 2px;
+    }
+
+    /* --- FIGURES --- */
+    .post-figure {
+        margin: var(--space-xl) 0;
+        text-align: center;
+    }
+
+    .post-figure img {
+        max-width: 540px;
+        width: 100%;
+        height: auto;
+        display: inline-block;
+    }
+
+    /* --- SHARE SECTION: Simple icons below meta --- */
+    .share-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        background: rgba(0,0,0,0.15);
+        border: none;
+        border-radius: 50%;
+        color: white;
+        text-decoration: none;
+        font-size: var(--text-sm);
+        transition: all 0.15s;
+    }
+
+    .share-btn:hover {
+        background: rgba(0,0,0,0.25);
+        transform: scale(1.1);
+    }
+
+    /* --- FOOTER --- */
+    .post-footer {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        margin-left: -50vw;
+        margin-top: var(--space-3xl);
+        background: radial-gradient(
+            ellipse 120% 100% at 70% 50%,
+            #2d5a3d 0%,
+            #4a8f5c 20%,
+            #7cd92e 40%,
+            #adff2f 50%,
+            #7cd92e 65%,
+            #4a8f5c 80%,
+            #2d5a3d 100%
+        );
+        background-size: 200% 200%;
+        animation: gradient-shift 8s ease-in-out infinite;
+        text-align: center;
+        padding: var(--space-md);
+        font-size: var(--text-xs);
+        color: white !important;
+    }
+
+    .post-footer p {
+        color: white !important;
+    }
+
+    /* --- UTILITY --- */
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .post-header {
+            margin-top: -60px;
+            padding-top: calc(60px + var(--space-md));
+            padding-left: var(--space-sm);
+            padding-right: var(--space-sm);
+            padding-bottom: var(--space-md);
+        }
+
+        .post-header .post-hero {
+            max-width: 240px;
+        }
+
+        .post-header h1 {
+            font-size: var(--text-xl);
+        }
+
+        .post-header .post-excerpt {
+            font-size: 0.8rem;
+        }
+
+        .share-btn {
+            width: 28px;
+            height: 28px;
+            font-size: 0.65rem;
+        }
+
+        .post-content {
+            padding: var(--space-md) var(--space-sm) 0;
+        }
+
+        .post-figure img {
+            max-width: 440px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .post-header .post-hero {
+            max-width: 200px;
+        }
+
+        .post-header h1 {
+            font-size: var(--text-lg);
+        }
+
+        .post-content p,
+        .post-content ul {
+            font-size: 0.95rem;
+        }
+    }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="nav-wordmark">
+                <span id="nav-typewriter"></span>
+                <span class="nav-cursor">|</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="../index.html" class="active">Lab</a></li>
+                <li><a href="../../index.html#about">About</a></li>
+                <li><a href="../../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <article class="post">
+
+        <!-- HEADER: Gradient zone with hero, title, meta -->
+        <header class="post-header">
+            <div class="post-header-inner">
+                <!-- Hero image -->
+                <figure class="post-hero">
+                    <img src="../../assets/blog/{{POST_SLUG}}/hero-{{POST_SLUG}}.png"
+                         alt="{{HERO_ALT}}">
+                </figure>
+
+                <h1>{{TITLE}}</h1>
+
+                <div class="post-meta">
+                    <span class="post-status">{{STATUS}}</span>
+                    <span>·</span>
+                    <time datetime="{{DATE_ISO}}">{{DATE_FORMATTED}}</time>
+                    <span>·</span>
+                    <span>{{READ_TIME}} min read</span>
+                    <span>·</span>
+                    <a href="https://twitter.com/intent/tweet?url=https://www.mediumfeel.com/lab/posts/{{POST_SLUG}}.html&text={{TITLE_ENCODED}}" target="_blank" rel="noopener" class="share-btn" title="Share on Twitter">𝕏</a>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.mediumfeel.com/lab/posts/{{POST_SLUG}}.html" target="_blank" rel="noopener" class="share-btn" title="Share on LinkedIn">in</a>
+                    <a href="mailto:?subject={{TITLE_ENCODED}}&body=Check%20out%20this%20post%3A%20https://www.mediumfeel.com/lab/posts/{{POST_SLUG}}.html" class="share-btn" title="Share via Email">✉</a>
+                </div>
+
+                <p class="post-excerpt">{{EXCERPT}}</p>
+            </div>
+        </header>
+
+        <!-- CONTENT -->
+        <div class="post-content">
+
+            {{CONTENT_SECTIONS}}
+
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="post-footer">
+            <p>&copy; 2026 Medium Feel · Portland, Maine</p>
+        </footer>
+
+    </article>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuBtn.classList.toggle('active');
+        });
+    </script>
+    <script src="../../assets/js/typewriter.js"></script>
+    <script>
+        // Navbar scroll behavior
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
