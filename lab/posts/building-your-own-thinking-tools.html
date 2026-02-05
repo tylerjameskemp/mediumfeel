@@ -80,8 +80,9 @@
                 #2d5a3d 100%
             );
         background-size: 200% 200%;
+        background-position: 15% 35%;
         animation: gradient-shift 12s ease-in-out infinite;
-        padding: var(--space-xl) var(--space-md) var(--space-xl);
+        padding: var(--space-lg) var(--space-md) var(--space-lg);
         margin-bottom: 0;
         margin-top: -80px;
         padding-top: calc(80px + var(--space-lg));
@@ -89,10 +90,28 @@
         border-bottom: none !important;
     }
 
+    .post-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background:
+            linear-gradient(0deg, rgba(173, 255, 47, 0.3) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(173, 255, 47, 0.3) 1px, transparent 1px);
+        background-size: 20px 20px;
+        background-attachment: fixed;
+        pointer-events: none;
+        z-index: 1;
+    }
+
     .post-header-inner {
         max-width: var(--content-width);
         margin: 0 auto;
         text-align: center;
+        position: relative;
+        z-index: 2;
     }
 
     /* Hero image inside header */
@@ -119,7 +138,7 @@
         font-size: var(--text-sm);
         line-height: 1.5;
         color: rgba(255,255,255,0.9);
-        margin: 0 0 var(--space-md) 0;
+        margin: 0;
         max-width: 540px;
         margin-left: auto;
         margin-right: auto;
@@ -133,7 +152,7 @@
         gap: var(--space-xs);
         font-size: var(--text-sm);
         color: white !important;
-        margin-bottom: 0;
+        margin-bottom: var(--space-sm);
     }
 
     .post-header .post-meta time,
@@ -145,8 +164,8 @@
         background: rgba(255,255,255,0.2);
         padding: 2px 10px;
         border-radius: 12px;
-        font-size: var(--text-xs);
-        font-weight: 600;
+        font-size: var(--text-sm);
+        font-weight: 400;
         text-transform: uppercase;
         letter-spacing: 0.05em;
     }
@@ -211,12 +230,12 @@
 
     .tldr-label {
         font-family: 'JetBrains Mono', monospace;
-        font-size: 0.5rem;
+        font-size: var(--text-sm);
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.1em;
         color: var(--green-light);
-        margin-bottom: 4px;
+        margin-bottom: var(--space-md);
     }
 
     .tldr ul {
@@ -246,12 +265,12 @@
     }
 
     .post-section:last-of-type .section-content {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
     }
 
     .post-section:last-of-type .section-content p {
         margin-bottom: var(--space-sm);
-        font-size: 0.85rem;
+        font-size: 0.8rem;
     }
 
     .post-section:last-of-type .section-content ul {
@@ -341,7 +360,7 @@
     }
 
     .post-figure img {
-        max-width: 360px;
+        max-width: 540px;
         width: 100%;
         height: auto;
         display: inline-block;
@@ -388,7 +407,7 @@
         border-radius: 50%;
         color: white;
         text-decoration: none;
-        font-size: 0.7rem;
+        font-size: var(--text-sm);
         transition: all 0.15s;
     }
 
@@ -472,7 +491,7 @@
         }
 
         .post-figure img {
-            max-width: 260px;
+            max-width: 440px;
         }
     }
 
@@ -494,7 +513,7 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar scrolled">
+    <nav class="navbar">
         <div class="nav-container">
             <a href="../../index.html" class="nav-wordmark">
                 <span id="nav-typewriter"></span>
@@ -526,8 +545,6 @@
 
                 <h1>What If You Could Build Your Own Thinking Tools?</h1>
 
-                <p class="post-excerpt">After 18 months of AI hype, building something I actually needed finally felt possible. How Claude Code and Opus 4.5 collapsed the distance between "I need a tool" and "here's a working prototype."</p>
-
                 <div class="post-meta">
                     <span class="post-status">Exploring</span>
                     <span>·</span>
@@ -540,28 +557,15 @@
                     <a href="mailto:?subject=What%20If%20You%20Could%20Build%20Your%20Own%20Thinking%20Tools%3F&body=Check%20out%20this%20post%3A%20https://www.mediumfeel.com/lab/posts/building-your-own-thinking-tools.html" class="share-btn" title="Share via Email">✉</a>
                 </div>
 
-                <a href="../index.html" class="back-link">Back to Lab</a>
+                <p class="post-excerpt">After 18 months of AI hype, building something I actually needed finally felt possible. How Claude Code and Opus 4.5 collapsed the distance between "I need a tool" and "here's a working prototype."</p>
             </div>
         </header>
 
         <!-- CONTENT -->
         <div class="post-content">
 
-            <!-- TL;DR -->
-            <aside class="tldr">
-                <div class="tldr-label">TL;DR</div>
-                <ul>
-                    <li>Spent 18 months trying AI tools that didn't solve my problems</li>
-                    <li>Claude Code + Opus 4.5 = first time building felt real</li>
-                    <li>Built a personal RAG system (Weave) in 2 days</li>
-                    <li>Key insight: Using AI to manage the build process, not just write code</li>
-                    <li>Next post: Technical learnings, honest failures</li>
-                </ul>
-            </aside>
-
-            <!-- SECTION: The Problem -->
+            <!-- SECTION: Opening -->
             <section class="post-section">
-                <div class="section-label">The Problem</div>
                 <div class="section-content">
                     <p>For the past year and a half, I've been trying a lot of AI stuff. Granola for meeting notes. Otto.ai for transcription. DiAL. New products from the frontier AI labs. Claude, ChatGPT, Gemini. I'm curious about new functionality.</p>
 
@@ -577,8 +581,8 @@
 
             <!-- FIGURE -->
             <figure class="post-figure">
-                <img src="../../assets/blog/building-your-own-thinking-tools/highlighter-spring-green.png"
-                     alt="Spring green highlighter marker">
+                <img src="../../assets/blog/building-your-own-thinking-tools/bridging-the-gap.png"
+                     alt="Two bridge halves reaching toward each other">
             </figure>
 
             <!-- SECTION: The First Time It Felt Real -->
@@ -595,13 +599,6 @@
                 </div>
             </section>
 
-            <!-- FIGURE -->
-            <figure class="post-figure">
-                <img src="../../assets/blog/building-your-own-thinking-tools/building-with-claude-code.png"
-                     alt="Terminal window showing Claude Code interface">
-                <figcaption>Building with Claude Code in Terminal</figcaption>
-            </figure>
-
             <!-- SECTION: The Shift -->
             <section class="post-section">
                 <div class="section-label">The Shift</div>
@@ -613,6 +610,12 @@
                     <p>Why now? Opus 4.5 is only a few months old. Every.to ran multiple posts about how profound the release was. Every AI podcast I follow spent episodes exploring what it meant. The context windows are bigger. The models actually understand code architecture, not just syntax. Something fundamental shifted.</p>
                 </div>
             </section>
+
+            <!-- FIGURE -->
+            <figure class="post-figure">
+                <img src="../../assets/blog/building-your-own-thinking-tools/building-with-claude-code.png"
+                     alt="Terminal window showing Claude Code interface">
+            </figure>
 
             <!-- SECTION: Ideas I Couldn't Stop Thinking About -->
             <section class="post-section">
@@ -642,13 +645,6 @@
                 </div>
             </section>
 
-            <!-- FIGURE -->
-            <figure class="post-figure">
-                <img src="../../assets/blog/building-your-own-thinking-tools/human-ai-collaboration.png"
-                     alt="Two hands reaching toward each other representing human-AI collaboration">
-                <figcaption>Human and AI working together</figcaption>
-            </figure>
-
             <!-- SECTION: The Build Process -->
             <section class="post-section">
                 <div class="section-label">The Build Process</div>
@@ -675,9 +671,8 @@
 
             <!-- FIGURE -->
             <figure class="post-figure">
-                <img src="../../assets/blog/building-your-own-thinking-tools/bridging-the-gap.png"
-                     alt="Two bridge halves reaching toward each other">
-                <figcaption>Bridging the gap between need and solution</figcaption>
+                <img src="../../assets/blog/building-your-own-thinking-tools/human-ai-collaboration.png"
+                     alt="Two hands reaching toward each other representing human-AI collaboration">
             </figure>
 
             <!-- SECTION: Agency & Possibility -->
@@ -738,5 +733,16 @@
         });
     </script>
     <script src="../../assets/js/typewriter.js"></script>
+    <script>
+        // Navbar scroll behavior
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
