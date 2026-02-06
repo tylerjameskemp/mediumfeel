@@ -10,61 +10,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
+    <!-- Shared blog design system -->
+    <link rel="stylesheet" href="../blog-design-system.css">
+
     <style>
-    /* ===== DESIGN SYSTEM: Blog Template v1.0 ===== */
+    /* ===================================================
+       POST-SPECIFIC STYLES ONLY
+       Typography, spacing, and element styles come from
+       blog-design-system.css. Only layout/animation here.
+       =================================================== */
 
-    /* --- DESIGN TOKENS --- */
-    :root {
-        /* Type Scale (1.25 ratio) */
-        --text-xs: 0.64rem;    /* 10px */
-        --text-sm: 0.8rem;     /* 13px */
-        --text-base: 1rem;     /* 16px */
-        --text-lg: 1.25rem;    /* 20px */
-        --text-xl: 1.563rem;   /* 25px */
-        --text-2xl: 1.953rem;  /* 31px */
-        --text-3xl: 2.441rem;  /* 39px */
-
-        /* Spacing Scale (8px base) */
-        --space-xs: 8px;
-        --space-sm: 16px;
-        --space-md: 24px;
-        --space-lg: 32px;
-        --space-xl: 48px;
-        --space-2xl: 64px;
-        --space-3xl: 96px;
-
-        /* Widths */
-        --content-width: 640px;
-        --content-narrow: 520px;
-        --content-wide: 720px;
-
-        /* Colors */
-        --green-primary: #2d5a3d;
-        --green-light: #6db33f;
-        --green-pale: #f0ffc8;
-        --green-gradient-1: #adff2f;
-        --green-gradient-2: #9acd32;
-        --green-gradient-3: #6db33f;
-        --green-gradient-4: #5a9e32;
-
-        --gray-50: #fafafa;
-        --gray-100: #f5f5f5;
-        --gray-400: #9ca3af;
-        --gray-600: #4b5563;
-        --gray-900: #111827;
-    }
-
-    /* --- BASE: Clean Background --- */
-    .post {
-        background-color: #ffffff;
-    }
-
-    /* --- HEADER: Bright gradient zone --- */
+    /* Gradient — same as other posts */
     .post-header {
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        margin-left: -50vw;
         background:
             radial-gradient(ellipse 150% 120% at var(--gradient-x, 30%) var(--gradient-y, 50%),
                 #2d5a3d 0%,
@@ -79,439 +36,15 @@
                 #3a6b47 85%,
                 #2d5a3d 100%
             );
-        background-size: 200% 200%;
-        background-position: 15% 35%;
-        animation: gradient-shift 12s ease-in-out infinite;
-        padding: var(--space-lg) var(--space-md) var(--space-lg);
-        margin-bottom: 0;
-        margin-top: -80px;
-        padding-top: calc(80px + var(--space-lg));
-        border: none !important;
-        border-bottom: none !important;
     }
 
-    .post-header::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background:
-            linear-gradient(0deg, rgba(173, 255, 47, 0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(173, 255, 47, 0.3) 1px, transparent 1px);
-        background-size: 20px 20px;
-        background-attachment: fixed;
-        pointer-events: none;
-        z-index: 1;
-    }
-
-    .post-header-inner {
-        max-width: var(--content-width);
-        margin: 0 auto;
-        text-align: center;
-        position: relative;
-        z-index: 2;
-    }
-
-    /* Hero image inside header */
-    .post-header .post-hero {
-        max-width: 320px;
-        margin: 0 auto var(--space-lg);
-    }
-
-    .post-header .post-hero img {
-        width: 100%;
-        height: auto;
-    }
-
-    .post-header h1 {
-        font-family: var(--font-serif);
-        font-size: var(--text-2xl);
-        font-weight: 400;
-        line-height: 1.2;
-        color: white;
-        margin: 0 0 var(--space-md) 0;
-    }
-
-    .post-header .post-excerpt {
-        font-size: var(--text-sm);
-        line-height: 1.5;
-        color: rgba(255,255,255,0.9);
-        margin: 0;
-        max-width: 540px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .post-header .post-meta {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        gap: var(--space-xs);
-        font-size: var(--text-sm);
-        color: white !important;
-        margin-bottom: var(--space-sm);
-    }
-
-    .post-header .post-meta time,
-    .post-header .post-meta span {
-        color: white !important;
-    }
-
-    .post-header .post-status {
-        background: rgba(255,255,255,0.2);
-        padding: 2px 10px;
-        border-radius: 12px;
-        font-size: var(--text-sm);
-        font-weight: 400;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-    }
-
-    .post-header .back-link {
-        display: inline-flex;
-        align-items: center;
-        gap: var(--space-xs);
-        color: rgba(255,255,255,0.75);
-        text-decoration: none;
-        font-size: var(--text-sm);
-        font-weight: 500;
-        transition: color 0.2s;
-        margin-top: var(--space-lg);
-    }
-
-    .post-header .back-link:hover {
-        color: white;
-    }
-
-    .post-header .back-link::before {
-        content: '←';
-    }
-
-    @keyframes gradient-shift {
-        0% {
-            background-position: 15% 35%;
-        }
-        20% {
-            background-position: 85% 45%;
-        }
-        40% {
-            background-position: 60% 75%;
-        }
-        60% {
-            background-position: 30% 65%;
-        }
-        80% {
-            background-position: 70% 25%;
-        }
-        100% {
-            background-position: 15% 35%;
-        }
-    }
-
-    /* --- CONTENT AREA --- */
-    .post-content {
-        max-width: var(--content-width);
-        margin: 0 auto;
-        padding: var(--space-md) var(--space-md) 0;
-        position: relative;
-    }
-
-    .post-content::before {
-        display: none !important;
-    }
-
-    /* --- TL;DR: Ultra compact --- */
-    .tldr {
-        margin-bottom: var(--space-md);
-    }
-
-    .tldr-label {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: var(--text-sm);
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--green-light);
-        margin-bottom: var(--space-md);
-    }
-
-    .tldr ul {
-        margin: 0;
-        padding-left: var(--space-sm);
-        font-size: 0.65rem;
-        line-height: 1.35;
-        color: var(--green-primary);
-    }
-
-    .tldr li {
-        margin-bottom: 2px;
-    }
-
-    .tldr li:last-child {
-        margin-bottom: 0;
-    }
-
-    /* --- SECTIONS --- */
-    .post-section {
-        margin-bottom: var(--space-2xl);
-    }
-
-    /* Last section (What's Next) should be compact */
-    .post-section:last-of-type {
-        margin-bottom: var(--space-lg);
-    }
-
-    .post-section:last-of-type .section-content {
-        font-size: 0.8rem;
-    }
-
-    .post-section:last-of-type .section-content p {
-        margin-bottom: var(--space-sm);
-        font-size: 0.8rem;
-    }
-
-    .post-section:last-of-type .section-content ul {
-        font-size: 0.8rem;
-        line-height: 1.5;
-        margin-bottom: var(--space-sm);
-    }
-
-    .post-section:last-of-type .section-content li {
-        margin-bottom: 2px;
-    }
-
-    .section-label {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: var(--text-sm);
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--green-light);
-        margin-bottom: var(--space-md);
-    }
-
-    .section-content {
-        /* No background, just clean typography */
-    }
-
-    /* --- TYPOGRAPHY --- */
-    .post-content p {
-        font-size: var(--text-base);
-        line-height: 1.7;
-        color: var(--gray-900);
-        margin: 0 0 var(--space-md) 0;
-    }
-
-    .post-content p:last-child {
-        margin-bottom: 0;
-    }
-
-    .post-content strong {
-        font-weight: 600;
-    }
-
-    .post-content em {
-        font-style: italic;
-    }
-
-    .post-content ul {
-        font-size: var(--text-base);
-        line-height: 1.7;
-        margin: 0 0 var(--space-md) 0;
-        padding-left: var(--space-md);
-    }
-
-    .post-content li {
-        margin-bottom: var(--space-xs);
-    }
-
-    .post-content a {
-        color: var(--green-primary);
-        text-decoration: underline;
-        text-decoration-thickness: 1px;
-        text-underline-offset: 2px;
-        transition: text-decoration-thickness 0.15s;
-    }
-
-    .post-content a:hover {
-        text-decoration-thickness: 2px;
-    }
-
-    /* Highlight */
-    .post-content mark {
-        background: linear-gradient(
-            to bottom,
-            transparent 0%,
-            transparent 30%,
-            rgba(173, 255, 47, 0.5) 30%,
-            rgba(173, 255, 47, 0.5) 70%,
-            transparent 70%
-        );
-        padding: 0 2px;
-    }
-
-    /* --- FIGURES --- */
-    .post-figure {
-        margin: var(--space-xl) 0;
-        text-align: center;
-    }
-
+    /* Figure image max-width for this post */
     .post-figure img {
         max-width: 540px;
-        width: 100%;
-        height: auto;
-        display: inline-block;
-    }
-
-    .post-figure figcaption {
-        font-size: var(--text-sm);
-        color: var(--gray-400);
-        margin-top: var(--space-xs);
-        font-style: italic;
-    }
-
-    /* --- SHARE SECTION: Simple icons below meta --- */
-    .post-share {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 4px;
-        margin-top: var(--space-sm);
-        margin-bottom: var(--space-sm);
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-    }
-
-    .share-buttons {
-        display: flex;
-        gap: 4px;
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-    }
-
-    .share-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 28px;
-        height: 28px;
-        background: rgba(0,0,0,0.15);
-        border: none;
-        border-radius: 50%;
-        color: white;
-        text-decoration: none;
-        font-size: var(--text-sm);
-        transition: all 0.15s;
-    }
-
-    .share-btn:hover {
-        background: rgba(0,0,0,0.25);
-        transform: scale(1.1);
-    }
-
-    /* --- FOOTER --- */
-    .post-footer {
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        margin-left: -50vw;
-        margin-top: var(--space-3xl);
-        background: radial-gradient(
-            ellipse 120% 100% at 70% 50%,
-            #2d5a3d 0%,
-            #4a8f5c 20%,
-            #7cd92e 40%,
-            #adff2f 50%,
-            #7cd92e 65%,
-            #4a8f5c 80%,
-            #2d5a3d 100%
-        );
-        background-size: 200% 200%;
-        animation: gradient-shift 8s ease-in-out infinite;
-        text-align: center;
-        padding: var(--space-md);
-        font-size: var(--text-xs);
-        color: white !important;
-    }
-
-    .post-footer p {
-        color: white !important;
-    }
-
-    /* --- UTILITY --- */
-    .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-    }
-
-    /* --- RESPONSIVE --- */
-    @media (max-width: 768px) {
-        .post-header {
-            margin-top: -60px;
-            padding-top: calc(60px + var(--space-md));
-            padding-left: var(--space-sm);
-            padding-right: var(--space-sm);
-            padding-bottom: var(--space-md);
-        }
-
-        .post-header .post-hero {
-            max-width: 240px;
-        }
-
-        .post-header h1 {
-            font-size: var(--text-xl);
-        }
-
-        .post-header .post-excerpt {
-            font-size: 0.8rem;
-        }
-
-        .share-btn {
-            width: 28px;
-            height: 28px;
-            font-size: 0.65rem;
-        }
-
-        .post-content {
-            padding: var(--space-md) var(--space-sm) 0;
-        }
-
-        .post-figure img {
-            max-width: 440px;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .post-header .post-hero {
-            max-width: 200px;
-        }
-
-        .post-header h1 {
-            font-size: var(--text-lg);
-        }
-
-        .post-content p,
-        .post-content ul {
-            font-size: 0.95rem;
-        }
     }
     </style>
 </head>
-<body>
+<body class="blog-post">
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -547,14 +80,14 @@
 
                 <div class="post-meta">
                     <span class="post-status">Exploring</span>
-                    <span>·</span>
+                    <span class="separator">&middot;</span>
                     <time datetime="2026-02-05">February 5, 2026</time>
-                    <span>·</span>
-                    <span>7 min read</span>
-                    <span>·</span>
-                    <a href="https://twitter.com/intent/tweet?url=https://www.mediumfeel.com/lab/posts/building-your-own-thinking-tools.html&text=What%20If%20You%20Could%20Build%20Your%20Own%20Thinking%20Tools%3F" target="_blank" rel="noopener" class="share-btn" title="Share on Twitter">𝕏</a>
+                    <span class="separator">&middot;</span>
+                    <span class="read-time">7 min read</span>
+                    <span class="separator">&middot;</span>
+                    <a href="https://twitter.com/intent/tweet?url=https://www.mediumfeel.com/lab/posts/building-your-own-thinking-tools.html&text=What%20If%20You%20Could%20Build%20Your%20Own%20Thinking%20Tools%3F" target="_blank" rel="noopener" class="share-btn" title="Share on Twitter">&#x1d54f;</a>
                     <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.mediumfeel.com/lab/posts/building-your-own-thinking-tools.html" target="_blank" rel="noopener" class="share-btn" title="Share on LinkedIn">in</a>
-                    <a href="mailto:?subject=What%20If%20You%20Could%20Build%20Your%20Own%20Thinking%20Tools%3F&body=Check%20out%20this%20post%3A%20https://www.mediumfeel.com/lab/posts/building-your-own-thinking-tools.html" class="share-btn" title="Share via Email">✉</a>
+                    <a href="mailto:?subject=What%20If%20You%20Could%20Build%20Your%20Own%20Thinking%20Tools%3F&body=Check%20out%20this%20post%3A%20https://www.mediumfeel.com/lab/posts/building-your-own-thinking-tools.html" class="share-btn" title="Share via Email">&#x2709;</a>
                 </div>
 
                 <p class="post-excerpt">After 18 months of AI hype, building something I actually needed finally felt possible. How Claude Code and Opus 4.5 collapsed the distance between "I need a tool" and "here's a working prototype."</p>
@@ -677,7 +210,7 @@
 
             <!-- SECTION: Agency & Possibility -->
             <section class="post-section">
-                <div class="section-label">Agency & Possibility</div>
+                <div class="section-label">Agency &amp; Possibility</div>
                 <div class="section-content">
                     <p>But that's only valuable if I stay focused on problems I'm actually trying to solve. If I learn to integrate these new capabilities into my thinking, my troubleshooting, my problem-solving process.</p>
 
@@ -713,11 +246,20 @@
                 </div>
             </section>
 
+            <!-- Post Navigation -->
+            <nav class="post-nav">
+                <a href="shipping-the-lab-new.html" class="post-nav-link prev">
+                    <span class="post-nav-direction">&larr; Previous</span>
+                    <span class="post-nav-title">Shipping the Lab: A Build Log</span>
+                </a>
+                <span></span>
+            </nav>
+
         </div>
 
         <!-- FOOTER -->
         <footer class="post-footer">
-            <p>&copy; 2026 Medium Feel · Portland, Maine</p>
+            <p>&copy; 2026 Medium Feel &middot; Portland, Maine</p>
         </footer>
 
     </article>
