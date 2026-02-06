@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header → Body Transition Sampler | Medium Feel</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+    :root {
+        --font-serif: 'Instrument Serif', Georgia, serif;
+        --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-mono: 'JetBrains Mono', monospace;
+        --green-primary: #2d5a3d;
+        --green-light: #6db33f;
+        --gray-900: #111827;
+        --gray-600: #4b5563;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: var(--font-sans);
+        background: #f5f5f5;
+        color: var(--gray-900);
+    }
+
+    /* --- Page nav --- */
+    .sampler-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(245,245,245,0.95);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid #ddd;
+        padding: 12px 24px;
+        display: flex;
+        gap: 24px;
+        align-items: center;
+    }
+
+    .sampler-nav h1 {
+        font-family: var(--font-serif);
+        font-size: 1.1rem;
+        font-weight: 400;
+    }
+
+    .sampler-nav a {
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--green-primary);
+        text-decoration: none;
+    }
+
+    .sampler-nav a:hover { text-decoration: underline; }
+
+    /* --- Shared gradient --- */
+    .demo-gradient {
+        background:
+            radial-gradient(ellipse 150% 120% at 30% 50%,
+                #2d5a3d 0%, #3a6b47 15%, #4a8f5c 25%,
+                #6db33f 35%, #7cd92e 45%, #adff2f 50%,
+                #7cd92e 55%, #6db33f 65%, #4a8f5c 75%,
+                #3a6b47 85%, #2d5a3d 100%
+            );
+        background-size: 200% 200%;
+        animation: gradShift 12s ease-in-out infinite;
+        position: relative;
+    }
+
+    /* Grid overlay */
+    .demo-gradient::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background:
+            linear-gradient(0deg, rgba(173, 255, 47, 0.3) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(173, 255, 47, 0.3) 1px, transparent 1px);
+        background-size: 20px 20px;
+        pointer-events: none;
+    }
+
+    @keyframes gradShift {
+        0%   { background-position: 15% 35%; }
+        50%  { background-position: 85% 65%; }
+        100% { background-position: 15% 35%; }
+    }
+
+    .demo-header-inner {
+        max-width: 640px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+        padding: 80px 24px 48px;
+    }
+
+    .demo-title {
+        font-family: var(--font-serif);
+        font-size: clamp(2rem, 5vw, 2.75rem);
+        font-weight: 400;
+        line-height: 1.15;
+        color: white;
+        margin-bottom: 16px;
+        text-wrap: balance;
+    }
+
+    .demo-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-family: var(--font-sans);
+        font-size: 0.875rem;
+        color: white;
+        margin-bottom: 16px;
+    }
+
+    .demo-meta .status {
+        background: rgba(255,255,255,0.2);
+        padding: 3px 12px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .demo-meta .sep { opacity: 0.4; font-size: 0.75rem; }
+
+    .demo-meta .read-time {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        opacity: 0.85;
+    }
+
+    /* Share: no circles, just glyphs */
+    .demo-share {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        margin-top: 4px;
+    }
+
+    .demo-share a {
+        color: rgba(255,255,255,0.6);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.15s;
+    }
+
+    .demo-share a:hover {
+        color: white;
+    }
+
+    /* --- Body text --- */
+    .demo-body {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 0 24px;
+        background: white;
+    }
+
+    .demo-body-wrap {
+        background: white;
+    }
+
+    .demo-body p {
+        font-family: var(--font-sans);
+        font-size: 1.0625rem;
+        line-height: 1.7;
+        color: var(--gray-900);
+        margin: 0 0 1.5em 0;
+    }
+
+    .demo-section-label {
+        font-family: var(--font-mono);
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--green-light);
+        margin-bottom: 24px;
+        padding-top: 48px;
+    }
+
+    /* --- Section dividers --- */
+    .section-break {
+        padding: 80px 24px 16px;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .section-break h2 {
+        font-family: var(--font-serif);
+        font-size: 1.75rem;
+        font-weight: 400;
+        margin-bottom: 8px;
+    }
+
+    .section-break p {
+        font-family: var(--font-sans);
+        font-size: 0.875rem;
+        color: var(--gray-600);
+        max-width: 600px;
+        line-height: 1.5;
+    }
+
+    /* ========================================
+       OPTION A: Excerpt as bridge
+       ======================================== */
+    .option-a .excerpt-bridge {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 48px 24px 40px;
+        background: white;
+    }
+
+    .option-a .excerpt-bridge p {
+        font-family: var(--font-serif);
+        font-size: 1.3rem;
+        font-style: italic;
+        line-height: 1.5;
+        color: var(--green-primary);
+        max-width: 540px;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    /* ========================================
+       OPTION B: Excerpt overlapping boundary
+       ======================================== */
+    .option-b .demo-gradient {
+        padding-bottom: 60px;
+    }
+
+    .option-b .excerpt-overlap {
+        max-width: 540px;
+        margin: -40px auto 0;
+        padding: 32px 40px;
+        background: white;
+        border-radius: 4px;
+        box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        position: relative;
+        z-index: 3;
+    }
+
+    .option-b .excerpt-overlap p {
+        font-family: var(--font-serif);
+        font-size: 1.2rem;
+        font-style: italic;
+        line-height: 1.5;
+        color: var(--green-primary);
+        text-align: center;
+        margin: 0;
+    }
+
+    .option-b .demo-body {
+        padding-top: 40px;
+    }
+
+    /* ========================================
+       OPTION C: Clean cut, share row as bridge
+       Move share buttons out of gradient,
+       into a slim bar between header and body
+       ======================================== */
+    .option-c .share-bar {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #e5e7eb;
+        background: white;
+    }
+
+    .option-c .share-bar .excerpt-inline {
+        font-family: var(--font-serif);
+        font-size: 1.1rem;
+        font-style: italic;
+        color: var(--gray-600);
+        flex: 1;
+        margin-right: 24px;
+        line-height: 1.4;
+    }
+
+    .option-c .share-bar .share-links {
+        display: flex;
+        gap: 16px;
+        flex-shrink: 0;
+    }
+
+    .option-c .share-bar .share-links a {
+        color: var(--gray-600);
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: color 0.15s;
+    }
+
+    .option-c .share-bar .share-links a:hover {
+        color: var(--green-primary);
+    }
+
+    .option-c .demo-body {
+        padding-top: 48px;
+    }
+
+    /* ========================================
+       OPTION D: Image-only gradient, text below
+       ======================================== */
+    .option-d .demo-gradient {
+        padding-bottom: 48px;
+    }
+
+    .option-d .demo-header-inner {
+        padding: 100px 24px 48px;
+    }
+
+    .option-d .hero-image {
+        max-width: 360px;
+        margin: 0 auto;
+    }
+
+    .option-d .hero-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .option-d .text-zone {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 40px 24px 0;
+        background: white;
+    }
+
+    .option-d .post-type-label {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--green-light);
+        margin-bottom: 16px;
+    }
+
+    .option-d .gradient-title {
+        font-family: var(--font-serif);
+        font-size: clamp(2rem, 5vw, 2.75rem);
+        font-weight: 400;
+        line-height: 1.15;
+        letter-spacing: -0.01em;
+        text-wrap: balance;
+        margin-bottom: 16px;
+        background:
+            radial-gradient(ellipse 150% 120% at 30% 50%,
+                #2d5a3d 0%, #3a6b47 15%, #4a8f5c 25%,
+                #6db33f 35%, #7cd92e 45%, #adff2f 50%,
+                #7cd92e 55%, #6db33f 65%, #4a8f5c 75%,
+                #3a6b47 85%, #2d5a3d 100%
+            );
+        background-size: 200% 200%;
+        animation: gradShift 12s ease-in-out infinite;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .option-d .excerpt-text {
+        font-family: var(--font-serif);
+        font-size: 1.2rem;
+        font-style: italic;
+        line-height: 1.5;
+        color: var(--gray-600);
+        max-width: 560px;
+        margin-bottom: 20px;
+    }
+
+    .option-d .meta-line {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+        font-family: var(--font-sans);
+        font-size: 0.85rem;
+        color: var(--gray-600);
+        padding-bottom: 32px;
+        border-bottom: 1px solid #e5e7eb;
+        margin-bottom: 0;
+    }
+
+    .option-d .meta-line .sep {
+        opacity: 0.3;
+        font-size: 0.7rem;
+    }
+
+    .option-d .meta-line .read-time {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: #9ca3af;
+    }
+
+    .option-d .meta-line .share-links {
+        margin-left: auto;
+        display: flex;
+        gap: 14px;
+    }
+
+    .option-d .meta-line .share-links a {
+        color: #9ca3af;
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: color 0.15s;
+    }
+
+    .option-d .meta-line .share-links a:hover {
+        color: var(--green-primary);
+    }
+
+    .option-d .demo-body {
+        padding-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+        .option-d .hero-image { max-width: 280px; }
+        .option-d .gradient-title { font-size: 1.75rem; }
+        .option-d .meta-line .share-links { margin-left: 0; }
+    }
+
+    /* ========================================
+       GRADIENT PULL QUOTE DEMO
+       ======================================== */
+    .pull-quote-demo {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 24px 80px;
+    }
+
+    .gradient-pull-quote {
+        border-top: 2px solid var(--green-light);
+        border-bottom: 2px solid var(--green-light);
+        padding: 32px 0;
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    .gradient-pull-quote p {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 1.875rem;
+        line-height: 1.3;
+        background:
+            radial-gradient(ellipse 150% 120% at 30% 50%,
+                #2d5a3d 0%, #3a6b47 15%, #4a8f5c 25%,
+                #6db33f 35%, #7cd92e 45%, #adff2f 50%,
+                #7cd92e 55%, #6db33f 65%, #4a8f5c 75%,
+                #3a6b47 85%, #2d5a3d 100%
+            );
+        background-size: 200% 200%;
+        animation: gradShift 12s ease-in-out infinite;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Static comparison */
+    .static-pull-quote {
+        border-top: 2px solid var(--green-light);
+        border-bottom: 2px solid var(--green-light);
+        padding: 32px 0;
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    .static-pull-quote p {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 1.875rem;
+        line-height: 1.3;
+        color: var(--green-primary);
+    }
+
+    .pq-label {
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--green-light);
+        margin-bottom: 16px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .demo-title { font-size: 1.75rem; }
+        .option-b .excerpt-overlap { margin-left: 24px; margin-right: 24px; padding: 24px; }
+        .option-c .share-bar { flex-direction: column; gap: 12px; text-align: center; }
+        .option-c .share-bar .excerpt-inline { margin-right: 0; }
+        .gradient-pull-quote p, .static-pull-quote p { font-size: 1.5rem; }
+    }
+    </style>
+</head>
+<body>
+
+    <nav class="sampler-nav">
+        <h1>Transition Sampler</h1>
+        <a href="#option-a">A: Bridge</a>
+        <a href="#option-b">B: Overlap</a>
+        <a href="#option-c">C: Share Bar</a>
+        <a href="#option-d">D: Image + Gradient Title</a>
+        <a href="#pull-quotes">Pull Quotes</a>
+    </nav>
+
+    <!-- ============================================
+         OPTION A: Excerpt as bridge
+         ============================================ -->
+    <div class="section-break" id="option-a" style="padding-top: 80px;">
+        <h2>Option A: Excerpt as Bridge</h2>
+        <p>Excerpt moves below the gradient into white zone. Instrument Serif italic in dark green. The gradient ends cleanly — hero, title, meta, done. Excerpt catches you on the other side. Share icons are in the meta row, no circles.</p>
+    </div>
+
+    <div class="option-a">
+        <div class="demo-gradient">
+            <div class="demo-header-inner">
+                <div class="demo-title">What If You Could Build Your Own Thinking Tools?</div>
+                <div class="demo-meta">
+                    <span class="status">Exploring</span>
+                    <span class="sep">&middot;</span>
+                    <span>February 5, 2026</span>
+                    <span class="sep">&middot;</span>
+                    <span class="read-time">7 min read</span>
+                    <span class="sep">&middot;</span>
+                    <div class="demo-share" style="display: inline-flex;">
+                        <a href="#" title="Share on Twitter">&#x1d54f;</a>
+                        <a href="#" title="Share on LinkedIn">in</a>
+                        <a href="#" title="Share via Email">&#x2709;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="excerpt-bridge">
+            <p>After 18 months of AI hype, building something I actually needed finally felt possible. How Claude Code and Opus 4.5 collapsed the distance between "I need a tool" and "here's a working prototype."</p>
+        </div>
+
+        <div class="demo-body-wrap">
+            <div class="demo-body">
+                <p>For the past year and a half, I've been trying a lot of AI stuff. Granola for meeting notes. Otto.ai for transcription. DiAL. New products from the frontier AI labs. Claude, ChatGPT, Gemini. I'm curious about new functionality.</p>
+                <p>The thing is, I'll see features that would be so useful, so close to what I need. But they don't address a broad enough audience's workflow, so they don't exist. Tools don't connect. I piece together workflows, but there's friction.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         OPTION B: Excerpt overlapping boundary
+         ============================================ -->
+    <div class="section-break" id="option-b">
+        <h2>Option B: Excerpt Overlaps the Edge</h2>
+        <p>A white card holding the excerpt physically spans the gradient/body boundary. Creates a literal bridge. Subtle shadow gives it depth. Share icons stay in the meta row, no circles.</p>
+    </div>
+
+    <div class="option-b">
+        <div class="demo-gradient">
+            <div class="demo-header-inner">
+                <div class="demo-title">What If You Could Build Your Own Thinking Tools?</div>
+                <div class="demo-meta">
+                    <span class="status">Exploring</span>
+                    <span class="sep">&middot;</span>
+                    <span>February 5, 2026</span>
+                    <span class="sep">&middot;</span>
+                    <span class="read-time">7 min read</span>
+                    <span class="sep">&middot;</span>
+                    <div class="demo-share" style="display: inline-flex;">
+                        <a href="#" title="Share on Twitter">&#x1d54f;</a>
+                        <a href="#" title="Share on LinkedIn">in</a>
+                        <a href="#" title="Share via Email">&#x2709;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-body-wrap">
+            <div class="excerpt-overlap">
+                <p>After 18 months of AI hype, building something I actually needed finally felt possible. How Claude Code and Opus 4.5 collapsed the distance between "I need a tool" and "here's a working prototype."</p>
+            </div>
+
+            <div class="demo-body">
+                <p>For the past year and a half, I've been trying a lot of AI stuff. Granola for meeting notes. Otto.ai for transcription. DiAL. New products from the frontier AI labs. Claude, ChatGPT, Gemini. I'm curious about new functionality.</p>
+                <p>The thing is, I'll see features that would be so useful, so close to what I need. But they don't address a broad enough audience's workflow, so they don't exist. Tools don't connect. I piece together workflows, but there's friction.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         OPTION C: Clean cut with share bar
+         ============================================ -->
+    <div class="section-break" id="option-c">
+        <h2>Option C: Excerpt + Share Bar</h2>
+        <p>Gradient ends hard and clean. A slim bar below holds the excerpt (left) and share links (right), acting as a structural divider. Excerpt in serif italic, share links as quiet text. The bar IS the transition.</p>
+    </div>
+
+    <div class="option-c">
+        <div class="demo-gradient">
+            <div class="demo-header-inner">
+                <div class="demo-title">What If You Could Build Your Own Thinking Tools?</div>
+                <div class="demo-meta">
+                    <span class="status">Exploring</span>
+                    <span class="sep">&middot;</span>
+                    <span>February 5, 2026</span>
+                    <span class="sep">&middot;</span>
+                    <span class="read-time">7 min read</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-body-wrap">
+            <div class="share-bar">
+                <span class="excerpt-inline">After 18 months of AI hype, building something I actually needed finally felt possible.</span>
+                <div class="share-links">
+                    <a href="#" title="Share on Twitter">&#x1d54f;</a>
+                    <a href="#" title="Share on LinkedIn">in</a>
+                    <a href="#" title="Share via Email">&#x2709;</a>
+                </div>
+            </div>
+
+            <div class="demo-body">
+                <div class="demo-section-label" style="padding-top: 40px;">Opening</div>
+                <p>For the past year and a half, I've been trying a lot of AI stuff. Granola for meeting notes. Otto.ai for transcription. DiAL. New products from the frontier AI labs. Claude, ChatGPT, Gemini. I'm curious about new functionality.</p>
+                <p>The thing is, I'll see features that would be so useful, so close to what I need. But they don't address a broad enough audience's workflow, so they don't exist. Tools don't connect. I piece together workflows, but there's friction.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         OPTION D: Image-only gradient, text below
+         ============================================ -->
+    <div class="section-break" id="option-d">
+        <h2>Option D: Image Over Gradient, Everything Else Below</h2>
+        <p>Gradient is purely visual — just hero image + color. All text lives on white below: status label, animated gradient title, excerpt, date/share meta line. The title carries the gradient's energy via animated text fill. Gradient can be any color without affecting text legibility. Hero image is the "object in the lab" — each post gets its own.</p>
+    </div>
+
+    <div class="option-d">
+        <div class="demo-gradient">
+            <div class="demo-header-inner">
+                <div class="hero-image">
+                    <img src="../../assets/blog/building-your-own-thinking-tools/hero-thinking-tools.png"
+                         alt="Abstract bridge representing building thinking tools">
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-body-wrap">
+            <div class="text-zone">
+                <div class="post-type-label">Exploring</div>
+                <h2 class="gradient-title">What If You Could Build Your Own Thinking Tools?</h2>
+                <p class="excerpt-text">After 18 months of AI hype, building something I actually needed finally felt possible. How Claude Code and Opus 4.5 collapsed the distance between "I need a tool" and "here's a working prototype."</p>
+                <div class="meta-line">
+                    <span>February 5, 2026</span>
+                    <span class="sep">&middot;</span>
+                    <span class="read-time">7 min read</span>
+                    <div class="share-links">
+                        <a href="#" title="Share on Twitter">&#x1d54f;</a>
+                        <a href="#" title="Share on LinkedIn">in</a>
+                        <a href="#" title="Share via Email">&#x2709;</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-body" style="max-width: 640px; margin: 0 auto; padding: 40px 24px 80px;">
+                <p style="font-family: var(--font-sans); font-size: 1.0625rem; line-height: 1.7; color: #111827; margin: 0 0 1.5em 0;">For the past year and a half, I've been trying a lot of AI stuff. Granola for meeting notes. Otto.ai for transcription. DiAL. New products from the frontier AI labs. Claude, ChatGPT, Gemini. I'm curious about new functionality.</p>
+                <p style="font-family: var(--font-sans); font-size: 1.0625rem; line-height: 1.7; color: #111827; margin: 0 0 1.5em 0;">The thing is, I'll see features that would be so useful, so close to what I need. But they don't address a broad enough audience's workflow, so they don't exist. Tools don't connect. I piece together workflows, but there's friction. Manual steps bridging the gaps.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         PULL QUOTE COMPARISON
+         ============================================ -->
+    <div class="section-break" id="pull-quotes">
+        <h2>Pull Quote: Animated Gradient vs Static</h2>
+        <p>The animated version uses the same living gradient as the header, applied as a text fill. It connects the header's energy to the body. Compare with the static dark-green version below it.</p>
+    </div>
+
+    <div class="pull-quote-demo">
+        <div class="pq-label">Animated gradient text</div>
+        <div class="gradient-pull-quote">
+            <p>The constraint that defined my career is collapsing. The distance between "I need a tool" and "here's a working prototype" is now measured in days, not years.</p>
+        </div>
+
+        <div class="pq-label">Static dark green</div>
+        <div class="static-pull-quote">
+            <p>The constraint that defined my career is collapsing. The distance between "I need a tool" and "here's a working prototype" is now measured in days, not years.</p>
+        </div>
+
+        <div style="margin-top: 48px; padding: 24px; background: #fafafa; border-radius: 8px; font-size: 0.85rem; line-height: 1.6; color: var(--gray-600);">
+            <strong style="color: var(--gray-900);">System note:</strong> The animated gradient pull quote uses <code style="font-family: var(--font-mono); font-size: 0.8em; background: #eee; padding: 2px 5px; border-radius: 3px;">background-clip: text</code> — good browser support, zero performance cost. The gradient palette can be parameterized per-post (same way the header gradient is post-specific). If a post uses a blue gradient header, the pull quotes would use that same blue gradient.
+        </div>
+    </div>
+
+</body>
+</html>
