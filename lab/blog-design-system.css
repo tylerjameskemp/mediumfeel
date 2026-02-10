@@ -35,11 +35,24 @@ body.blog-post .navbar:not(.scrolled) .mobile-menu-btn span {
     background: white;
 }
 
-/* Mobile menu overlay — force dark text on light bg when open */
+/* Hamburger X — force dark when menu is open so it's visible */
+body.blog-post .navbar:not(.scrolled) .mobile-menu-btn.active span {
+    background: #111827;
+}
+
+/* Mobile menu overlay — force dark text on light bg when open.
+   Must match or exceed the :not(.scrolled) specificity above
+   so dark text wins over white when the menu is open. */
+body.blog-post .navbar:not(.scrolled) .nav-links.active a,
+body.blog-post .navbar.scrolled .nav-links.active a,
 body.blog-post .nav-links.active a {
     color: #111827;
 }
 
+body.blog-post .navbar:not(.scrolled) .nav-links.active a:hover,
+body.blog-post .navbar:not(.scrolled) .nav-links.active a.active,
+body.blog-post .navbar.scrolled .nav-links.active a:hover,
+body.blog-post .navbar.scrolled .nav-links.active a.active,
 body.blog-post .nav-links.active a:hover,
 body.blog-post .nav-links.active a.active {
     color: #6db33f;
@@ -845,6 +858,7 @@ body.blog-post .post-nav {
     gap: 32px;
     margin-top: 96px;
     padding-top: 32px;
+    padding-bottom: 64px;
     border-top: 1px solid #e5e7eb;
 }
 
