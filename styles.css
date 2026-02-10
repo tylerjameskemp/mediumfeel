@@ -669,26 +669,56 @@ p.large {
     border-top: 1px solid var(--color-border);
 }
 
-.footer-single-line {
-    text-align: center;
+.footer .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+}
+
+.footer-nav {
     font-size: 0.85rem;
-    color: var(--color-text-muted);
+    color: var(--color-green);
+    margin: 0;
+}
+
+.footer-nav a {
+    color: var(--color-green);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+.footer-nav a:hover {
+    color: var(--color-text);
+}
+
+.footer-legal {
+    font-size: 0.85rem;
+    color: var(--color-green);
     margin: 0;
 }
 
 .footer-separator {
     margin: 0 8px;
-    color: var(--color-text-light);
-}
-
-.footer-single-line a {
-    color: var(--color-text-muted);
-    text-decoration: none;
-    transition: color var(--transition);
-}
-
-.footer-single-line a:hover {
     color: var(--color-green);
+    opacity: 0.5;
+}
+
+/* Divider dot between nav and legal — visible on desktop only */
+.footer-divider {
+    display: inline;
+}
+
+@media (max-width: 600px) {
+    .footer .container {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .footer-divider {
+        display: none;
+    }
 }
 
 /* ===== Mobile Styles ===== */
@@ -2028,6 +2058,20 @@ p.large {
     background: white;
 }
 
+/* Hamburger X — force dark when menu is open so it's visible */
+.navbar:not(.scrolled) .mobile-menu-btn.active span {
+    background: var(--color-text);
+}
+
+/* Mobile menu — force dark text when menu is open over light bg */
+.navbar:not(.scrolled) .nav-links.active a {
+    color: var(--color-text);
+}
+
+.navbar:not(.scrolled) .nav-links.active a:hover {
+    color: var(--color-green);
+}
+
 /* Section Label — mono voice */
 .home-section-label {
     font-family: var(--font-mono);
@@ -2057,11 +2101,7 @@ p.large {
 /* ===== Section 2: Latest Lab Report ===== */
 .latest-report {
     padding: 72px 0;
-    background-color: var(--color-bg-alt);
-    background-image:
-        linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-    background-size: 22px 22px;
+    background-color: #ffffff;
 }
 
 .latest-report-grid {
