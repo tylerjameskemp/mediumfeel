@@ -75,6 +75,18 @@ Three voices, clear cascade:
 
 Body text is Inter 400 at 17px (1.0625rem), line-height 1.7.
 
+## Metadata Line Alignment
+
+All metadata rows (status pill, date, read time) use **`align-items: center`**. This vertically centers the status pill's box against the text items so they share a common midline. The pill has padding and a background — centering the whole box looks correct; baseline alignment would push the pill up or down relative to the adjacent text.
+
+This applies everywhere a metadata line appears:
+- `.latest-report-details` (homepage card)
+- `.lab-post-card-details` (lab page cards)
+- `body.blog-post .post-meta-line` (blog post pages)
+- `.post-meta` (base post styles)
+
+When adding new metadata containers, always use `align-items: center`.
+
 ## All Content Elements
 
 ### Highlights
@@ -167,18 +179,66 @@ Green left border, italic, muted color.
 
 ## Image Handling
 
-1. **Hero Image**
-   - Save to: `assets/blog/{{POST_SLUG}}/hero-{{POST_SLUG}}.png`
-   - Reference: `../../assets/blog/{{POST_SLUG}}/hero-{{POST_SLUG}}.png`
-   - Max width: 420px desktop, 320px tablet, 280px mobile
+Each post has **two** image representations that appear across the site:
 
-2. **Content Images**
-   - Save to: `assets/blog/{{POST_SLUG}}/descriptive-name.png`
-   - Reference: `../../assets/blog/{{POST_SLUG}}/descriptive-name.png`
-   - Max width: 540px desktop, 440px tablet
+### Hero Image
+The primary image for the post. Appears in:
+- Post header (floating over gradient)
+- Lab page post card (`lab/index.html`)
+- Homepage featured post card (`index.html`, if featured)
+- Open Graph / Twitter Card meta tags
 
-3. **Shared Images**
-   - Reference existing: `../../assets/blog/image-name.png`
+Save to: `assets/blog/{{POST_SLUG}}/hero-{{POST_SLUG}}.png`
+Reference from post: `../../assets/blog/{{POST_SLUG}}/hero-{{POST_SLUG}}.png`
+Max width: 420px desktop, 320px tablet, 280px mobile
+
+### Floater Object
+A small (150x150) object image representing the post in grid/floater contexts. Appears in:
+- Lab page curiosity grid (`lab/index.html`)
+- Homepage hero floaters (`index.html`, if linked)
+
+Save to: `assets/floaters/{{OBJECT_NAME}}-mid.webp`
+Size: 150x150px, webp format, transparent background
+
+### Content Images
+Save to: `assets/blog/{{POST_SLUG}}/descriptive-name.png`
+Reference: `../../assets/blog/{{POST_SLUG}}/descriptive-name.png`
+Max width: 540px desktop, 440px tablet
+
+### Shared Images
+Reference existing: `../../assets/blog/image-name.png`
+
+### Image Locations Checklist
+When adding a new post, update images in ALL of these locations:
+1. `lab/posts/{{POST_SLUG}}.html` — hero image in post header
+2. `lab/index.html` — hero image in post card
+3. `lab/index.html` — floater object in curiosity grid
+4. `index.html` — hero image in featured post card (if featured)
+5. `index.html` — floater object in homepage hero (if linked)
+6. Post meta tags — og:image, twitter:image, schema.org image
+
+## Status Labels
+
+Two visual treatments, same modifier classes, different contexts:
+
+### On blog posts (above title)
+Plain text, no pill background. Mono font, color from modifier class.
+```html
+<span class="post-status status-exploring">Exploring</span>
+```
+Styled by `blog-design-system.css` — resets padding/background from base `.post-status`.
+
+### On cards (inline with date)
+Colored pill, inline with metadata.
+```html
+<span class="status-pill status-exploring">Exploring</span>
+```
+
+### Modifier classes
+Always pair the base class with a status modifier:
+- `status-exploring` — blue (researching, early stage)
+- `status-building` — amber (actively building)
+- `status-shipped` — green (complete, published)
 
 ## Post Navigation
 
@@ -196,6 +256,32 @@ Every post needs prev/next links at the bottom:
 </nav>
 ```
 Use empty `<span></span>` if there's no prev or next.
+
+## Link Language & Labels
+
+Consistent language across the site. These are the standard conventions:
+
+### Section headers
+- **Homepage featured post:** `UPDATE FROM THE LAB` (singular, no colon)
+- **Lab page curiosity grid:** No header (objects speak for themselves)
+
+### Post card links
+- **Homepage card:** `Read the post →` (primary) + `More from the lab →` (secondary, muted)
+- **Lab page cards:** `Read the post →` (primary only — no lab link, you're already there)
+
+### Post navigation (within posts)
+- Previous: `← Previous` with post title below
+- Next: `Next →` with post title below
+
+### Section backgrounds
+- **Homepage featured post section:** White (`#ffffff`), no graph paper or grid pattern
+- **Lab page:** White body, no section backgrounds on post cards
+
+### Footer
+- Line 1: Lab · About · Contact (nav links, site green)
+- Line 2: © 2026 Medium Feel · Portland, Maine (legal, site green)
+- Desktop: single line with middot divider
+- Mobile (≤600px): stacked, divider hidden
 
 ## Post-Specific Inline Styles
 
@@ -263,6 +349,10 @@ Required for all posts:
 - [ ] Subsections use `<div class="subsection-label">` (NOT `<p><strong>`)
 - [ ] Highlights use `<mark>` tags
 - [ ] Images saved to correct paths with alt text
+- [ ] Hero image updated in: post header, lab card, lab curiosity grid, homepage (if featured)
+- [ ] Floater object created (150x150 webp) and added to curiosity grid
+- [ ] Status label uses `post-status` + modifier class in post HTML
+- [ ] Status label uses `status-pill` + modifier class in lab/index.html card
 - [ ] Post navigation added (prev/next)
 - [ ] Share buttons in meta row with encoded URLs
 - [ ] Footer has current year

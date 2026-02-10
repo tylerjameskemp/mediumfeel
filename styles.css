@@ -705,7 +705,6 @@ p.large {
     opacity: 0.5;
 }
 
-/* Divider dot between nav and legal — visible on desktop only */
 .footer-divider {
     display: inline;
 }
@@ -715,7 +714,6 @@ p.large {
         flex-direction: column;
         gap: 6px;
     }
-
     .footer-divider {
         display: none;
     }
@@ -2035,41 +2033,41 @@ p.large {
 [data-drift="drift-11"] { animation: drift-11 40s ease-in-out infinite; }
 [data-drift="drift-12"] { animation: drift-12 48s ease-in-out infinite; }
 
-/* Navbar — white text over gradient (same as blog) */
-.navbar:not(.scrolled) .nav-wordmark,
-.navbar:not(.scrolled) .nav-cursor {
+/* Navbar — white text over dark hero gradient.
+   Scoped to body.dark-hero so pages with light backgrounds
+   (e.g. lab index) keep the default green/dark navbar text. */
+body.dark-hero .navbar:not(.scrolled) .nav-wordmark,
+body.dark-hero .navbar:not(.scrolled) .nav-cursor {
     color: white;
     transition: color 0.3s ease;
 }
 
-.navbar:not(.scrolled) .nav-wordmark:hover {
+body.dark-hero .navbar:not(.scrolled) .nav-wordmark:hover {
     color: rgba(255,255,255,0.8);
 }
 
-.navbar:not(.scrolled) .nav-links a {
+body.dark-hero .navbar:not(.scrolled) .nav-links a {
     color: rgba(255,255,255,0.85);
 }
 
-.navbar:not(.scrolled) .nav-links a:hover {
+body.dark-hero .navbar:not(.scrolled) .nav-links a:hover {
     color: white;
 }
 
-.navbar:not(.scrolled) .mobile-menu-btn span {
+body.dark-hero .navbar:not(.scrolled) .mobile-menu-btn span {
     background: white;
 }
 
-/* Hamburger X — force dark when menu is open so it's visible */
-.navbar:not(.scrolled) .mobile-menu-btn.active span {
-    background: var(--color-text);
+/* Hamburger X — force dark when menu is open so it's visible on white overlay */
+body.dark-hero .navbar:not(.scrolled) .mobile-menu-btn.active span {
+    background: #111827;
 }
 
-/* Mobile menu — force dark text when menu is open over light bg */
-.navbar:not(.scrolled) .nav-links.active a {
-    color: var(--color-text);
-}
-
-.navbar:not(.scrolled) .nav-links.active a:hover {
-    color: var(--color-green);
+/* Mobile menu overlay — force dark text on light bg when open */
+body.dark-hero .navbar:not(.scrolled) .nav-links.active a,
+body.dark-hero .navbar.scrolled .nav-links.active a,
+body.dark-hero .nav-links.active a {
+    color: #111827;
 }
 
 /* Section Label — mono voice */
@@ -2171,7 +2169,9 @@ p.large {
     margin: 0 0 24px 0;
 }
 
-/* Meta line — pill + date + read time on one row */
+/* Meta line — pill + date + read time on one row
+   center alignment keeps the pill box vertically centered
+   with the text items on the same line */
 .latest-report-details {
     display: flex;
     align-items: center;
@@ -2231,6 +2231,29 @@ p.large {
 }
 
 .read-link:hover { text-decoration-color: var(--color-green-dark); text-decoration-thickness: 2px; }
+
+.read-link-secondary {
+    color: var(--color-text-muted);
+    text-decoration-color: rgba(156,163,175,0.3);
+}
+
+.read-link-secondary:hover {
+    color: var(--color-green-dark);
+    text-decoration-color: var(--color-green-dark);
+}
+
+.latest-report-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.latest-report-links .sep {
+    opacity: 0.3;
+    font-size: 0.65rem;
+    color: var(--color-text-muted);
+}
 
 
 /* ===== Section 4: About + Contact Gradient ===== */
@@ -2470,7 +2493,7 @@ mark {
     height: 80px;
     object-fit: contain;
     transition: transform 0.3s ease, filter 0.3s ease;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
     animation: float 6s ease-in-out infinite;
 }
 
@@ -2503,7 +2526,7 @@ mark {
 .curiosity-object.active:hover img {
     animation-play-state: paused;
     transform: scale(1.1) translateY(-4px);
-    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.4));
 }
 
 .curiosity-object.inactive {
@@ -2512,7 +2535,7 @@ mark {
 }
 
 .curiosity-object.inactive img {
-    filter: grayscale(100%) brightness(0.7) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    filter: grayscale(100%) brightness(0.7) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
 }
 
 /* ===== Lab Post Cards ===== */
