@@ -35,6 +35,16 @@ body.blog-post .navbar:not(.scrolled) .mobile-menu-btn span {
     background: white;
 }
 
+/* Mobile menu overlay — force dark text on light bg when open */
+body.blog-post .nav-links.active a {
+    color: #111827;
+}
+
+body.blog-post .nav-links.active a:hover,
+body.blog-post .nav-links.active a.active {
+    color: #6db33f;
+}
+
 
 /* ===================================================
    POST BASE
@@ -58,10 +68,10 @@ body.blog-post .post-header {
     background-size: 200% 200%;
     background-position: 15% 35%;
     animation: blogGradientShift 12s ease-in-out infinite;
-    padding: 96px 24px 72px;
+    padding: 0 24px 48px;
     margin-bottom: 0;
     margin-top: -80px;
-    padding-top: calc(80px + 96px);
+    padding-top: calc(80px + 48px);
     border: none;
 }
 
@@ -85,13 +95,13 @@ body.blog-post .post-header-inner {
     text-align: center;
     position: relative;
     z-index: 2;
-    padding: 48px 0;
+    padding: 16px 0 0;
 }
 
 /* Hero image */
 body.blog-post .post-header .post-hero {
     max-width: 320px;
-    margin: 0 auto 32px;
+    margin: 0 auto;
 }
 
 body.blog-post .post-header .post-hero img {
@@ -100,11 +110,11 @@ body.blog-post .post-header .post-hero img {
 }
 
 /* Title — Instrument Serif, white, commanding
-   Single clamp handles all viewports. Floor of 1.75rem (28px)
-   keeps title dominant even on small screens. */
+   Floor at 2.25rem (36px) ensures dominance even on mobile.
+   Left-aligned on mobile needs stronger hierarchy than centered desktop. */
 body.blog-post .post-header h1 {
     font-family: 'Instrument Serif', Georgia, serif;
-    font-size: clamp(1.75rem, 4vw + 1rem, 3.25rem);
+    font-size: clamp(2.25rem, 4vw + 1rem, 3.25rem);
     font-weight: 400;
     line-height: 1.1;
     color: white;
@@ -230,19 +240,6 @@ body.blog-post .post-header .back-link {
 
 body.blog-post .post-header .back-link:hover { color: white; }
 
-/* Soft fade at bottom of header — eases into white body */
-body.blog-post .post-header::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 80px;
-    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.15) 40%, rgba(255,255,255,0.5) 70%, rgba(255,255,255,0.85));
-    pointer-events: none;
-    z-index: 1;
-}
-
 @keyframes blogGradientShift {
     0%   { background-position: 15% 35%; }
     20%  { background-position: 85% 45%; }
@@ -254,21 +251,152 @@ body.blog-post .post-header::after {
 
 
 /* ===================================================
+   POST INTRO — Text zone below gradient (Option D)
+   Status label → animated gradient title → excerpt → meta
+   =================================================== */
+body.blog-post .post-intro {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 48px 24px 0;
+    box-sizing: border-box;
+}
+
+/* Status label — mono voice
+   Reset padding/border-radius from styles.css .post-status */
+body.blog-post .post-intro .post-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6db33f;
+    display: block;
+    margin-bottom: 16px;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+}
+
+/* Animated gradient title — design signature
+   Uses background-clip: text with the same gradient as the header.
+   The gradient is defined here as a default; posts can override
+   with post-specific inline styles if using a different palette. */
+body.blog-post .post-title-gradient {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(2.25rem, 4vw + 1rem, 3.25rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+    margin: 0 0 20px 0;
+    background:
+        radial-gradient(ellipse 150% 120% at 30% 50%,
+            #2d5a3d 0%, #3a6b47 15%, #4a8f5c 25%,
+            #6db33f 35%, #7cd92e 45%, #adff2f 50%,
+            #7cd92e 55%, #6db33f 65%, #4a8f5c 75%,
+            #3a6b47 85%, #2d5a3d 100%
+        );
+    background-size: 200% 200%;
+    animation: blogGradientShift 12s ease-in-out infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Excerpt — serif italic, muted */
+body.blog-post .post-intro .post-excerpt {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.25rem);
+    font-style: italic;
+    line-height: 1.5;
+    color: #6b7280;
+    margin: 0 0 24px 0;
+}
+
+/* Meta line — date, read time, share links */
+body.blog-post .post-meta-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.85rem;
+    color: #9ca3af;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+body.blog-post .post-meta-line time,
+body.blog-post .post-meta-line span {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.85rem;
+    color: #9ca3af;
+}
+
+body.blog-post .post-meta-line .separator {
+    opacity: 0.4;
+    font-size: 0.65rem;
+}
+
+body.blog-post .post-meta-line .read-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+}
+
+body.blog-post .post-meta-line .read-time::before {
+    content: none;
+    display: none;
+}
+
+body.blog-post .post-meta-line .share-links {
+    margin-left: auto;
+    display: flex;
+    gap: 14px;
+}
+
+body.blog-post .post-meta-line .share-links a {
+    color: #9ca3af;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.15s;
+}
+
+body.blog-post .post-meta-line .share-links a:hover {
+    color: #6db33f;
+}
+
+/* Animated gradient pull quote — same treatment as title */
+body.blog-post .post-content .pull-quote p {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 1.875rem;
+    line-height: 1.3;
+    font-style: italic;
+    background:
+        radial-gradient(ellipse 150% 120% at 30% 50%,
+            #2d5a3d 0%, #3a6b47 15%, #4a8f5c 25%,
+            #6db33f 35%, #7cd92e 45%, #adff2f 50%,
+            #7cd92e 55%, #6db33f 65%, #4a8f5c 75%,
+            #3a6b47 85%, #2d5a3d 100%
+        );
+    background-size: 200% 200%;
+    animation: blogGradientShift 12s ease-in-out infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+/* ===================================================
    POST CONTENT — Reading area
    =================================================== */
 body.blog-post .post-content {
     max-width: 640px;
     margin: 0 auto;
-    padding: 64px 24px 0;
+    padding: 40px 24px 0;
     position: relative;
     background: none;
-}
-
-/* First paragraph — slightly larger to bridge header energy into body */
-body.blog-post .post-section:first-of-type .section-content > p:first-child {
-    font-size: 1.1875rem;
-    line-height: 1.65;
-    color: #2C2C2C;
+    box-sizing: border-box;
 }
 
 /* Kill the green top bar from styles.css */
@@ -794,10 +922,10 @@ body.blog-post .post-footer p {
 @media (max-width: 768px) {
     body.blog-post .post-header {
         margin-top: -60px;
-        padding-top: calc(60px + 48px);
+        padding-top: calc(60px + 32px);
         padding-left: 16px;
         padding-right: 16px;
-        padding-bottom: 48px;
+        padding-bottom: 32px;
     }
 
     body.blog-post .post-header .post-hero {
@@ -810,6 +938,10 @@ body.blog-post .post-footer p {
         width: 24px;
         height: 24px;
         font-size: 0.65rem;
+    }
+
+    body.blog-post .post-intro {
+        padding: 32px 16px 0;
     }
 
     body.blog-post .post-content {
@@ -840,13 +972,13 @@ body.blog-post .post-footer p {
         max-width: 200px;
     }
 
-    /* Title uses clamp() — no override. Body text scales down
-       to maintain hierarchy ratio with smaller title. */
+    /* Title uses clamp() — no override. Body text scales down more
+       aggressively to maintain strong hierarchy on small screens. */
     body.blog-post .post-content p,
     body.blog-post .post-content ul,
-    body.blog-post .post-content ol { font-size: 0.9375rem; }
+    body.blog-post .post-content ol { font-size: 0.875rem; }
 
-    body.blog-post .post-content li { font-size: 0.9375rem; }
+    body.blog-post .post-content li { font-size: 0.875rem; }
 
     body.blog-post .subsection-label { font-size: 1.0625rem; }
 

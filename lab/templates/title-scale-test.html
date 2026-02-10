@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title Scale Test</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #fff; }
+
+        .test-block {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 48px 24px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .test-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #9ca3af;
+            margin-bottom: 24px;
+        }
+
+        .status {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #6db33f;
+            margin-bottom: 16px;
+        }
+
+        .title {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: clamp(2.25rem, 4vw + 1rem, 3.25rem);
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: -0.015em;
+            text-wrap: balance;
+            margin-bottom: 20px;
+            background:
+                radial-gradient(ellipse 150% 120% at 30% 50%,
+                    #2d5a3d 0%, #3a6b47 15%, #4a8f5c 25%,
+                    #6db33f 35%, #7cd92e 45%, #adff2f 50%,
+                    #7cd92e 55%, #6db33f 65%, #4a8f5c 75%,
+                    #3a6b47 85%, #2d5a3d 100%
+                );
+            background-size: 200% 200%;
+            animation: gradShift 12s ease-in-out infinite;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .excerpt {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: clamp(1rem, 1.5vw + 0.5rem, 1.25rem);
+            font-style: italic;
+            line-height: 1.5;
+            color: #6b7280;
+            margin-bottom: 24px;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 0.85rem;
+            color: #9ca3af;
+            padding-bottom: 32px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .meta .sep { opacity: 0.4; font-size: 0.65rem; }
+        .meta .read-time { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; }
+        .meta .shares { margin-left: auto; display: flex; gap: 14px; }
+        .meta .shares a { color: #9ca3af; text-decoration: none; font-size: 0.9rem; }
+
+        .byline {
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: clamp(0.9rem, 1.5vw + 0.5rem, 1.0625rem);
+            font-weight: 400;
+            line-height: 1.4;
+            color: #9ca3af;
+            margin: -8px 0 20px 0;
+        }
+
+        .body-text {
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 1.0625rem;
+            line-height: 1.7;
+            color: #111827;
+            margin-top: 40px;
+        }
+
+        @keyframes gradShift {
+            0%   { background-position: 15% 35%; }
+            20%  { background-position: 85% 45%; }
+            40%  { background-position: 60% 75%; }
+            60%  { background-position: 30% 65%; }
+            80%  { background-position: 70% 25%; }
+            100% { background-position: 15% 35%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SHORT TITLE WITH BYLINE -->
+    <div class="test-block">
+        <div class="test-label">Short title + byline (3 words)</div>
+        <div class="status">Exploring</div>
+        <h1 class="title">Shipping the Lab</h1>
+        <p class="byline">A build log from week one</p>
+        <p class="excerpt">A build log from the first week of Medium Feel.</p>
+        <div class="meta">
+            <time>January 21, 2026</time>
+            <span class="sep">&middot;</span>
+            <span class="read-time">4 min read</span>
+            <span class="shares">
+                <a href="#">&#x1d54f;</a>
+                <a href="#">in</a>
+                <a href="#">&#x2709;</a>
+            </span>
+        </div>
+        <p class="body-text">For the past year and a half, I've been trying a lot of AI stuff. Granola for meeting notes. Otto.ai for transcription. DiAL. New products from the frontier AI labs.</p>
+    </div>
+
+    <!-- MEDIUM TITLE WITH BYLINE -->
+    <div class="test-block">
+        <div class="test-label">Medium title + byline (8 words)</div>
+        <div class="status">Exploring</div>
+        <h1 class="title">What If You Could Build Your Own Thinking Tools?</h1>
+        <p class="byline">On tools, agency, and prototyping with AI</p>
+        <p class="excerpt">After 18 months of AI hype, building something I actually needed finally felt possible.</p>
+        <div class="meta">
+            <time>February 5, 2026</time>
+            <span class="sep">&middot;</span>
+            <span class="read-time">7 min read</span>
+            <span class="shares">
+                <a href="#">&#x1d54f;</a>
+                <a href="#">in</a>
+                <a href="#">&#x2709;</a>
+            </span>
+        </div>
+        <p class="body-text">For the past year and a half, I've been trying a lot of AI stuff. Granola for meeting notes. Otto.ai for transcription. DiAL. New products from the frontier AI labs.</p>
+    </div>
+
+    <!-- LONG TITLE (12+ words) -->
+    <div class="test-block">
+        <div class="test-label">Long title (14 words)</div>
+        <div class="status">Building</div>
+        <h1 class="title">The Problem With Every AI Tool Is That None of Them Talk to Each Other</h1>
+        <p class="excerpt">Why interoperability matters more than any single feature, and what it would take to fix it.</p>
+        <div class="meta">
+            <time>February 12, 2026</time>
+            <span class="sep">&middot;</span>
+            <span class="read-time">12 min read</span>
+            <span class="shares">
+                <a href="#">&#x1d54f;</a>
+                <a href="#">in</a>
+                <a href="#">&#x2709;</a>
+            </span>
+        </div>
+        <p class="body-text">For the past year and a half, I've been trying a lot of AI stuff. Granola for meeting notes. Otto.ai for transcription. DiAL. New products from the frontier AI labs.</p>
+    </div>
+
+    <!-- SINGLE WORD TITLE -->
+    <div class="test-block">
+        <div class="test-label">Single word title</div>
+        <div class="status">Shipped</div>
+        <h1 class="title">Prototypes</h1>
+        <p class="excerpt">What happens when you stop planning and start building.</p>
+        <div class="meta">
+            <time>February 20, 2026</time>
+            <span class="sep">&middot;</span>
+            <span class="read-time">3 min read</span>
+            <span class="shares">
+                <a href="#">&#x1d54f;</a>
+                <a href="#">in</a>
+                <a href="#">&#x2709;</a>
+            </span>
+        </div>
+        <p class="body-text">For the past year and a half, I've been trying a lot of AI stuff. Granola for meeting notes. Otto.ai for transcription. DiAL. New products from the frontier AI labs.</p>
+    </div>
+
+</body>
+</html>
