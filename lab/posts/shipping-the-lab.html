@@ -26,7 +26,7 @@
     <meta property="og:site_name" content="Medium Feel">
     <meta property="og:title" content="Shipping the Lab: A Build Log">
     <meta property="og:description" content="How I built and shipped the Medium Feel website in a half-day using Claude Code, with no coding experience.">
-    <meta property="og:image" content="https://www.mediumfeel.com/assets/logo-playdo.png">
+    <meta property="og:image" content="https://www.mediumfeel.com/assets/logo-balloon-letters.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Medium Feel - Shipping the Lab">
@@ -44,7 +44,7 @@
     <meta name="twitter:url" content="https://www.mediumfeel.com/lab/posts/shipping-the-lab.html">
     <meta name="twitter:title" content="Shipping the Lab: A Build Log">
     <meta name="twitter:description" content="How I built and shipped the Medium Feel website in a half-day using Claude Code, with no coding experience.">
-    <meta name="twitter:image" content="https://www.mediumfeel.com/assets/logo-playdo.png">
+    <meta name="twitter:image" content="https://www.mediumfeel.com/assets/logo-balloon-letters.png">
     <meta name="twitter:image:alt" content="Medium Feel - Shipping the Lab">
 
     <!-- Schema.org Structured Data (JSON-LD) -->
@@ -54,7 +54,7 @@
         "@type": "BlogPosting",
         "headline": "Shipping the Lab: A Build Log",
         "description": "How I built and shipped the Medium Feel website in a half-day using Claude Code, with no coding experience. A build log documenting the first experiment.",
-        "image": "https://www.mediumfeel.com/assets/logo-playdo.png",
+        "image": "https://www.mediumfeel.com/assets/logo-balloon-letters.png",
         "author": {
             "@type": "Person",
             "name": "Tyler Kemp",
@@ -65,7 +65,7 @@
             "name": "Medium Feel",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://www.mediumfeel.com/assets/logo-playdo.png"
+                "url": "https://www.mediumfeel.com/assets/logo-balloon-letters.png"
             }
         },
         "datePublished": "2026-01-21T00:00:00Z",
@@ -87,11 +87,51 @@
     <link rel="stylesheet" href="../../styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Caveat:wght@500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Shared blog design system -->
+    <link rel="stylesheet" href="../blog-design-system.css">
+
+    <style>
+    /* ===================================================
+       POST-SPECIFIC STYLES ONLY
+       Typography, spacing, and element styles come from
+       blog-design-system.css. Only layout/animation here.
+       =================================================== */
+
+    /* Gradient — same as other posts */
+    .post-header {
+        background:
+            radial-gradient(ellipse 150% 120% at var(--gradient-x, 30%) var(--gradient-y, 50%),
+                #2d5a3d 0%,
+                #3a6b47 15%,
+                #4a8f5c 25%,
+                #6db33f 35%,
+                #7cd92e 45%,
+                #adff2f 50%,
+                #7cd92e 55%,
+                #6db33f 65%,
+                #4a8f5c 75%,
+                #3a6b47 85%,
+                #2d5a3d 100%
+            );
+    }
+
+    /* Floating hero image */
+    .post-hero img {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%   { transform: translateY(0); }
+        50%  { transform: translateY(-12px); }
+        100% { transform: translateY(0); }
+    }
+    </style>
 </head>
-<body>
+<body class="blog-post">
     <!-- Navigation -->
-    <nav class="navbar scrolled">
+    <nav class="navbar">
         <div class="nav-container">
             <a href="../../index.html" class="nav-wordmark">
                 <span id="nav-typewriter"></span>
@@ -112,144 +152,156 @@
 
     <!-- Post Header -->
     <article class="post">
+        <!-- HEADER: Gradient zone — hero image only -->
         <header class="post-header">
-            <div class="container">
-                <a href="../index.html" class="back-link">&larr; Back to Lab</a>
-                <div class="post-meta">
-                    <span class="post-status status-shipped">Shipped</span>
-                    <time datetime="2026-01-21">January 21, 2026</time>
-                    <span class="read-time">5 min read</span>
-                </div>
-                <h1>Shipping the Lab: A Build Log</h1>
-                <p class="post-excerpt">How I built and shipped the Medium Feel website in a half-day using Claude Code, with no coding experience. This is the first documented experiment.</p>
+            <div class="post-header-inner">
+                <figure class="post-hero">
+                    <picture>
+                        <source srcset="../../assets/logo-balloon-letters.webp" type="image/webp">
+                        <img src="../../assets/logo-balloon-letters.png" alt="Medium Feel balloon letters logo">
+                    </picture>
+                </figure>
             </div>
         </header>
 
-        <!-- Post Content -->
+        <!-- Post Intro (Option D layout) -->
+        <div class="post-intro">
+            <span class="post-status">Shipped</span>
+            <h1 class="post-title-gradient">Shipping the Lab: A Build Log</h1>
+            <p class="post-excerpt">How I built and shipped the Medium Feel website in a half-day using Claude Code, with no coding experience. This is the first documented experiment.</p>
+            <div class="post-meta-line">
+                <time datetime="2026-01-21">January 21, 2026</time>
+                <span class="separator">&middot;</span>
+                <span class="read-time">5 min read</span>
+                <span class="share-links">
+                    <a href="https://twitter.com/intent/tweet?url=https://www.mediumfeel.com/lab/posts/shipping-the-lab.html&text=Shipping%20the%20Lab%3A%20A%20Build%20Log" target="_blank" rel="noopener" title="Share on Twitter">&#x1d54f;</a>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.mediumfeel.com/lab/posts/shipping-the-lab.html" target="_blank" rel="noopener" title="Share on LinkedIn">in</a>
+                    <a href="mailto:?subject=Shipping%20the%20Lab%3A%20A%20Build%20Log&body=Check%20out%20this%20post%3A%20https://www.mediumfeel.com/lab/posts/shipping-the-lab.html" title="Share via Email">&#x2709;</a>
+                </span>
+            </div>
+        </div>
+
+        <!-- CONTENT -->
         <div class="post-content">
-            <div class="container">
 
-                <h2>The Brief</h2>
-                <p>Medium Feel was always meant to be a lab and repository, a place to document experiments in brand and marketing as AI reshapes both. But when I first tried building this site a year ago with a few AI tools, I gave up. The platforms were cumbersome and inflexible. I put up a landing page on Squarespace and called it a day.</p>
-                <p>That placeholder sat there for a year, not doing much of anything. I wanted something live that reflected where Medium Feel is actually headed. Not a polished portfolio. A lab. A place to build in public.</p>
-
-                <h2>The Constraints</h2>
-                <ul>
-                    <li>One half-day to ship</li>
-                    <li>No coding experience</li>
-                    <li>Free hosting (GitHub Pages)</li>
-                    <li>Single HTML file, no frameworks</li>
-                    <li>Working within Claude Pro rate limits</li>
-                    <li>Visual assets generated with OpenAI and Gemini (placeholders for now)</li>
-                </ul>
-
-                <h2>The Sprint</h2>
-
-                <h3>Discovery</h3>
-                <p>I'd heard enough people without coding experience insisting Claude Code was worth the low barrier to entry. That the distance between idea and execution was shrinking fast. So I went for it.</p>
-                <p>I've been in the habit of taking walks in the woods behind my house with my dog, using Granola or TwinMinds to record myself brainstorming out loud. Sometimes I leave it on for over an hour. I become pretty unjudgmental about my thoughts. Often the notes and takeaways from the apps are enough, but I've also built a few GPTs that process my transcriptions and organize them in ways I find useful.</p>
-
-                <figure class="post-image">
-                    <img src="../../assets/blog/winter-woods-walk.png" alt="Walking in the winter woods">
-                    <figcaption>Where a lot of the thinking happens</figcaption>
-                </figure>
-
-                <p>I took a few of these brain dumps, along with my resume, and pointed Claude at my previous Squarespace site. I asked it to digest everything and help me build something I could host for free elsewhere.</p>
-                <p>What it came back with, hosted locally on my computer, blew me away.</p>
-
-                <h3>Build</h3>
-                <p>Working in Claude Code, you don't have the luxury of saving or seeing your history in Terminal the way you might expect. So I've been using Claude's chat interface for anything not directly related to building or making changes to the website. I ran prompts to help me define an MVP, build out a launch plan, and structure the iterations ahead.</p>
-                <p>I used Opus 4.5, which is melting my mind, as seems to be the case almost everywhere right now.</p>
-                <p>The site is a single HTML file. No frameworks, no build tools. The visual assets are all AI-generated placeholders. Like the site itself, the look and feel of Medium Feel will undergo iterative development. My hunch is that what constitutes brand management or brand governance will be far more fluid than it used to be. This site is a chance to test that.</p>
-
-                <h3>Ship</h3>
-                <p>And here we are. The MVP is live. A transitional site, a kernel, something to build on. The shape, feel, and function will all grow and change while amassing documentation. Anchoring progress with memory of what preceded.</p>
-                <p><strong>This site is the first documented experiment of Medium Feel.</strong></p>
-
-                <h2>The Retro</h2>
-
-                <h3>Keep</h3>
-                <ul>
-                    <li><strong>Timeboxing.</strong> I gave myself a half-day. That constraint forced decisions.</li>
-                    <li><strong>Framing it as "transitional."</strong> I didn't have to get it perfect. I had to get it live.</li>
-                    <li><strong>Using voice memos and transcription to generate raw material.</strong> It lowers the friction of starting.</li>
-                </ul>
-
-                <h3>Drop</h3>
-                <ul>
-                    <li>Deliberating about where, when, and why for too long before starting. I could have shipped months ago if I'd committed to iteration earlier.</li>
-                </ul>
-
-                <h3>Try</h3>
-                <ul>
-                    <li><strong>Documenting as I go, not after the fact.</strong> I regret not capturing more of the last year's experiments. This space is where I fix that.</li>
-                    <li><strong>Testing AI visibility strategies on my own site.</strong> I've been implementing them for clients. Time to experiment here.</li>
-                </ul>
-
-                <h2>What's Next</h2>
-                <p>This site will evolve. The brand will evolve. Built in iterations.</p>
-                <p>Next up: blog infrastructure, so these posts have a proper home. More writing. More experiments. Moving cards from "Building" to "Shipped."</p>
-                <p>The gap between idea and execution is shrinking by the day. This project is my way of learning what's possible as I continue to pursue excellence in brand and marketing ops.</p>
-
-                <details class="backstory">
-                    <summary>Backstory</summary>
-                    <p>About a year and a half ago I began retooling, reentering the marketing world after a family sabbatical. I had the privilege of being home with my two kids, the youngest now six and in first grade. My marketing and brand lens stayed engaged (I don't love being marketed to as a parent) and as I started taking certifications from HubSpot and Google Analytics, my use of AI to get caught up on trends very quickly became the subject of inquiry itself.</p>
-                    <p>Taking a cert on GA4, learning the opaque nomenclature intended to keep the black box requiring trained experts to operate, I realized it would soon have to make way for the natural language interactions AI was enabling.</p>
-                    <p>The journey over the last year has been intense and intensely valuable. In pursuit of full-time brand and project management work, my use of AI in the retooling process turned into project and consulting work: helping small businesses, agencies, and nonprofits integrate AI, promote AI literacy, and streamline marketing operations. I've coached individuals on auditing and streamlining their own workflows. I've stayed engaged, following and trying out all kinds of AI-enabled platforms.</p>
-                    <p>I regret not doing a better job of documenting so much of this process. With this space, I hope to rectify that.</p>
-                </details>
-
-            </div>
-        </div>
-
-        <!-- Share Section -->
-        <div class="post-share">
-            <div class="container">
-                <p class="share-label">Share this post:</p>
-                <div class="share-buttons">
-                    <a href="https://twitter.com/intent/tweet?url=https://www.mediumfeel.com/lab/posts/shipping-the-lab.html&text=Shipping%20the%20Lab%3A%20A%20Build%20Log" target="_blank" rel="noopener" class="share-btn share-twitter">
-                        <span>Twitter</span>
-                    </a>
-                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.mediumfeel.com/lab/posts/shipping-the-lab.html" target="_blank" rel="noopener" class="share-btn share-linkedin">
-                        <span>LinkedIn</span>
-                    </a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.mediumfeel.com/lab/posts/shipping-the-lab.html" target="_blank" rel="noopener" class="share-btn share-facebook">
-                        <span>Facebook</span>
-                    </a>
-                    <a href="mailto:?subject=Shipping%20the%20Lab%3A%20A%20Build%20Log&body=Check%20out%20this%20post%3A%20https://www.mediumfeel.com/lab/posts/shipping-the-lab.html" class="share-btn share-email">
-                        <span>Email</span>
-                    </a>
+            <!-- SECTION: The Brief -->
+            <section class="post-section">
+                <div class="section-label">The Brief</div>
+                <div class="section-content">
+                    <p>Medium Feel was always meant to be a lab and repository, a place to document experiments in brand and marketing as AI reshapes both. But when I first tried building this site a year ago with a few AI tools, I gave up. The platforms were cumbersome and inflexible. I put up a landing page on Squarespace and called it a day.</p>
+                    <p>That placeholder sat there for a year, not doing much of anything. I wanted something live that reflected where Medium Feel is actually headed. <mark>Not a polished portfolio. A lab. A place to build in public.</mark></p>
                 </div>
-            </div>
+            </section>
+
+            <!-- SECTION: The Constraints -->
+            <section class="post-section">
+                <div class="section-label">The Constraints</div>
+                <div class="section-content">
+                    <ul>
+                        <li>One half-day to ship</li>
+                        <li>No coding experience</li>
+                        <li>Free hosting (GitHub Pages)</li>
+                        <li>Single HTML file, no frameworks</li>
+                        <li>Working within Claude Pro rate limits</li>
+                        <li>Visual assets generated with OpenAI and Gemini (placeholders for now)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- SECTION: The Sprint -->
+            <section class="post-section">
+                <div class="section-label">The Sprint</div>
+                <div class="section-content">
+                    <div class="subsection-label">Discovery</div>
+                    <p>I'd heard enough people without coding experience insisting Claude Code was worth the low barrier to entry. <mark>That the distance between idea and execution was shrinking fast.</mark> So I went for it.</p>
+                    <p>I've been in the habit of taking walks in the woods behind my house with my dog, using Granola or TwinMinds to record myself brainstorming out loud. Sometimes I leave it on for over an hour. I become pretty unjudgmental about my thoughts. Often the notes and takeaways from the apps are enough, but I've also built a few GPTs that process my transcriptions and organize them in ways I find useful.</p>
+                </div>
+            </section>
+
+            <!-- FIGURE -->
+            <figure class="post-figure">
+                <img src="../../assets/blog/winter-woods-walk.png" alt="Walking in the winter woods">
+                <figcaption>Where a lot of the thinking happens</figcaption>
+            </figure>
+
+            <section class="post-section">
+                <div class="section-content">
+                    <p>I took a few of these brain dumps, along with my resume, and pointed Claude at my previous Squarespace site. I asked it to digest everything and help me build something I could host for free elsewhere.</p>
+                    <p><mark>What it came back with, hosted locally on my computer, blew me away.</mark></p>
+
+                    <div class="subsection-label">Build</div>
+                    <p>Working in Claude Code, you don't have the luxury of saving or seeing your history in Terminal the way you might expect. So I've been using Claude's chat interface for anything not directly related to building or making changes to the website. I ran prompts to help me define an MVP, build out a launch plan, and structure the iterations ahead.</p>
+                    <p>I used Opus 4.5, which is melting my mind, as seems to be the case almost everywhere right now.</p>
+                    <p>The site is a single HTML file. No frameworks, no build tools. The visual assets are all AI-generated placeholders. Like the site itself, the look and feel of Medium Feel will undergo iterative development. My hunch is that what constitutes brand management or brand governance will be far more fluid than it used to be. This site is a chance to test that.</p>
+
+                    <div class="subsection-label">Ship</div>
+                    <p>And here we are. The MVP is live. A transitional site, a kernel, something to build on. The shape, feel, and function will all grow and change while amassing documentation. Anchoring progress with memory of what preceded.</p>
+
+                    <div class="pull-quote">
+                        <p>This site is the first documented experiment of Medium Feel.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: The Retro -->
+            <section class="post-section">
+                <div class="section-label">The Retro</div>
+                <div class="section-content">
+                    <div class="subsection-label">Keep</div>
+                    <ul>
+                        <li><strong>Timeboxing.</strong> I gave myself a half-day. That constraint forced decisions.</li>
+                        <li><strong>Framing it as "transitional."</strong> I didn't have to get it perfect. I had to get it live.</li>
+                        <li><strong>Using voice memos and transcription to generate raw material.</strong> It lowers the friction of starting.</li>
+                    </ul>
+
+                    <div class="subsection-label">Drop</div>
+                    <ul>
+                        <li>Deliberating about where, when, and why for too long before starting. I could have shipped months ago if I'd committed to iteration earlier.</li>
+                    </ul>
+
+                    <div class="subsection-label">Try</div>
+                    <ul>
+                        <li><strong>Documenting as I go, not after the fact.</strong> I regret not capturing more of the last year's experiments. This space is where I fix that.</li>
+                        <li><strong>Testing AI visibility strategies on my own site.</strong> I've been implementing them for clients. Time to experiment here.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- SECTION: What's Next -->
+            <section class="post-section">
+                <div class="section-label">What's Next</div>
+                <div class="section-content">
+                    <p>This site will evolve. The brand will evolve. Built in iterations.</p>
+                    <p>Next up: blog infrastructure, so these posts have a proper home. More writing. More experiments. Moving cards from "Building" to "Shipped."</p>
+                    <p><mark>The gap between idea and execution is shrinking by the day.</mark> This project is my way of learning what's possible as I continue to pursue excellence in brand and marketing ops.</p>
+                </div>
+            </section>
+
+            <details class="backstory">
+                <summary>Backstory</summary>
+                <p>About a year and a half ago I began retooling, reentering the marketing world after a family sabbatical. I had the privilege of being home with my two kids, the youngest now six and in first grade. My marketing and brand lens stayed engaged (I don't love being marketed to as a parent) and as I started taking certifications from HubSpot and Google Analytics, my use of AI to get caught up on trends very quickly became the subject of inquiry itself.</p>
+                <p>Taking a cert on GA4, learning the opaque nomenclature intended to keep the black box requiring trained experts to operate, I realized it would soon have to make way for the natural language interactions AI was enabling.</p>
+                <p>The journey over the last year has been intense and intensely valuable. In pursuit of full-time brand and project management work, my use of AI in the retooling process turned into project and consulting work: helping small businesses, agencies, and nonprofits integrate AI, promote AI literacy, and streamline marketing operations. I've coached individuals on auditing and streamlining their own workflows. I've stayed engaged, following and trying out all kinds of AI-enabled platforms.</p>
+                <p>I regret not doing a better job of documenting so much of this process. With this space, I hope to rectify that.</p>
+            </details>
+
+            <!-- Post Navigation -->
+            <nav class="post-nav">
+                <span></span>
+                <a href="building-your-own-thinking-tools.html" class="post-nav-link next">
+                    <span class="post-nav-direction">Next &rarr;</span>
+                    <span class="post-nav-title">What If You Could Build Your Own Thinking Tools?</span>
+                </a>
+            </nav>
+
         </div>
 
-        <!-- Post Footer -->
+        <!-- FOOTER -->
         <footer class="post-footer">
-            <div class="container">
-                <div class="post-nav">
-                    <a href="../index.html" class="btn-secondary">View All Posts</a>
-                    <a href="../../index.html#contact" class="btn-primary">Get in Touch</a>
-                </div>
-            </div>
+            <p>&copy; 2026 Medium Feel &middot; Portland, Maine</p>
         </footer>
-    </article>
 
-    <!-- Site Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p class="footer-single-line">
-                &copy; 2026 Medium Feel
-                <span class="footer-separator">·</span>
-                Portland, Maine
-                <span class="footer-separator">·</span>
-                <a href="../index.html">Lab</a>
-                <span class="footer-separator">·</span>
-                <a href="../../index.html#about">About</a>
-                <span class="footer-separator">·</span>
-                <a href="../../index.html#contact">Contact</a>
-            </p>
-        </div>
-    </footer>
+    </article>
 
     <script>
         // Mobile Menu
@@ -260,8 +312,18 @@
             navLinks.classList.toggle('active');
             menuBtn.classList.toggle('active');
         });
-
     </script>
     <script src="../../assets/js/typewriter.js"></script>
+    <script>
+        // Navbar scroll behavior
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>

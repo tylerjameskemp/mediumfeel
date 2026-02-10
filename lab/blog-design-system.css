@@ -98,15 +98,24 @@ body.blog-post .post-header-inner {
     padding: 16px 0 0;
 }
 
-/* Hero image */
+/* Hero image — fixed-height container keeps gradient band consistent
+   across posts regardless of image aspect ratio. Image is centered
+   and contained within the box. */
 body.blog-post .post-header .post-hero {
     max-width: 320px;
+    height: 280px;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 body.blog-post .post-header .post-hero img {
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
     height: auto;
+    object-fit: contain;
 }
 
 /* Title — Instrument Serif, white, commanding
@@ -930,6 +939,7 @@ body.blog-post .post-footer p {
 
     body.blog-post .post-header .post-hero {
         max-width: 240px;
+        height: 220px;
     }
 
     /* Title and excerpt use clamp() — no breakpoint override needed */
@@ -970,6 +980,7 @@ body.blog-post .post-footer p {
 @media (max-width: 480px) {
     body.blog-post .post-header .post-hero {
         max-width: 200px;
+        height: 180px;
     }
 
     /* Title uses clamp() — no override. Body text scales down more
