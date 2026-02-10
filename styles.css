@@ -1211,30 +1211,6 @@ p.large {
     color: var(--color-text-light);
 }
 
-.post-status {
-    display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    padding: 4px 10px;
-    border-radius: 4px;
-}
-
-.status-exploring {
-    background: var(--color-blue-pale);
-    color: var(--color-blue);
-}
-
-.status-building {
-    background: var(--color-amber-pale);
-    color: var(--color-amber);
-}
-
-.status-shipped {
-    background: var(--color-green-pale);
-    color: var(--color-green);
-}
 
 .post-header time {
     font-size: 0.9rem;
@@ -2170,11 +2146,11 @@ body.dark-hero .nav-links.active a {
 }
 
 /* Meta line — pill + date + read time on one row
-   center alignment keeps the pill box vertically centered
-   with the text items on the same line */
+   baseline alignment keeps date + read-time text bottoms aligned;
+   pill uses relative positioning to visually center against the text. */
 .latest-report-details {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 10px;
     font-family: var(--font-sans);
     font-size: 0.85rem;
@@ -2184,6 +2160,8 @@ body.dark-hero .nav-links.active a {
 
 .latest-report-details .status-pill {
     margin-bottom: 0;
+    position: relative;
+    top: -1px;
 }
 
 .latest-report-details .sep { opacity: 0.4; font-size: 0.65rem; }
@@ -2643,7 +2621,7 @@ mark {
 
 .lab-post-card-details {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 10px;
     font-family: var(--font-sans);
     font-size: 0.85rem;
@@ -2653,6 +2631,8 @@ mark {
 
 .lab-post-card-details .status-pill {
     margin-bottom: 0;
+    position: relative;
+    top: -1px;
 }
 
 .lab-post-card-details .sep {
