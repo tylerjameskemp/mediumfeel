@@ -45,7 +45,7 @@
     <link rel="stylesheet" href="../styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Caveat:wght@500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation -->
@@ -68,48 +68,133 @@
         </div>
     </nav>
 
-    <!-- Lab Header -->
-    <section class="page-header">
-        <div class="container">
-            <h1>The Lab</h1>
-            <p class="page-intro large">Ideas move through stages. Some are early questions, some are works in progress, some ship. This is where I track what I'm thinking about and working on.</p>
-            <p class="page-updated">Last updated: January 2026</p>
+    <!-- Section 1: Curiosity Grid Hero -->
+    <section class="curiosity-grid-hero">
+        <div class="curiosity-grid-inner">
+            <div class="curiosity-objects">
+                <!-- ACTIVE: linked to published posts -->
+                <a href="posts/building-your-own-thinking-tools.html" class="curiosity-object active" aria-label="Building Your Own Thinking Tools">
+                    <img src="../assets/floaters/correction-fluid-mid.webp" alt="Correction fluid — Building Your Own Thinking Tools">
+                </a>
+
+                <a href="posts/shipping-the-lab.html" class="curiosity-object active" aria-label="Shipping the Lab">
+                    <img src="../assets/floaters/beaker-bubbles-mid.webp" alt="Beaker — Shipping the Lab">
+                </a>
+
+                <!-- INACTIVE: greyed out, coming soon -->
+                <div class="curiosity-object inactive">
+                    <img src="../assets/floaters/compass-mid.webp" alt="Compass">
+                </div>
+
+                <div class="curiosity-object inactive">
+                    <img src="../assets/floaters/highlighter-mid.webp" alt="Highlighter">
+                </div>
+
+                <div class="curiosity-object inactive">
+                    <img src="../assets/floaters/eraser-mid.webp" alt="Eraser">
+                </div>
+
+                <div class="curiosity-object inactive">
+                    <img src="../assets/floaters/crayon-mid.webp" alt="Crayon">
+                </div>
+
+                <div class="curiosity-object inactive">
+                    <img src="../assets/floaters/smiley-mid.webp" alt="Smiley">
+                </div>
+
+                <div class="curiosity-object inactive">
+                    <img src="../assets/floaters/paperclip-far.webp" alt="Paperclip">
+                </div>
+
+                <div class="curiosity-object inactive">
+                    <img src="../assets/floaters/window-near.webp" alt="Window">
+                </div>
+
+                <div class="curiosity-object inactive">
+                    <img src="../assets/floaters/phone-near.webp" alt="Phone">
+                </div>
+
+                <div class="curiosity-object inactive">
+                    <img src="../assets/floaters/playdoh-near.webp" alt="Play-Doh">
+                </div>
+
+                <div class="curiosity-object inactive">
+                    <img src="../assets/floaters/peppermint-far.webp" alt="Peppermint">
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Archive Grid -->
-    <section class="lab-archive">
+    <!-- Section 2: Post Cards -->
+    <section class="lab-posts">
         <div class="container">
-            <div class="archive-grid">
 
-                <!-- POSTS - Newest first -->
-
-                <a href="posts/shipping-the-lab.html" class="archive-card">
-                    <div class="post-meta">
-                        <span class="post-status status-shipped">Shipped</span>
-                        <time datetime="2026-01-21">January 21, 2026</time>
+            <!-- Post 1: Most recent -->
+            <article class="lab-post-card">
+                <div class="lab-post-card-grid">
+                    <div class="lab-post-card-image">
+                        <a href="posts/building-your-own-thinking-tools.html">
+                            <picture>
+                                <source srcset="../assets/blog/building-your-own-thinking-tools/hero-thinking-tools.webp" type="image/webp">
+                                <img src="../assets/blog/building-your-own-thinking-tools/hero-thinking-tools.png" alt="Building Your Own Thinking Tools — hero illustration">
+                            </picture>
+                        </a>
                     </div>
-                    <h3>Shipping the Lab: A Build Log</h3>
-                    <p>How I built and shipped the Medium Feel website in a half-day using Claude Code, with no coding experience. The first documented experiment.</p>
-                    <span class="read-more">Read more &rarr;</span>
-                </a>
+                    <div class="lab-post-card-meta">
+                        <h2><a href="posts/building-your-own-thinking-tools.html">What If You Could Build Your Own Thinking Tools?</a></h2>
+                        <p class="lab-post-card-excerpt">After 18 months of AI hype, building something I actually needed finally felt possible. How Claude Code and Opus 4.5 collapsed the distance between &ldquo;I need a tool&rdquo; and &ldquo;here&rsquo;s a working prototype.&rdquo;</p>
+                        <div class="lab-post-card-details">
+                            <span class="status-pill status-exploring">Exploring</span>
+                            <span class="sep">&middot;</span>
+                            <time datetime="2026-02-05">February 5, 2026</time>
+                            <span class="sep">&middot;</span>
+                            <span class="read-time">7 min read</span>
+                        </div>
+                        <a href="posts/building-your-own-thinking-tools.html" class="read-link">Read more &rarr;</a>
+                    </div>
+                </div>
+            </article>
 
-            </div>
+            <!-- Post 2 -->
+            <article class="lab-post-card">
+                <div class="lab-post-card-grid">
+                    <div class="lab-post-card-image">
+                        <a href="posts/shipping-the-lab.html">
+                            <img src="../assets/blog/winter-woods-walk.png" alt="Walking in the winter woods — Shipping the Lab">
+                        </a>
+                    </div>
+                    <div class="lab-post-card-meta">
+                        <h2><a href="posts/shipping-the-lab.html">Shipping the Lab: A Build Log</a></h2>
+                        <p class="lab-post-card-excerpt">How I built and shipped the Medium Feel website in a half-day using Claude Code, with no coding experience. The first documented experiment.</p>
+                        <div class="lab-post-card-details">
+                            <span class="status-pill status-shipped">Shipped</span>
+                            <span class="sep">&middot;</span>
+                            <time datetime="2026-01-21">January 21, 2026</time>
+                            <span class="sep">&middot;</span>
+                            <span class="read-time">5 min read</span>
+                        </div>
+                        <a href="posts/shipping-the-lab.html" class="read-link">Read more &rarr;</a>
+                    </div>
+                </div>
+            </article>
+
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p class="footer-nav">
+            <p class="footer-single-line">
+                &copy; 2026 Medium Feel
+                <span class="footer-separator">&middot;</span>
+                Portland, Maine
+                <span class="footer-separator">&middot;</span>
                 <a href="index.html">Lab</a>
                 <span class="footer-separator">&middot;</span>
                 <a href="../index.html#about">About</a>
                 <span class="footer-separator">&middot;</span>
                 <a href="../index.html#contact">Contact</a>
             </p>
-            <span class="footer-separator footer-divider">&middot;</span>
-            <p class="footer-legal">&copy; 2026 Medium Feel <span class="footer-separator">&middot;</span> Portland, Maine</p>
         </div>
     </footer>
 
@@ -129,7 +214,6 @@
                 menuBtn.classList.remove('active');
             });
         });
-
     </script>
     <script src="../assets/js/typewriter.js"></script>
 </body>
