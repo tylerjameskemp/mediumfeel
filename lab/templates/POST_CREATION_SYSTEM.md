@@ -219,23 +219,15 @@ When adding a new post, update images in ALL of these locations:
 
 ## Status Labels
 
-Two visual treatments, same modifier classes, different contexts:
+One treatment everywhere: colored pill, inline with date and read time.
 
-### On blog posts (above title)
-Plain text, no pill background. Mono font, color from modifier class.
-```html
-<span class="post-status status-exploring">Exploring</span>
-```
-Styled by `blog-design-system.css` — resets padding/background from base `.post-status`.
-
-### On cards (inline with date)
-Colored pill, inline with metadata.
+### Usage (same in blog posts, lab cards, and homepage cards)
 ```html
 <span class="status-pill status-exploring">Exploring</span>
 ```
 
 ### Modifier classes
-Always pair the base class with a status modifier:
+Always pair `status-pill` with a status modifier:
 - `status-exploring` — blue (researching, early stage)
 - `status-building` — amber (actively building)
 - `status-shipped` — green (complete, published)
@@ -351,8 +343,7 @@ Required for all posts:
 - [ ] Images saved to correct paths with alt text
 - [ ] Hero image updated in: post header, lab card, lab curiosity grid, homepage (if featured)
 - [ ] Floater object created (150x150 webp) and added to curiosity grid
-- [ ] Status label uses `post-status` + modifier class in post HTML
-- [ ] Status label uses `status-pill` + modifier class in lab/index.html card
+- [ ] Status pill uses `status-pill` + modifier class in meta line (post, lab card, homepage card)
 - [ ] Post navigation added (prev/next)
 - [ ] Share buttons in meta row with encoded URLs
 - [ ] Footer has current year

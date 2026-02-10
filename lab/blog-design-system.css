@@ -274,7 +274,7 @@ body.blog-post .post-header .back-link:hover { color: white; }
 
 /* ===================================================
    POST INTRO — Text zone below gradient (Option D)
-   Status label → animated gradient title → excerpt → meta
+   Animated gradient title → excerpt → meta (with status pill)
    =================================================== */
 body.blog-post .post-intro {
     max-width: 640px;
@@ -283,21 +283,10 @@ body.blog-post .post-intro {
     box-sizing: border-box;
 }
 
-/* Status label — mono voice
-   Reset padding/border-radius from styles.css .post-status
-   Color comes from the status modifier class (status-exploring, etc.)
-   in styles.css, keeping it consistent with cards. */
-body.blog-post .post-intro .post-status {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    display: block;
-    margin-bottom: 16px;
-    padding: 0;
-    border-radius: 0;
-    background: none;
+/* Status pill in meta line — reset margin from base .status-pill
+   so it sits inline with date and read time. Same treatment as cards. */
+body.blog-post .post-meta-line .status-pill {
+    margin-bottom: 0;
 }
 
 /* Animated gradient title — design signature
