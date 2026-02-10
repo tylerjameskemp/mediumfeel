@@ -1,0 +1,986 @@
+/* ===================================================
+   MEDIUM FEEL BLOG DESIGN SYSTEM v2.0
+   Three voices: Mono (labels) · Sans (body) · Serif (display)
+
+   Usage: <link rel="stylesheet" href="../blog-design-system.css">
+   Loaded AFTER styles.css. Uses body.blog-post prefix to
+   guarantee specificity over base styles.
+   =================================================== */
+
+
+/* ===================================================
+   NAVBAR — White text when over gradient header
+   Must use body.blog-post (navbar is sibling of .post, not child)
+   =================================================== */
+body.blog-post .navbar:not(.scrolled) .nav-wordmark,
+body.blog-post .navbar:not(.scrolled) .nav-cursor {
+    color: white;
+    transition: color 0.3s ease;
+}
+
+body.blog-post .navbar:not(.scrolled) .nav-wordmark:hover {
+    color: rgba(255,255,255,0.8);
+}
+
+body.blog-post .navbar:not(.scrolled) .nav-links a {
+    color: rgba(255,255,255,0.85);
+}
+
+body.blog-post .navbar:not(.scrolled) .nav-links a:hover,
+body.blog-post .navbar:not(.scrolled) .nav-links a.active {
+    color: white;
+}
+
+body.blog-post .navbar:not(.scrolled) .mobile-menu-btn span {
+    background: white;
+}
+
+/* Mobile menu overlay — force dark text on light bg when open */
+body.blog-post .nav-links.active a {
+    color: #111827;
+}
+
+body.blog-post .nav-links.active a:hover,
+body.blog-post .nav-links.active a.active {
+    color: #6db33f;
+}
+
+
+/* ===================================================
+   POST BASE
+   =================================================== */
+body.blog-post .post {
+    background-color: #ffffff;
+    padding-top: 0;
+}
+
+
+/* ===================================================
+   POST HEADER — Gradient zone
+   Gradient colors/animation are post-specific (inline).
+   This file handles all text treatment.
+   =================================================== */
+body.blog-post .post-header {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+    background-size: 200% 200%;
+    background-position: 15% 35%;
+    animation: blogGradientShift 12s ease-in-out infinite;
+    padding: 0 24px 48px;
+    margin-bottom: 0;
+    margin-top: -80px;
+    padding-top: calc(80px + 48px);
+    border: none;
+}
+
+/* Grid overlay */
+body.blog-post .post-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+        linear-gradient(0deg, rgba(173, 255, 47, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(173, 255, 47, 0.3) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-attachment: fixed;
+    pointer-events: none;
+    z-index: 1;
+}
+
+body.blog-post .post-header-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    padding: 16px 0 0;
+}
+
+/* Hero image */
+body.blog-post .post-header .post-hero {
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+body.blog-post .post-header .post-hero img {
+    width: 100%;
+    height: auto;
+}
+
+/* Title — Instrument Serif, white, commanding
+   Floor at 2.25rem (36px) ensures dominance even on mobile.
+   Left-aligned on mobile needs stronger hierarchy than centered desktop. */
+body.blog-post .post-header h1 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(2.25rem, 4vw + 1rem, 3.25rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: white;
+    margin: 0 0 24px 0;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+}
+
+/* Optional subtitle/byline — short descriptor below title */
+body.blog-post .post-header .post-subtitle {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: clamp(0.9rem, 1.5vw + 0.5rem, 1.125rem);
+    font-weight: 400;
+    line-height: 1.4;
+    color: rgba(255,255,255,0.8);
+    margin: -12px 0 24px 0;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Meta row: status · date · read time · share */
+body.blog-post .post-header .post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.875rem;
+    color: white;
+    margin-bottom: 20px;
+}
+
+body.blog-post .post-header .post-meta time,
+body.blog-post .post-header .post-meta span {
+    color: white;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.875rem;
+}
+
+body.blog-post .post-header .post-meta .separator {
+    opacity: 0.4;
+    font-size: 0.75rem;
+}
+
+/* Status pill */
+body.blog-post .post-header .post-status {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    padding: 3px 12px;
+    border-radius: 12px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-block;
+}
+
+/* Reading time — mono voice */
+body.blog-post .post-header .read-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    opacity: 0.85;
+}
+
+/* Reading time — kill the bullet from styles.css */
+body.blog-post .post-header .read-time::before {
+    content: none;
+    display: none;
+}
+
+/* Share buttons — force perfect circles */
+body.blog-post .post-header .share-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    min-width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    color: white;
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 500;
+    border: none;
+    transition: background 0.15s, transform 0.15s;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+body.blog-post .post-header .share-btn:hover {
+    background: rgba(255,255,255,0.3);
+    transform: scale(1.1);
+}
+
+/* Excerpt — Instrument Serif italic, scales with viewport */
+body.blog-post .post-header .post-excerpt {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.25rem);
+    font-style: italic;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.92);
+    max-width: 540px;
+    margin: 0 auto;
+}
+
+/* Back link */
+body.blog-post .post-header .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.2s;
+    margin-top: 32px;
+}
+
+body.blog-post .post-header .back-link:hover { color: white; }
+
+@keyframes blogGradientShift {
+    0%   { background-position: 15% 35%; }
+    20%  { background-position: 85% 45%; }
+    40%  { background-position: 60% 75%; }
+    60%  { background-position: 30% 65%; }
+    80%  { background-position: 70% 25%; }
+    100% { background-position: 15% 35%; }
+}
+
+
+/* ===================================================
+   POST INTRO — Text zone below gradient (Option D)
+   Status label → animated gradient title → excerpt → meta
+   =================================================== */
+body.blog-post .post-intro {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 48px 24px 0;
+    box-sizing: border-box;
+}
+
+/* Status label — mono voice
+   Reset padding/border-radius from styles.css .post-status */
+body.blog-post .post-intro .post-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6db33f;
+    display: block;
+    margin-bottom: 16px;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+}
+
+/* Animated gradient title — design signature
+   Uses background-clip: text with the same gradient as the header.
+   The gradient is defined here as a default; posts can override
+   with post-specific inline styles if using a different palette. */
+body.blog-post .post-title-gradient {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(2.25rem, 4vw + 1rem, 3.25rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+    margin: 0 0 20px 0;
+    background:
+        radial-gradient(ellipse 150% 120% at 30% 50%,
+            #2d5a3d 0%, #3a6b47 15%, #4a8f5c 25%,
+            #6db33f 35%, #7cd92e 45%, #adff2f 50%,
+            #7cd92e 55%, #6db33f 65%, #4a8f5c 75%,
+            #3a6b47 85%, #2d5a3d 100%
+        );
+    background-size: 200% 200%;
+    animation: blogGradientShift 12s ease-in-out infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Excerpt — serif italic, muted */
+body.blog-post .post-intro .post-excerpt {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.25rem);
+    font-style: italic;
+    line-height: 1.5;
+    color: #6b7280;
+    margin: 0 0 24px 0;
+}
+
+/* Meta line — date, read time, share links */
+body.blog-post .post-meta-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.85rem;
+    color: #9ca3af;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+body.blog-post .post-meta-line time,
+body.blog-post .post-meta-line span {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.85rem;
+    color: #9ca3af;
+}
+
+body.blog-post .post-meta-line .separator {
+    opacity: 0.4;
+    font-size: 0.65rem;
+}
+
+body.blog-post .post-meta-line .read-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+}
+
+body.blog-post .post-meta-line .read-time::before {
+    content: none;
+    display: none;
+}
+
+body.blog-post .post-meta-line .share-links {
+    margin-left: auto;
+    display: flex;
+    gap: 14px;
+}
+
+body.blog-post .post-meta-line .share-links a {
+    color: #9ca3af;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.15s;
+}
+
+body.blog-post .post-meta-line .share-links a:hover {
+    color: #6db33f;
+}
+
+/* Animated gradient pull quote — same treatment as title */
+body.blog-post .post-content .pull-quote p {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 1.875rem;
+    line-height: 1.3;
+    font-style: italic;
+    background:
+        radial-gradient(ellipse 150% 120% at 30% 50%,
+            #2d5a3d 0%, #3a6b47 15%, #4a8f5c 25%,
+            #6db33f 35%, #7cd92e 45%, #adff2f 50%,
+            #7cd92e 55%, #6db33f 65%, #4a8f5c 75%,
+            #3a6b47 85%, #2d5a3d 100%
+        );
+    background-size: 200% 200%;
+    animation: blogGradientShift 12s ease-in-out infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+/* ===================================================
+   POST CONTENT — Reading area
+   =================================================== */
+body.blog-post .post-content {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 40px 24px 0;
+    position: relative;
+    background: none;
+    box-sizing: border-box;
+}
+
+/* Kill the green top bar from styles.css */
+body.blog-post .post-content::before {
+    display: none;
+    content: none;
+}
+
+/* --- Sections --- */
+body.blog-post .post-section {
+    margin-bottom: 48px;
+}
+
+body.blog-post .post-section:last-of-type {
+    margin-bottom: 32px;
+}
+
+body.blog-post .post-section:last-of-type .section-content {
+    font-size: 0.85rem;
+}
+
+body.blog-post .post-section:last-of-type .section-content p {
+    margin-bottom: 16px;
+    font-size: 0.85rem;
+}
+
+body.blog-post .post-section:last-of-type .section-content ul {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+body.blog-post .post-section:last-of-type .section-content li {
+    margin-bottom: 2px;
+}
+
+/* --- Section Labels (mono voice) --- */
+body.blog-post .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6db33f;
+    margin-bottom: 24px;
+}
+
+/* --- Subsection Labels (serif italic voice) --- */
+body.blog-post .subsection-label {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    font-style: italic;
+    color: #111827;
+    margin-top: 32px;
+    margin-bottom: 12px;
+}
+
+body.blog-post .subsection-label:first-of-type {
+    margin-top: 0;
+}
+
+/* --- TL;DR --- */
+body.blog-post .tldr {
+    margin-bottom: 24px;
+}
+
+body.blog-post .tldr-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6db33f;
+    margin-bottom: 24px;
+}
+
+body.blog-post .tldr ul {
+    margin: 0;
+    padding-left: 16px;
+    font-size: 0.65rem;
+    line-height: 1.35;
+    color: #2d5a3d;
+}
+
+body.blog-post .tldr li {
+    margin-bottom: 2px;
+}
+
+body.blog-post .tldr li:last-child {
+    margin-bottom: 0;
+}
+
+/* --- Body Text --- */
+body.blog-post .post-content p {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: #111827;
+    margin: 0 0 1.5em 0;
+}
+
+body.blog-post .post-content p:last-child { margin-bottom: 0; }
+
+/* --- Bold & Italic --- */
+body.blog-post .post-content strong {
+    font-weight: 600;
+    color: #111827;
+}
+
+body.blog-post .post-content em {
+    font-style: italic;
+    color: inherit;
+}
+
+/* --- Highlight (marker pen effect) --- */
+body.blog-post .post-content mark {
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 30%,
+        rgba(173, 255, 47, 0.5) 30%,
+        rgba(173, 255, 47, 0.5) 70%,
+        transparent 70%
+    );
+    padding: 0 2px;
+}
+
+/* --- Links --- */
+body.blog-post .post-content a {
+    color: #2d5a3d;
+    text-decoration: underline;
+    text-decoration-color: rgba(45, 90, 61, 0.3);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: text-decoration-color 0.15s ease;
+    font-weight: inherit;
+    padding: 0;
+    display: inline;
+}
+
+body.blog-post .post-content a:hover {
+    text-decoration-color: #2d5a3d;
+    text-decoration-thickness: 2px;
+}
+
+body.blog-post .post-content a:visited {
+    color: #4b5563;
+    text-decoration-color: rgba(75, 85, 99, 0.3);
+}
+
+/* --- Lists --- */
+body.blog-post .post-content ul,
+body.blog-post .post-content ol {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    margin: 0 0 1.5em 0;
+    padding-left: 1.5em;
+}
+
+body.blog-post .post-content li {
+    margin-bottom: 0.5em;
+    font-size: 1.0625rem;
+    color: #111827;
+}
+
+body.blog-post .post-content li:last-child { margin-bottom: 0; }
+
+body.blog-post .post-content li > ul,
+body.blog-post .post-content li > ol {
+    margin-top: 0.5em;
+    margin-bottom: 0;
+}
+
+/* --- Images & Figures --- */
+body.blog-post .post-content figure,
+body.blog-post .post-figure {
+    margin: 2.5em 0;
+    text-align: center;
+}
+
+body.blog-post .post-content figure img,
+body.blog-post .post-figure img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    margin: 0 auto;
+}
+
+body.blog-post .post-content figcaption,
+body.blog-post .post-figure figcaption {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #9ca3af;
+    margin-top: 10px;
+    text-align: center;
+    font-style: normal;
+}
+
+body.blog-post .post-figure img {
+    max-width: 540px;
+    width: 100%;
+    display: inline-block;
+}
+
+/* --- Blockquote --- */
+body.blog-post .post-content blockquote {
+    border-left: 3px solid #6db33f;
+    padding: 0 0 0 24px;
+    margin: 2em 0;
+}
+
+body.blog-post .post-content blockquote p {
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: #4b5563;
+    font-style: italic;
+}
+
+body.blog-post .post-content blockquote cite {
+    display: block;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.875rem;
+    font-style: normal;
+    color: #9ca3af;
+    margin-top: 0.5em;
+}
+
+body.blog-post .post-content blockquote cite::before { content: '\2014\00a0'; }
+
+/* --- Pull Quote --- */
+body.blog-post .post-content .pull-quote {
+    border-left: none;
+    border-top: 2px solid #6db33f;
+    border-bottom: 2px solid #6db33f;
+    padding: 24px 0;
+    margin: 2.5em 0;
+    text-align: center;
+}
+
+body.blog-post .post-content .pull-quote p {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 1.875rem;
+    line-height: 1.3;
+    color: #111827;
+    font-style: normal;
+}
+
+/* --- Code --- */
+body.blog-post .post-content code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875em;
+    background: #f5f5f5;
+    padding: 2px 6px;
+    border-radius: 3px;
+    word-break: break-word;
+}
+
+body.blog-post .post-content pre {
+    background: #1a1a2e;
+    color: #e0e0e0;
+    padding: 24px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 2em 0;
+}
+
+body.blog-post .post-content pre code {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    background: none;
+    padding: 0;
+    border-radius: 0;
+}
+
+/* --- Callout --- */
+body.blog-post .post-content .callout {
+    background: #fafafa;
+    border: 1px solid #e5e7eb;
+    border-left: 3px solid #6db33f;
+    border-radius: 0 6px 6px 0;
+    padding: 20px 24px;
+    margin: 2em 0;
+}
+
+body.blog-post .post-content .callout-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #6db33f;
+    margin-bottom: 8px;
+}
+
+body.blog-post .post-content .callout p {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+body.blog-post .post-content .callout.callout-warning {
+    border-left-color: #d97706;
+}
+
+body.blog-post .post-content .callout.callout-warning .callout-label {
+    color: #d97706;
+}
+
+/* --- Table --- */
+body.blog-post .post-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2em 0;
+    font-size: 0.9375rem;
+}
+
+body.blog-post .post-content thead th {
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 2px solid #e5e7eb;
+    color: #4b5563;
+}
+
+body.blog-post .post-content tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+body.blog-post .post-content tbody tr:last-child td { border-bottom: none; }
+
+/* --- Horizontal Rule --- */
+body.blog-post .post-content hr {
+    border: none;
+    height: 1px;
+    background: #e5e7eb;
+    margin: 3em auto;
+    max-width: 100px;
+}
+
+/* --- Footnotes --- */
+body.blog-post .post-content .footnote-ref {
+    font-size: 0.75em;
+    vertical-align: super;
+    line-height: 0;
+    color: #2d5a3d;
+}
+
+body.blog-post .post-content .footnotes {
+    margin-top: 3em;
+    padding-top: 24px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 0.875rem;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+body.blog-post .post-content .footnotes li { margin-bottom: 0.75em; }
+
+/* --- Details / Collapsible --- */
+body.blog-post .post-content details,
+body.blog-post details.backstory {
+    margin-top: 48px;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 24px;
+    background: none;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+body.blog-post .post-content summary,
+body.blog-post details.backstory summary {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6db33f;
+    cursor: pointer;
+    list-style: none;
+    margin-bottom: 24px;
+}
+
+body.blog-post .post-content summary::-webkit-details-marker,
+body.blog-post details.backstory summary::-webkit-details-marker { display: none; }
+
+body.blog-post .post-content summary::before,
+body.blog-post details.backstory summary::before { content: '+ '; }
+
+body.blog-post .post-content details[open] summary::before,
+body.blog-post details.backstory[open] summary::before { content: '\2212\00a0'; }
+
+body.blog-post .post-content summary:hover,
+body.blog-post details.backstory summary:hover {
+    color: #2d5a3d;
+}
+
+body.blog-post .post-content details p,
+body.blog-post details.backstory p {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin-top: 16px;
+}
+
+/* --- Definition List --- */
+body.blog-post .post-content dl { margin: 0 0 1.5em 0; }
+
+body.blog-post .post-content dt {
+    font-weight: 600;
+    margin-bottom: 0.25em;
+}
+
+body.blog-post .post-content dd {
+    margin-left: 1.5em;
+    margin-bottom: 1em;
+    color: #4b5563;
+}
+
+
+/* ===================================================
+   POST NAVIGATION (prev/next)
+   =================================================== */
+body.blog-post .post-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 32px;
+    margin-top: 96px;
+    padding-top: 32px;
+    border-top: 1px solid #e5e7eb;
+}
+
+body.blog-post .post-nav-link {
+    text-decoration: none;
+    max-width: 45%;
+}
+
+body.blog-post .post-nav-link:hover .post-nav-title {
+    color: #2d5a3d;
+}
+
+body.blog-post .post-nav-direction {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #9ca3af;
+    display: block;
+    margin-bottom: 4px;
+}
+
+body.blog-post .post-nav-title {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 1.0625rem;
+    color: #111827;
+    line-height: 1.3;
+    transition: color 0.15s;
+}
+
+body.blog-post .post-nav-link.next {
+    text-align: right;
+    margin-left: auto;
+}
+
+
+/* ===================================================
+   SITE FOOTER (blog version)
+   =================================================== */
+body.blog-post .post-footer {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+    margin-top: 96px;
+    background: radial-gradient(
+        ellipse 120% 100% at 70% 50%,
+        #2d5a3d 0%, #4a8f5c 20%, #7cd92e 40%,
+        #adff2f 50%, #7cd92e 65%, #4a8f5c 80%, #2d5a3d 100%
+    );
+    background-size: 200% 200%;
+    animation: blogGradientShift 8s ease-in-out infinite;
+    text-align: center;
+    padding: 24px;
+}
+
+body.blog-post .post-footer p {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.75rem;
+    color: white;
+}
+
+
+/* ===================================================
+   UTILITY
+   =================================================== */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+
+/* ===================================================
+   RESPONSIVE
+   =================================================== */
+@media (max-width: 768px) {
+    body.blog-post .post-header {
+        margin-top: -60px;
+        padding-top: calc(60px + 32px);
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-bottom: 32px;
+    }
+
+    body.blog-post .post-header .post-hero {
+        max-width: 240px;
+    }
+
+    /* Title and excerpt use clamp() — no breakpoint override needed */
+
+    body.blog-post .post-header .share-btn {
+        width: 24px;
+        height: 24px;
+        font-size: 0.65rem;
+    }
+
+    body.blog-post .post-intro {
+        padding: 32px 16px 0;
+    }
+
+    body.blog-post .post-content {
+        padding: 32px 16px 0;
+    }
+
+    body.blog-post .post-figure img {
+        max-width: 440px;
+    }
+
+    body.blog-post .post-nav {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    body.blog-post .post-nav-link {
+        max-width: 100%;
+    }
+
+    body.blog-post .post-nav-link.next {
+        text-align: left;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    body.blog-post .post-header .post-hero {
+        max-width: 200px;
+    }
+
+    /* Title uses clamp() — no override. Body text scales down more
+       aggressively to maintain strong hierarchy on small screens. */
+    body.blog-post .post-content p,
+    body.blog-post .post-content ul,
+    body.blog-post .post-content ol { font-size: 0.875rem; }
+
+    body.blog-post .post-content li { font-size: 0.875rem; }
+
+    body.blog-post .subsection-label { font-size: 1.0625rem; }
+
+    body.blog-post .section-label { font-size: 0.8125rem; }
+}

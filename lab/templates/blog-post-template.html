@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}} | Medium Feel</title>
+    <meta name="description" content="{{EXCERPT}}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.mediumfeel.com/lab/posts/{{POST_SLUG}}.html">
+    <meta property="og:title" content="{{TITLE}}">
+    <meta property="og:description" content="{{EXCERPT}}">
+    <meta property="og:image" content="https://www.mediumfeel.com/assets/blog/{{POST_SLUG}}/hero-{{POST_SLUG}}.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.mediumfeel.com/lab/posts/{{POST_SLUG}}.html">
+    <meta property="twitter:title" content="{{TITLE}}">
+    <meta property="twitter:description" content="{{EXCERPT}}">
+    <meta property="twitter:image" content="https://www.mediumfeel.com/assets/blog/{{POST_SLUG}}/hero-{{POST_SLUG}}.png">
+
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Shared blog design system -->
+    <link rel="stylesheet" href="../blog-design-system.css">
+
+    <style>
+    /* ===================================================
+       POST-SPECIFIC STYLES ONLY
+       Typography, spacing, and element styles come from
+       blog-design-system.css. Only layout/animation here.
+       =================================================== */
+
+    /* Gradient — customize colors per post if desired */
+    .post-header {
+        background:
+            radial-gradient(ellipse 150% 120% at var(--gradient-x, 30%) var(--gradient-y, 50%),
+                #2d5a3d 0%,
+                #3a6b47 15%,
+                #4a8f5c 25%,
+                #6db33f 35%,
+                #7cd92e 45%,
+                #adff2f 50%,
+                #7cd92e 55%,
+                #6db33f 65%,
+                #4a8f5c 75%,
+                #3a6b47 85%,
+                #2d5a3d 100%
+            );
+    }
+
+    /* Add post-specific styles below (hero animations, custom widths, etc.) */
+    </style>
+</head>
+<body class="blog-post">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="nav-wordmark">
+                <span id="nav-typewriter"></span>
+                <span class="nav-cursor">|</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="../index.html" class="active">Lab</a></li>
+                <li><a href="../../index.html#about">About</a></li>
+                <li><a href="../../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <article class="post">
+
+        <!-- HEADER: Gradient zone with hero, title, meta -->
+        <header class="post-header">
+            <div class="post-header-inner">
+                <!-- Hero image -->
+                <figure class="post-hero">
+                    <img src="../../assets/blog/{{POST_SLUG}}/hero-{{POST_SLUG}}.png"
+                         alt="{{HERO_ALT}}">
+                </figure>
+
+                <h1>{{TITLE}}</h1>
+                <!-- Optional subtitle/byline — delete if not needed -->
+                <!-- <p class="post-subtitle">{{SUBTITLE}}</p> -->
+
+                <div class="post-meta">
+                    <span class="post-status">{{STATUS}}</span>
+                    <span class="separator">&middot;</span>
+                    <time datetime="{{DATE_ISO}}">{{DATE_FORMATTED}}</time>
+                    <span class="separator">&middot;</span>
+                    <span class="read-time">{{READ_TIME}} min read</span>
+                    <span class="separator">&middot;</span>
+                    <a href="https://twitter.com/intent/tweet?url=https://www.mediumfeel.com/lab/posts/{{POST_SLUG}}.html&text={{TITLE_ENCODED}}" target="_blank" rel="noopener" class="share-btn" title="Share on Twitter">&#x1d54f;</a>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.mediumfeel.com/lab/posts/{{POST_SLUG}}.html" target="_blank" rel="noopener" class="share-btn" title="Share on LinkedIn">in</a>
+                    <a href="mailto:?subject={{TITLE_ENCODED}}&body=Check%20out%20this%20post%3A%20https://www.mediumfeel.com/lab/posts/{{POST_SLUG}}.html" class="share-btn" title="Share via Email">&#x2709;</a>
+                </div>
+
+                <p class="post-excerpt">{{EXCERPT}}</p>
+            </div>
+        </header>
+
+        <!-- CONTENT -->
+        <div class="post-content">
+
+            <!-- SECTION: Example section with label -->
+            <!--
+            <section class="post-section">
+                <div class="section-label">Section Name</div>
+                <div class="section-content">
+                    <p>Body text here.</p>
+                </div>
+            </section>
+            -->
+
+            <!-- SECTION: Example section with subsections -->
+            <!--
+            <section class="post-section">
+                <div class="section-label">The Retro</div>
+                <div class="section-content">
+                    <div class="subsection-label">Keep</div>
+                    <ul>
+                        <li><strong>Bold lead-in.</strong> Explanation text here.</li>
+                    </ul>
+
+                    <div class="subsection-label">Drop</div>
+                    <ul>
+                        <li>Plain list item.</li>
+                    </ul>
+                </div>
+            </section>
+            -->
+
+            <!-- FIGURE -->
+            <!--
+            <figure class="post-figure">
+                <img src="../../assets/blog/{{POST_SLUG}}/image-name.png"
+                     alt="Description">
+                <figcaption>Optional caption text.</figcaption>
+            </figure>
+            -->
+
+            <!-- BLOCKQUOTE -->
+            <!--
+            <blockquote>
+                <p>Quoted text here.</p>
+                <cite>Author Name</cite>
+            </blockquote>
+            -->
+
+            <!-- PULL QUOTE -->
+            <!--
+            <blockquote class="pull-quote">
+                <p>Your own words, pulled out for visual emphasis.</p>
+            </blockquote>
+            -->
+
+            <!-- CALLOUT -->
+            <!--
+            <div class="callout">
+                <div class="callout-label">Note</div>
+                <p>Callout content here.</p>
+            </div>
+            -->
+
+            <!-- HIGHLIGHT -->
+            <!-- <p>Regular text <mark>highlighted phrase</mark> more text.</p> -->
+
+            <!-- COLLAPSIBLE -->
+            <!--
+            <details class="backstory">
+                <summary>Backstory</summary>
+                <p>Hidden content here.</p>
+            </details>
+            -->
+
+            {{CONTENT_SECTIONS}}
+
+            <!-- Post Navigation -->
+            <nav class="post-nav">
+                <!-- Previous post (leave empty <span> if no previous) -->
+                <a href="{{PREV_SLUG}}.html" class="post-nav-link prev">
+                    <span class="post-nav-direction">&larr; Previous</span>
+                    <span class="post-nav-title">{{PREV_TITLE}}</span>
+                </a>
+                <!-- Next post (leave empty <span> if no next) -->
+                <a href="{{NEXT_SLUG}}.html" class="post-nav-link next">
+                    <span class="post-nav-direction">Next &rarr;</span>
+                    <span class="post-nav-title">{{NEXT_TITLE}}</span>
+                </a>
+            </nav>
+
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="post-footer">
+            <p>&copy; 2026 Medium Feel &middot; Portland, Maine</p>
+        </footer>
+
+    </article>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuBtn.classList.toggle('active');
+        });
+    </script>
+    <script src="../../assets/js/typewriter.js"></script>
+    <script>
+        // Navbar scroll behavior
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
