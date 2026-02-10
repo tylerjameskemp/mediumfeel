@@ -1,24 +1,37 @@
 /* ===== CSS Variables ===== */
 :root {
-    /* Colors */
-    --color-green: #5B8F4A;
+    /* Colors — aligned to blog-design-system.css */
+    --color-green: #6db33f;
+    --color-green-dark: #2d5a3d;
     --color-green-light: #6FA05A;
     --color-green-pale: #E8F0E4;
-    --color-bg: #F2F2F0;
-    --color-bg-alt: #E8E8E4;
-    --color-text: #2C2C2C;
-    --color-text-muted: #5A5A5A;
-    --color-text-light: #7A7A7A;
-    --color-border: #D4D4D0;
-    --color-rule: #D8D8D4;
+    --color-bg: #ffffff;
+    --color-bg-alt: #fafafa;
+    --color-text: #111827;
+    --color-text-muted: #6b7280;
+    --color-text-light: #9ca3af;
+    --color-border: #e5e7eb;
+    --color-rule: #e5e7eb;
     --color-white: #FFFFFF;
 
-    /* Typography */
+    /* Status / category colors */
+    --color-blue: #1E6BB8;
+    --color-blue-pale: #E8F4FD;
+    --color-amber: #B45309;
+    --color-amber-pale: #FEF3E2;
+
+    /* Hero gradient (blue) */
+    --color-hero-dark: #0a1628;
+    --color-hero-mid: #2563eb;
+    --color-hero-light: #93c5fd;
+
+    /* Typography — add mono */
     --font-serif: 'Instrument Serif', Georgia, serif;
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
     --font-handwritten: 'Caveat', cursive;
 
-    /* Spacing Scale (base: 8px) */
+    /* Spacing */
     --space-xs: 4px;
     --space-sm: 8px;
     --space-md: 16px;
@@ -29,7 +42,7 @@
     --space-4xl: 100px;
 
     /* Layout */
-    --max-width: 1000px;
+    --max-width: 960px;
     --container-padding: 24px;
 
     /* Animation */
@@ -159,7 +172,7 @@ p.large {
 }
 
 .navbar.scrolled {
-    background: rgba(242, 242, 240, 0.95);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--color-border);
     padding: 12px 0;
@@ -270,6 +283,23 @@ p.large {
 .animate-wave {
     animation: wave 3s ease-in-out infinite;
     transform-origin: left center;
+}
+
+@keyframes gradientShift {
+    0%   { background-position: 15% 35%; }
+    20%  { background-position: 85% 45%; }
+    40%  { background-position: 60% 75%; }
+    60%  { background-position: 30% 65%; }
+    80%  { background-position: 70% 25%; }
+    100% { background-position: 15% 35%; }
+}
+
+@keyframes swirlDrift {
+    0%   { background-position: 0% 50%, 100% 50%, 50% 0%; }
+    25%  { background-position: 100% 25%, 0% 75%, 75% 100%; }
+    50%  { background-position: 50% 100%, 50% 0%, 0% 50%; }
+    75%  { background-position: 0% 75%, 100% 25%, 25% 0%; }
+    100% { background-position: 0% 50%, 100% 50%, 50% 0%; }
 }
 
 .nav-links {
@@ -613,13 +643,13 @@ p.large {
 }
 
 .tag-learning {
-    background: #E8F4FD;
-    color: #1E6BB8;
+    background: var(--color-blue-pale);
+    color: var(--color-blue);
 }
 
 .tag-experiment {
-    background: #FEF3E2;
-    color: #B45309;
+    background: var(--color-amber-pale);
+    color: var(--color-amber);
 }
 
 .tag-project {
@@ -1164,13 +1194,13 @@ p.large {
 }
 
 .status-exploring {
-    background: #E8F4FD;
-    color: #1E6BB8;
+    background: var(--color-blue-pale);
+    color: var(--color-blue);
 }
 
 .status-building {
-    background: #FEF3E2;
-    color: #B45309;
+    background: var(--color-amber-pale);
+    color: var(--color-amber);
 }
 
 .status-shipped {
@@ -1747,6 +1777,691 @@ p.large {
     }
 }
 
+/* ===================================================
+   HOMEPAGE — 5 Section Layout
+   =================================================== */
+
+/* Hero — Blue gradient with floating objects */
+.hero-gradient {
+    width: 100%;
+    position: relative;
+    background:
+        radial-gradient(ellipse 150% 120% at 30% 50%,
+            var(--color-hero-dark) 0%, #0f2440 15%, #1a3a5c 25%,
+            var(--color-hero-mid) 35%, #3b82f6 45%, var(--color-hero-light) 50%,
+            #3b82f6 55%, var(--color-hero-mid) 65%, #1a3a5c 75%,
+            #0f2440 85%, var(--color-hero-dark) 100%
+        );
+    background-size: 200% 200%;
+    animation: gradientShift 12s ease-in-out infinite;
+    padding: 180px 24px 100px;
+    text-align: center;
+    overflow: hidden;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+        radial-gradient(circle, rgba(255,255,255,0.25) 1.5px, transparent 1.5px);
+    background-size: 22px 22px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Hero text — centered, no card */
+.hero-text-block {
+    position: relative;
+    z-index: 5;
+    max-width: 640px;
+    margin: 0 auto;
+    pointer-events: auto;
+}
+
+.hero-text-block .gradient-title {
+    margin-bottom: 0;
+    cursor: default;
+    transition: transform 0.4s ease, text-shadow 0.4s ease;
+}
+
+.hero-text-block:hover .gradient-title {
+    transform: scale(1.03);
+    text-shadow: 0 0 40px rgba(255,255,255,0.2);
+}
+
+/* ===== Floating Objects ===== */
+.floater {
+    position: absolute;
+    display: block;
+    pointer-events: auto;
+    text-decoration: none;
+    will-change: transform;
+    cursor: grab;
+}
+
+.floater img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+    transform: rotate(var(--rand-rotate, 0deg)) scale(var(--rand-scale, 1));
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.floater:hover img {
+    transform: rotate(var(--rand-rotate, 0deg)) scale(calc(var(--rand-scale, 1) * 1.12));
+    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.4));
+}
+
+.floater.nudged {
+    transition: transform 2s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.floater.pushed {
+    transition: transform 0.25s cubic-bezier(0.2, 0.6, 0.3, 1);
+}
+
+.floater.pushed-back {
+    transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+/* Three depth layers */
+
+/* SMALL: background objects */
+.floater-small {
+    z-index: 3;
+    width: 65px;
+}
+
+/* MID: same plane as text */
+.floater-mid {
+    z-index: 4;
+    width: 130px;
+}
+
+/* LARGE: in front of text */
+.floater-large {
+    z-index: 6;
+    width: 200px;
+}
+
+/* LARGE-BEHIND: big objects that sit behind text */
+.floater-large-behind {
+    z-index: 4;
+    width: 200px;
+}
+
+/* 12 unique drift animations — different directions, speeds, rotations */
+@keyframes drift-1 {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    25%  { transform: translate(30px, -20px) rotate(3deg); }
+    50%  { transform: translate(15px, -40px) rotate(-2deg); }
+    75%  { transform: translate(-10px, -15px) rotate(4deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes drift-2 {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    25%  { transform: translate(-25px, 15px) rotate(-5deg); }
+    50%  { transform: translate(-50px, 5px) rotate(2deg); }
+    75%  { transform: translate(-20px, 25px) rotate(-3deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes drift-3 {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    33%  { transform: translate(40px, 20px) rotate(6deg); }
+    66%  { transform: translate(20px, -10px) rotate(-4deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes drift-4 {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    20%  { transform: translate(-15px, 30px) rotate(-3deg); }
+    40%  { transform: translate(-35px, 15px) rotate(5deg); }
+    60%  { transform: translate(-20px, -10px) rotate(-2deg); }
+    80%  { transform: translate(10px, 10px) rotate(3deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes drift-5 {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    25%  { transform: translate(20px, -30px) rotate(4deg); }
+    50%  { transform: translate(45px, -10px) rotate(-3deg); }
+    75%  { transform: translate(25px, 15px) rotate(5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes drift-6 {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    30%  { transform: translate(-30px, -25px) rotate(-6deg); }
+    60%  { transform: translate(10px, -35px) rotate(3deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes drift-7 {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    25%  { transform: translate(15px, 25px) rotate(5deg); }
+    50%  { transform: translate(35px, 10px) rotate(-4deg); }
+    75%  { transform: translate(20px, -15px) rotate(2deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes drift-8 {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    33%  { transform: translate(-35px, 20px) rotate(-5deg); }
+    66%  { transform: translate(-15px, -25px) rotate(4deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes drift-9 {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    20%  { transform: translate(25px, -15px) rotate(3deg); }
+    40%  { transform: translate(10px, 20px) rotate(-6deg); }
+    60%  { transform: translate(-20px, 10px) rotate(4deg); }
+    80%  { transform: translate(-10px, -20px) rotate(-2deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes drift-10 {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    25%  { transform: translate(20px, 15px) rotate(-3deg); }
+    50%  { transform: translate(40px, -10px) rotate(2deg); }
+    75%  { transform: translate(15px, -20px) rotate(-4deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes drift-11 {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    30%  { transform: translate(-20px, -30px) rotate(5deg); }
+    60%  { transform: translate(-40px, 10px) rotate(-3deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes drift-12 {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    25%  { transform: translate(-25px, 20px) rotate(-4deg); }
+    50%  { transform: translate(10px, 35px) rotate(6deg); }
+    75%  { transform: translate(30px, 10px) rotate(-2deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* Apply drift animations to each floater via data attribute */
+[data-drift="drift-1"]  { animation: drift-1 45s ease-in-out infinite; }
+[data-drift="drift-2"]  { animation: drift-2 55s ease-in-out infinite; }
+[data-drift="drift-3"]  { animation: drift-3 38s ease-in-out infinite; }
+[data-drift="drift-4"]  { animation: drift-4 62s ease-in-out infinite; }
+[data-drift="drift-5"]  { animation: drift-5 50s ease-in-out infinite; }
+[data-drift="drift-6"]  { animation: drift-6 42s ease-in-out infinite; }
+[data-drift="drift-7"]  { animation: drift-7 58s ease-in-out infinite; }
+[data-drift="drift-8"]  { animation: drift-8 35s ease-in-out infinite; }
+[data-drift="drift-9"]  { animation: drift-9 68s ease-in-out infinite; }
+[data-drift="drift-10"] { animation: drift-10 52s ease-in-out infinite; }
+[data-drift="drift-11"] { animation: drift-11 40s ease-in-out infinite; }
+[data-drift="drift-12"] { animation: drift-12 48s ease-in-out infinite; }
+
+/* Navbar — white text over gradient (same as blog) */
+.navbar:not(.scrolled) .nav-wordmark,
+.navbar:not(.scrolled) .nav-cursor {
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.navbar:not(.scrolled) .nav-wordmark:hover {
+    color: rgba(255,255,255,0.8);
+}
+
+.navbar:not(.scrolled) .nav-links a {
+    color: rgba(255,255,255,0.85);
+}
+
+.navbar:not(.scrolled) .nav-links a:hover {
+    color: white;
+}
+
+.navbar:not(.scrolled) .mobile-menu-btn span {
+    background: white;
+}
+
+/* Section Label — mono voice */
+.home-section-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-green);
+    display: block;
+    margin-bottom: 16px;
+}
+
+.home-section-label.centered { text-align: center; }
+
+/* Hero Title — white on blue gradient */
+.gradient-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw + 0.5rem, 2.75rem);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+    margin: 0 0 20px 0;
+    color: #ffffff;
+}
+
+/* ===== Section 2: Latest Lab Report ===== */
+.latest-report {
+    padding: 72px 0;
+    background: var(--color-bg);
+}
+
+.latest-report-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.latest-report-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease;
+}
+
+.latest-report-image a:hover img {
+    transform: scale(1.02);
+}
+
+.latest-report-meta h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    text-align: left;
+    color: var(--color-text);
+}
+
+.latest-report-meta h2 a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+.latest-report-meta h2 a:hover {
+    color: var(--color-green-dark);
+}
+
+.latest-report-details {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+    margin-bottom: 16px;
+}
+
+.latest-report-details .sep { opacity: 0.4; font-size: 0.65rem; }
+.latest-report-details .read-time { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.02em; }
+
+.latest-report-meta p {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    margin-bottom: 20px;
+}
+
+/* Status Pill — shared across sections */
+.status-pill {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.status-exploring {
+    background: var(--color-blue-pale);
+    color: var(--color-blue);
+}
+
+.status-building {
+    background: var(--color-green-pale);
+    color: var(--color-green);
+}
+
+.status-shipped {
+    background: var(--color-bg-alt);
+    color: var(--color-text-light);
+}
+
+/* Read Link */
+.read-link {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-green-dark);
+    text-decoration: underline;
+    text-decoration-color: rgba(45,90,61,0.3);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: text-decoration-color 0.15s;
+}
+
+.read-link:hover { text-decoration-color: var(--color-green-dark); text-decoration-thickness: 2px; }
+
+/* ===== Section 3: Kanban Band ===== */
+.kanban-band {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse 80% 60% at 20% 30%, rgba(255,255,255,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 70% 80% at 80% 70%, rgba(255,255,255,0.05) 0%, transparent 50%),
+        radial-gradient(ellipse 90% 50% at 50% 50%, rgba(255,255,255,0.03) 0%, transparent 70%);
+    background-size: 200% 200%, 200% 200%, 200% 200%;
+    background-color: #1a1a1a;
+    animation: swirlDrift 20s ease-in-out infinite;
+}
+
+.kanban-band-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 64px 24px;
+}
+
+.kanban-scroll {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    padding-bottom: 16px;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar but keep functionality */
+.kanban-scroll::-webkit-scrollbar {
+    height: 6px;
+}
+
+.kanban-scroll::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.05);
+    border-radius: 3px;
+}
+
+.kanban-scroll::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.15);
+    border-radius: 3px;
+}
+
+.kanban-col {
+    min-width: 200px;
+    max-width: 220px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.kanban-col-header {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.4);
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.kanban-card-dark {
+    background: rgba(255,255,255,0.95);
+    border-radius: 8px;
+    padding: 16px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.kanban-card-dark:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+.kanban-card-dark p {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--color-text);
+    margin: 0 0 8px 0;
+}
+
+.kanban-card-empty {
+    opacity: 0.4;
+    border: 1px dashed rgba(255,255,255,0.2);
+    background: transparent;
+}
+
+.kanban-card-empty p {
+    color: rgba(255,255,255,0.4);
+    font-style: italic;
+}
+
+.kanban-card-shipped {
+    opacity: 0.7;
+}
+
+.kanban-tag {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-light);
+}
+
+/* ===== Section 4: About + Contact Gradient ===== */
+.about-contact-gradient {
+    width: 100%;
+    position: relative;
+    background:
+        radial-gradient(ellipse 150% 120% at 30% 50%,
+            var(--color-hero-dark) 0%, #0f2440 15%, #1a3a5c 25%,
+            var(--color-hero-mid) 35%, #3b82f6 45%, var(--color-hero-light) 50%,
+            #3b82f6 55%, var(--color-hero-mid) 65%, #1a3a5c 75%,
+            #0f2440 85%, var(--color-hero-dark) 100%
+        );
+    background-size: 200% 200%;
+    animation: gradientShift 12s ease-in-out infinite;
+    overflow: hidden;
+}
+
+.about-contact-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+        radial-gradient(circle, rgba(255,255,255,0.25) 1.5px, transparent 1.5px);
+    background-size: 22px 22px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.about-contact-inner {
+    position: relative;
+    z-index: 2;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 80px 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+}
+
+.about-col-image {
+    max-width: 200px;
+    margin-bottom: 24px;
+}
+
+.about-col-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.3));
+}
+
+.about-contact-gradient h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 400;
+    color: white;
+    margin-bottom: 16px;
+    text-align: left;
+    line-height: 1.15;
+}
+
+.about-contact-gradient p {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 0.85em;
+    text-align: left;
+}
+
+.about-contact-gradient p.lead {
+    font-size: 1rem;
+    color: white;
+    font-weight: 500;
+}
+
+.contact-col {
+    padding-top: 32px;
+}
+
+.contact-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.btn-footer-primary {
+    display: inline-block;
+    background: white;
+    color: var(--color-hero-dark);
+    padding: 14px 36px;
+    border-radius: 6px;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.btn-footer-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.btn-footer-secondary {
+    display: inline-block;
+    background: transparent;
+    color: white;
+    padding: 14px 36px;
+    border-radius: 6px;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: border-color 0.15s, background 0.15s, transform 0.15s;
+}
+
+.btn-footer-secondary:hover {
+    border-color: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-2px);
+}
+
+/* Highlight — from blog mark */
+mark {
+    background: linear-gradient(
+        to bottom,
+        transparent 0%, transparent 30%,
+        rgba(173,255,47,0.5) 30%, rgba(173,255,47,0.5) 70%,
+        transparent 70%
+    );
+    padding: 0 2px;
+}
+
+/* ===== Responsive — Homepage ===== */
+@media (max-width: 1024px) {
+    /* Scale floaters down earlier on narrower desktops */
+    .floater-small { width: 50px; }
+    .floater-mid { width: 100px; }
+    .floater-large { width: 150px; }
+    .floater-large-behind { width: 150px; }
+}
+
+@media (max-width: 768px) {
+    .hero-gradient {
+        padding: 140px 16px 64px;
+        min-height: 70vh;
+    }
+
+    .floater-small { width: 35px; }
+    .floater-mid { width: 65px; }
+    .floater-large { width: 100px; }
+    .floater-large-behind { width: 100px; }
+
+    .latest-report { padding: 48px 0; }
+    .latest-report-grid { grid-template-columns: 1fr; gap: 24px; }
+
+    .kanban-band-inner { padding: 48px 16px; }
+
+    .about-contact-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        padding: 48px 16px;
+    }
+
+    .about-col-image { max-width: 160px; }
+
+    .contact-col { padding-top: 0; }
+    .contact-buttons { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 480px) {
+    .hero-gradient {
+        padding: 100px 12px 48px;
+        min-height: 60vh;
+    }
+
+    .floater-small { display: none; }
+    .floater-mid { width: 45px; }
+    .floater-large { width: 70px; }
+    .floater-large-behind { width: 70px; }
+    /* Hide most mid objects on phone, keep eraser + correction fluid */
+    [data-drift="drift-5"],
+    [data-drift="drift-6"],
+    [data-drift="drift-7"] { display: none; }
+
+    .kanban-col {
+        min-width: 180px;
+    }
+}
+
 /* ===== Reduced Motion Accessibility ===== */
 @media (prefers-reduced-motion: reduce) {
     *,
@@ -1755,6 +2470,10 @@ p.large {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+
+    .floater {
+        animation: none !important;
     }
 
     .peppermint-spinner,

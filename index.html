@@ -56,9 +56,7 @@
                 <span class="nav-cursor">|</span>
             </a>
             <button class="mobile-menu-btn" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
             <ul class="nav-links">
                 <li><a href="lab/index.html">Lab</a></li>
@@ -68,149 +66,197 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero hero-home bg-grid">
+    <!-- Section 1: Hero — Blue gradient + floating objects + text -->
+    <section class="hero-gradient">
+        <!-- LARGE: above/over text, bigger objects -->
+        <a href="#" class="floater floater-large" style="top: 5%; left: 2%;" data-drift="drift-1">
+            <img src="assets/floaters/window-near.webp" alt="Broken window" loading="lazy">
+        </a>
+        <a href="#" class="floater floater-large" style="top: 60%; right: 3%;" data-drift="drift-2">
+            <img src="assets/floaters/phone-near.webp" alt="Shattered phone" loading="lazy">
+        </a>
+        <a href="#" class="floater floater-large-behind" style="bottom: 5%; left: 8%;" data-drift="drift-3">
+            <img src="assets/floaters/playdoh-near.webp" alt="Play-Doh container" loading="lazy">
+        </a>
+
+        <!-- MEDIUM: same focal plane as text -->
+        <a href="#" class="floater floater-mid" style="top: 8%; left: 68%;" data-drift="drift-4">
+            <img src="assets/floaters/eraser-mid.webp" alt="Pink eraser" loading="lazy">
+        </a>
+        <a href="#" class="floater floater-mid" style="top: 55%; left: 3%;" data-drift="drift-5">
+            <img src="assets/floaters/crayon-mid.webp" alt="Green crayon" loading="lazy">
+        </a>
+        <a href="#" class="floater floater-mid" style="top: 80%; left: 58%;" data-drift="drift-6">
+            <img src="assets/floaters/compass-mid.webp" alt="Compass and pencil" loading="lazy">
+        </a>
+        <a href="#" class="floater floater-mid" style="top: 18%; left: 20%;" data-drift="drift-7">
+            <img src="assets/floaters/highlighter-mid.webp" alt="Highlighter marker" loading="lazy">
+        </a>
+        <a href="lab/posts/building-your-own-thinking-tools.html" class="floater floater-mid" style="top: 40%; right: 5%;" data-drift="drift-8">
+            <img src="assets/floaters/correction-fluid-mid.webp" alt="Correction fluid — Building Your Own Thinking Tools" loading="lazy">
+        </a>
+
+        <!-- SMALL: background depth -->
+        <a href="#" class="floater floater-small" style="top: 30%; left: 10%;" data-drift="drift-10">
+            <img src="assets/floaters/paperclip-far.webp" alt="Paperclip" loading="lazy">
+        </a>
+        <a href="#" class="floater floater-small" style="top: 85%; right: 15%;" data-drift="drift-11">
+            <img src="assets/floaters/peppermint-far.webp" alt="Peppermint" loading="lazy">
+        </a>
+
+        <!-- Hero text — centered, no card -->
+        <div class="hero-text-block">
+            <h1 class="gradient-title">A lab for brand, marketing, and the questions that sit between them.</h1>
+        </div>
+    </section>
+
+    <!-- Section 2: Latest Lab Report -->
+    <section class="latest-report">
         <div class="container">
-            <div class="hero-playdough">
-                <img src="assets/logo-playdo.png" alt="Medium Feel Play-Doh">
-            </div>
-            <div class="hero-content">
-                <p class="hero-text">Medium Feel is a lab for brand, marketing, and the questions that sit between them.</p>
-                <p class="hero-text">Exploring how communication is changing as AI reshapes how brands think, make, and show up. Some of this is writing. Some of this is building.</p>
-                <p class="hero-text">Most of it is curiosity in progress.</p>
+            <span class="home-section-label centered">LATEST LAB REPORT</span>
+            <div class="latest-report-grid">
+                <div class="latest-report-image">
+                    <a href="lab/posts/building-your-own-thinking-tools.html">
+                        <picture>
+                            <source srcset="assets/blog/building-your-own-thinking-tools/hero-thinking-tools.webp" type="image/webp">
+                            <img src="assets/blog/building-your-own-thinking-tools/hero-thinking-tools.png" alt="Building Your Own Thinking Tools — hero illustration">
+                        </picture>
+                    </a>
+                </div>
+                <div class="latest-report-meta">
+                    <span class="status-pill status-exploring">Exploring</span>
+                    <h2><a href="lab/posts/building-your-own-thinking-tools.html">What If You Could Build Your Own Thinking Tools?</a></h2>
+                    <div class="latest-report-details">
+                        <time datetime="2026-02-05">February 5, 2026</time>
+                        <span class="sep">&middot;</span>
+                        <span class="read-time">7 min read</span>
+                    </div>
+                    <p>After 18 months of AI hype, building something I actually needed finally felt possible. How Claude Code and Opus 4.5 collapsed the distance between "I need a tool" and "here's a working prototype."</p>
+                    <a href="lab/posts/building-your-own-thinking-tools.html" class="read-link">Read more &rarr;</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Peppermint Divider -->
-    <div class="peppermint-divider">
-        <img src="assets/object-peppermint.png" alt="Peppermint candy" class="peppermint-spinner">
-    </div>
-
-    <!-- Lab Preview Section -->
-    <section id="lab" class="recent-lab bg-gray">
-        <div class="container">
-            <div class="section-header">
-                <h2>The Lab</h2>
-                <a href="lab/index.html" class="view-all">View all &rarr;</a>
-            </div>
-            <p class="lab-intro">Experiments, writing, and work in progress. Ideas move through stages: some ship, some don't. That's the point.</p>
-
-            <!-- Featured Latest Post -->
-            <div class="featured-post">
-                <div class="featured-badge">Latest</div>
-                <div class="featured-meta">
-                    <span class="post-status status-shipped">Shipped</span>
-                    <time datetime="2026-01-21">January 21, 2026</time>
+    <!-- Section 3: Kanban Board on Dark Swirl -->
+    <section class="kanban-band">
+        <div class="kanban-band-inner">
+            <span class="home-section-label centered" style="color: rgba(255,255,255,0.4);">WORK IN PROGRESS</span>
+            <div class="kanban-scroll">
+                <div class="kanban-col">
+                    <div class="kanban-col-header">Backlog</div>
+                    <div class="kanban-card-dark">
+                        <span class="status-pill status-exploring">Exploring</span>
+                        <p>AI-era brand governance — how brand standards evolve when anyone can generate</p>
+                        <span class="kanban-tag">Brand &amp; Strategy</span>
+                    </div>
                 </div>
-                <h3><a href="lab/posts/shipping-the-lab.html">Shipping the Lab: A Build Log</a></h3>
-                <p class="featured-excerpt">How I built and shipped the Medium Feel website in a half-day using Claude Code, with no coding experience. The first documented experiment.</p>
-                <a href="lab/posts/shipping-the-lab.html" class="btn-primary">Read Post &rarr;</a>
-            </div>
-
-            <!-- Work in Progress -->
-            <h3 class="subsection-title">Work in Progress</h3>
-            <div class="kanban kanban-preview kanban-wip">
-                <div class="kanban-column">
-                    <div class="kanban-card">
-                        <span class="card-tag tag-learning">Exploring</span>
+                <div class="kanban-col">
+                    <div class="kanban-col-header">Queued</div>
+                    <div class="kanban-card-dark">
+                        <span class="status-pill status-exploring">Exploring</span>
                         <p>Personal RAG: Making sense of local data that lives on your machine but never gets used</p>
-                    </div>
-                    <div class="kanban-card">
-                        <span class="card-tag tag-learning">Exploring</span>
-                        <p>Iterative software development without code—what developer experience looks like for non-developers</p>
+                        <span class="kanban-tag">Systems</span>
                     </div>
                 </div>
-                <div class="kanban-column">
-                    <div class="kanban-card">
-                        <span class="card-tag tag-project">Building</span>
-                        <p>Weave: A proof of concept exploring the genealogy of ideas and strategy</p>
+                <div class="kanban-col">
+                    <div class="kanban-col-header">In Progress</div>
+                    <div class="kanban-card-dark">
+                        <span class="status-pill status-exploring">Exploring</span>
+                        <p>Iterative software development without code — what developer experience looks like for non-developers</p>
+                        <span class="kanban-tag">Process</span>
                     </div>
-                    <div class="kanban-card">
-                        <span class="card-tag tag-project">Building</span>
+                    <div class="kanban-card-dark">
+                        <span class="status-pill status-building">Building</span>
                         <p>This site (the lab itself)</p>
+                        <span class="kanban-tag">Build Log</span>
+                    </div>
+                </div>
+                <div class="kanban-col">
+                    <div class="kanban-col-header">In Review</div>
+                    <div class="kanban-card-dark">
+                        <span class="status-pill status-building">Building</span>
+                        <p>Weave: A proof of concept exploring the genealogy of ideas and strategy</p>
+                        <span class="kanban-tag">Tools</span>
+                    </div>
+                </div>
+                <div class="kanban-col">
+                    <div class="kanban-col-header">On Hold</div>
+                    <div class="kanban-card-dark kanban-card-empty">
+                        <p>Nothing here yet</p>
+                    </div>
+                </div>
+                <div class="kanban-col">
+                    <div class="kanban-col-header">Shipped</div>
+                    <div class="kanban-card-dark kanban-card-shipped">
+                        <span class="status-pill status-shipped">Shipped</span>
+                        <p>Shipping the Lab: A Build Log</p>
+                        <span class="kanban-tag">Build Log</span>
+                    </div>
+                    <div class="kanban-card-dark kanban-card-shipped">
+                        <span class="status-pill status-shipped">Shipped</span>
+                        <p>What If You Could Build Your Own Thinking Tools?</p>
+                        <span class="kanban-tag">AI / Tools</span>
                     </div>
                 </div>
             </div>
+            <div style="text-align:center; margin-top: 32px;">
+                <a href="lab/index.html" class="read-link" style="color: rgba(255,255,255,0.7);">View all in Lab &rarr;</a>
+            </div>
+        </div>
+    </section>
 
-            <!-- Shipped -->
-            <h3 class="subsection-title">Shipped</h3>
-            <div class="kanban kanban-shipped">
-                <div class="kanban-column">
-                    <div class="kanban-card placeholder">
-                        <span class="card-tag tag-done">Shipped</span>
-                        <p>See latest post above</p>
-                    </div>
+    <!-- Section 4: About + Contact on Blue Gradient -->
+    <section id="about" class="about-contact-gradient">
+        <div class="about-contact-inner">
+            <div class="about-col">
+                <div class="about-col-image">
+                    <picture>
+                        <source srcset="assets/concept-face-melting.webp" type="image/webp">
+                        <img src="assets/concept-face-melting.png" alt="Melting face sculpture — Medium Feel concept art">
+                    </picture>
+                </div>
+                <h2>Who's Behind This</h2>
+                <p class="lead">Medium Feel is run by Tyler Kemp, a project manager and strategist based in Portland, Maine.</p>
+                <p>Background in brand strategy and marketing operations. Experienced managing integrated campaigns across branding, web, digital, print, and launches.</p>
+                <p>Currently exploring how AI is changing brand work, and building this lab to think through it publicly.</p>
+            </div>
+            <div id="contact" class="contact-col">
+                <h2>Let's connect.</h2>
+                <p>Whether you're hiring, have a project in mind, or just want to talk about where brand and marketing are headed.</p>
+                <div class="contact-buttons">
+                    <a href="mailto:tyler@mediumfeel.com" class="btn-footer-primary">Say Hello</a>
+                    <a href="https://www.linkedin.com/in/tylerjameskemp/" target="_blank" rel="noopener" class="btn-footer-secondary">LinkedIn</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sticker Divider -->
-    <div class="sticker-divider" id="wiggleSticker">
-        <img src="assets/logo-distressed-sticker.png" alt="Medium Feel">
-    </div>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2>Who's Behind This</h2>
-            <div class="about-layout">
-                <div class="about-content">
-                    <p class="large">Medium Feel is run by Tyler Kemp, a project manager and strategist based in Portland, Maine.</p>
-                    <p>Background in brand strategy and marketing operations. Experienced managing integrated campaigns across branding, web, digital, print, and launches.</p>
-                    <p>Currently exploring how AI is changing brand work, and building this lab to think through it publicly.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="cta">
-        <div class="container">
-            <div class="cta-layout">
-                <div class="cta-content">
-                    <h2>Let's connect.</h2>
-                    <p>Whether you're hiring, have a project in mind, or just want to talk about where brand and marketing are headed.</p>
-                    <div class="contact-buttons">
-                        <a href="mailto:tyler@mediumfeel.com" class="btn-primary">Get in Touch</a>
-                        <a href="https://www.linkedin.com/in/tylerjameskemp/" target="_blank" rel="noopener" class="btn-secondary">LinkedIn</a>
-                    </div>
-                </div>
-                <div class="cta-deco">
-                    <img src="assets/pennant-lets-go.png" alt="Let's Go pennant" class="animate-wave">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
+    <!-- Section 5: Footer -->
     <footer class="footer">
         <div class="container">
             <p class="footer-single-line">
                 &copy; 2026 Medium Feel
-                <span class="footer-separator">·</span>
+                <span class="footer-separator">&middot;</span>
                 Portland, Maine
-                <span class="footer-separator">·</span>
+                <span class="footer-separator">&middot;</span>
                 <a href="lab/index.html">Lab</a>
-                <span class="footer-separator">·</span>
+                <span class="footer-separator">&middot;</span>
                 <a href="#about">About</a>
-                <span class="footer-separator">·</span>
-                <a href="#contact">Contact</a>
+                <span class="footer-separator">&middot;</span>
+                <a href="mailto:tyler@mediumfeel.com">Contact</a>
             </p>
         </div>
     </footer>
 
     <script>
-        // ===== Mobile Menu =====
+        // Mobile Menu
         const menuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');
-
         menuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             menuBtn.classList.toggle('active');
         });
-
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
@@ -218,43 +264,246 @@
             });
         });
 
-        // ===== Navbar Scroll + Peppermint Spin + Sticker Wiggle =====
-        const peppermintSpinner = document.querySelector('.peppermint-spinner');
-        const stickerDivider = document.querySelector('.sticker-divider img');
-
+        // Navbar Scroll
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-
-            if (peppermintSpinner) {
-                // Spin clockwise quickly (positive rotation)
-                const rotation = window.scrollY * 1.5;
-                peppermintSpinner.style.transform = `rotate(${rotation}deg)`;
-            }
-
-            if (stickerDivider) {
-                // Create a wiggle effect that oscillates between -15 and 15 degrees
-                const wiggle = Math.sin(window.scrollY * 0.02) * 15;
-                stickerDivider.style.transform = `rotate(${wiggle}deg)`;
-            }
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // ===== Smooth scroll for anchor links =====
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
+        // Randomize floater positions, rotation, and scale on each page load
+        (function() {
+            var layers = ['floater-small', 'floater-mid', 'floater-large', 'floater-large-behind'];
+            layers.forEach(function(layer) {
+                var floaters = Array.from(document.querySelectorAll('.' + layer));
+                if (floaters.length < 2) return;
+                var positions = floaters.map(function(el) {
+                    return { top: el.style.top, bottom: el.style.bottom, left: el.style.left, right: el.style.right };
+                });
+                for (var i = positions.length - 1; i > 0; i--) {
+                    var j = Math.floor(Math.random() * (i + 1));
+                    var temp = positions[i];
+                    positions[i] = positions[j];
+                    positions[j] = temp;
+                }
+                floaters.forEach(function(el, idx) {
+                    el.style.top = positions[idx].top || '';
+                    el.style.bottom = positions[idx].bottom || '';
+                    el.style.left = positions[idx].left || '';
+                    el.style.right = positions[idx].right || '';
+                });
+            });
+
+            // Random rotation + scale for every floater
+            var allFloaters = document.querySelectorAll('.floater');
+            allFloaters.forEach(function(el) {
+                var rotation = Math.floor(Math.random() * 50) - 25;
+                var scale = 0.85 + Math.random() * 0.3;
+                el.style.setProperty('--rand-rotate', rotation + 'deg');
+                el.style.setProperty('--rand-scale', scale);
+            });
+
+            // Wait for layout, then space out clustered objects + clear text zone
+            requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                    var hero = document.querySelector('.hero-gradient');
+                    var textBlock = document.querySelector('.hero-text-block');
+                    if (!hero) return;
+                    var heroRect = hero.getBoundingClientRect();
+
+                    // Spread apart objects that are too close to each other
+                    var minGap = 120; // minimum px between object centers
+                    var floaterArr = Array.from(allFloaters);
+                    for (var pass = 0; pass < 3; pass++) {
+                        for (var a = 0; a < floaterArr.length; a++) {
+                            for (var b = a + 1; b < floaterArr.length; b++) {
+                                var ra = floaterArr[a].getBoundingClientRect();
+                                var rb = floaterArr[b].getBoundingClientRect();
+                                var ax = ra.left + ra.width / 2;
+                                var ay = ra.top + ra.height / 2;
+                                var bx = rb.left + rb.width / 2;
+                                var by = rb.top + rb.height / 2;
+                                var dx = bx - ax;
+                                var dy = by - ay;
+                                var dist = Math.sqrt(dx * dx + dy * dy);
+                                if (dist < minGap && dist > 0) {
+                                    var overlap = (minGap - dist) / 2;
+                                    var nx = (dx / dist) * overlap;
+                                    var ny = (dy / dist) * overlap;
+                                    // Push B away (shift its percentage position)
+                                    var bLeft = parseFloat(floaterArr[b].style.left);
+                                    var bRight = parseFloat(floaterArr[b].style.right);
+                                    var bTop = parseFloat(floaterArr[b].style.top);
+                                    var bBottom = parseFloat(floaterArr[b].style.bottom);
+                                    if (!isNaN(bLeft)) {
+                                        floaterArr[b].style.left = Math.max(0, Math.min(85, bLeft + (nx / heroRect.width * 100))) + '%';
+                                    } else if (!isNaN(bRight)) {
+                                        floaterArr[b].style.right = Math.max(0, Math.min(85, bRight - (nx / heroRect.width * 100))) + '%';
+                                    }
+                                    if (!isNaN(bTop)) {
+                                        floaterArr[b].style.top = Math.max(0, Math.min(90, bTop + (ny / heroRect.height * 100))) + '%';
+                                    } else if (!isNaN(bBottom)) {
+                                        floaterArr[b].style.bottom = Math.max(0, Math.min(90, bBottom - (ny / heroRect.height * 100))) + '%';
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Push objects off the text zone
+                    if (textBlock) {
+                        var textRect = textBlock.getBoundingClientRect();
+                        var pad = 60;
+                        var zoneLeft = textRect.left - pad;
+                        var zoneRight = textRect.right + pad;
+                        var zoneTop = textRect.top - pad;
+                        var zoneBottom = textRect.bottom + pad;
+                        var zoneCX = (textRect.left + textRect.right) / 2;
+                        var zoneCY = (textRect.top + textRect.bottom) / 2;
+
+                        allFloaters.forEach(function(el) {
+                            var r = el.getBoundingClientRect();
+                            var overlaps = !(r.right < zoneLeft || r.left > zoneRight || r.bottom < zoneTop || r.top > zoneBottom);
+                            if (!overlaps) return;
+
+                            var cx = r.left + r.width / 2;
+                            var cy = r.top + r.height / 2;
+                            var dx = cx - zoneCX;
+                            var dy = cy - zoneCY;
+                            if (Math.abs(dx) < 5 && Math.abs(dy) < 5) {
+                                dx = Math.random() > 0.5 ? 1 : -1;
+                                dy = Math.random() > 0.5 ? 1 : -1;
+                            }
+                            var dist = Math.sqrt(dx * dx + dy * dy) || 1;
+                            var pushDist = Math.max((zoneRight - zoneLeft) / 2, (zoneBottom - zoneTop) / 2) + r.width / 2 + 20;
+                            var moveX = (dx / dist) * pushDist;
+                            var moveY = (dy / dist) * pushDist;
+
+                            var curTop = parseFloat(el.style.top);
+                            var curBottom = parseFloat(el.style.bottom);
+                            var curLeft = parseFloat(el.style.left);
+                            var curRight = parseFloat(el.style.right);
+
+                            if (!isNaN(curLeft)) {
+                                el.style.left = Math.max(0, Math.min(80, curLeft + (moveX / heroRect.width * 100))) + '%';
+                            } else if (!isNaN(curRight)) {
+                                el.style.right = Math.max(0, Math.min(80, curRight - (moveX / heroRect.width * 100))) + '%';
+                            }
+                            if (!isNaN(curTop)) {
+                                el.style.top = Math.max(0, Math.min(85, curTop + (moveY / heroRect.height * 100))) + '%';
+                            } else if (!isNaN(curBottom)) {
+                                el.style.bottom = Math.max(0, Math.min(85, curBottom - (moveY / heroRect.height * 100))) + '%';
+                            }
+                        });
+                    }
+                });
+            });
+        })();
     </script>
+
+    <!-- Floater nudge interaction (mouse + touch) -->
+    <script>
+    (function() {
+        var floaters = document.querySelectorAll('.floater');
+        floaters.forEach(function(el) {
+            var startX, startY, dragging = false;
+
+            function onStart(e) {
+                dragging = true;
+                var point = e.touches ? e.touches[0] : e;
+                startX = point.clientX;
+                startY = point.clientY;
+                el.classList.remove('nudged');
+                e.preventDefault();
+            }
+
+            function onEnd(e) {
+                if (!dragging) return;
+                dragging = false;
+                var point = e.changedTouches ? e.changedTouches[0] : e;
+                var dx = point.clientX - startX;
+                var dy = point.clientY - startY;
+                var distance = Math.sqrt(dx * dx + dy * dy);
+
+                // Only nudge if dragged more than 10px
+                if (distance < 10) return;
+
+                // Fling in drag direction, scaled up
+                var nudgeX = dx * 2.5;
+                var nudgeY = dy * 2.5;
+                var spin = (Math.random() * 30 - 15);
+
+                el.style.transform = 'translate(' + nudgeX + 'px, ' + nudgeY + 'px) rotate(' + spin + 'deg)';
+                el.classList.add('nudged');
+
+                // Float back after a pause
+                setTimeout(function() {
+                    el.classList.add('nudged');
+                    el.style.transform = '';
+                }, 1200);
+            }
+
+            // Mouse events
+            el.addEventListener('mousedown', onStart);
+            document.addEventListener('mouseup', onEnd);
+
+            // Touch events
+            el.addEventListener('touchstart', onStart, { passive: false });
+            document.addEventListener('touchend', onEnd);
+        });
+    })();
+
+    // Title hover — push floaters outward from center
+    (function() {
+        var textBlock = document.querySelector('.hero-text-block');
+        var hero = document.querySelector('.hero-gradient');
+        var floaters = document.querySelectorAll('.floater');
+        if (!textBlock || !hero) return;
+
+        textBlock.addEventListener('mouseenter', function() {
+            var heroRect = hero.getBoundingClientRect();
+            var centerX = heroRect.left + heroRect.width / 2;
+            var centerY = heroRect.top + heroRect.height / 2;
+
+            floaters.forEach(function(el) {
+                var rect = el.getBoundingClientRect();
+                var elX = rect.left + rect.width / 2;
+                var elY = rect.top + rect.height / 2;
+
+                // Direction from center to object
+                var dx = elX - centerX;
+                var dy = elY - centerY;
+                var dist = Math.sqrt(dx * dx + dy * dy) || 1;
+
+                // Strong push outward — closer objects pushed much further
+                var push = Math.max(80, 250 - dist * 0.15);
+                var pushX = (dx / dist) * push;
+                var pushY = (dy / dist) * push;
+
+                el.classList.remove('nudged', 'pushed-back');
+                el.classList.add('pushed');
+                el.style.transform = 'translate(' + pushX + 'px, ' + pushY + 'px)';
+            });
+        });
+
+        textBlock.addEventListener('mouseleave', function() {
+            floaters.forEach(function(el) {
+                el.classList.remove('pushed');
+                el.classList.add('pushed-back');
+                el.style.transform = '';
+            });
+        });
+    })();
+    </script>
+
     <script src="assets/js/typewriter.js"></script>
 </body>
 </html>
