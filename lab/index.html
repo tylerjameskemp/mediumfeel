@@ -49,7 +49,7 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar scrolled">
+    <nav class="navbar">
         <div class="nav-container">
             <a href="../index.html" class="nav-wordmark">
                 <span id="nav-typewriter"></span>
@@ -78,7 +78,7 @@
                 </a>
 
                 <a href="posts/shipping-the-lab.html" class="curiosity-object active" aria-label="Shipping the Lab">
-                    <img src="../assets/floaters/beaker-bubbles-mid.webp" alt="Beaker — Shipping the Lab">
+                    <img src="../assets/floaters/balloon-letters-mid.webp" alt="Balloon letters — Shipping the Lab">
                 </a>
 
                 <!-- INACTIVE: greyed out, coming soon -->
@@ -150,7 +150,7 @@
                             <span class="sep">&middot;</span>
                             <span class="read-time">7 min read</span>
                         </div>
-                        <a href="posts/building-your-own-thinking-tools.html" class="read-link">Read more &rarr;</a>
+                        <a href="posts/building-your-own-thinking-tools.html" class="read-link">Read the post &rarr;</a>
                     </div>
                 </div>
             </article>
@@ -160,7 +160,10 @@
                 <div class="lab-post-card-grid">
                     <div class="lab-post-card-image">
                         <a href="posts/shipping-the-lab.html">
-                            <img src="../assets/blog/winter-woods-walk.png" alt="Walking in the winter woods — Shipping the Lab">
+                            <picture>
+                                <source srcset="../assets/logo-balloon-letters.webp" type="image/webp">
+                                <img src="../assets/logo-balloon-letters.png" alt="Medium Feel balloon letters — Shipping the Lab">
+                            </picture>
                         </a>
                     </div>
                     <div class="lab-post-card-meta">
@@ -173,7 +176,7 @@
                             <span class="sep">&middot;</span>
                             <span class="read-time">5 min read</span>
                         </div>
-                        <a href="posts/shipping-the-lab.html" class="read-link">Read more &rarr;</a>
+                        <a href="posts/shipping-the-lab.html" class="read-link">Read the post &rarr;</a>
                     </div>
                 </div>
             </article>
@@ -184,17 +187,15 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p class="footer-single-line">
-                &copy; 2026 Medium Feel
-                <span class="footer-separator">&middot;</span>
-                Portland, Maine
-                <span class="footer-separator">&middot;</span>
+            <p class="footer-nav">
                 <a href="index.html">Lab</a>
                 <span class="footer-separator">&middot;</span>
                 <a href="../index.html#about">About</a>
                 <span class="footer-separator">&middot;</span>
-                <a href="../index.html#contact">Contact</a>
+                <a href="mailto:tyler@mediumfeel.com">Contact</a>
             </p>
+            <span class="footer-separator footer-divider">&middot;</span>
+            <p class="footer-legal">&copy; 2026 Medium Feel <span class="footer-separator">&middot;</span> Portland, Maine</p>
         </div>
     </footer>
 
@@ -216,5 +217,16 @@
         });
     </script>
     <script src="../assets/js/typewriter.js"></script>
+    <script>
+        // Navbar scroll behavior
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>

@@ -669,26 +669,54 @@ p.large {
     border-top: 1px solid var(--color-border);
 }
 
-.footer-single-line {
-    text-align: center;
+.footer .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+}
+
+.footer-nav {
     font-size: 0.85rem;
-    color: var(--color-text-muted);
+    color: var(--color-green);
+    margin: 0;
+}
+
+.footer-nav a {
+    color: var(--color-green);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+.footer-nav a:hover {
+    color: var(--color-text);
+}
+
+.footer-legal {
+    font-size: 0.85rem;
+    color: var(--color-green);
     margin: 0;
 }
 
 .footer-separator {
     margin: 0 8px;
-    color: var(--color-text-light);
-}
-
-.footer-single-line a {
-    color: var(--color-text-muted);
-    text-decoration: none;
-    transition: color var(--transition);
-}
-
-.footer-single-line a:hover {
     color: var(--color-green);
+    opacity: 0.5;
+}
+
+.footer-divider {
+    display: inline;
+}
+
+@media (max-width: 600px) {
+    .footer .container {
+        flex-direction: column;
+        gap: 6px;
+    }
+    .footer-divider {
+        display: none;
+    }
 }
 
 /* ===== Mobile Styles ===== */
@@ -2005,26 +2033,28 @@ p.large {
 [data-drift="drift-11"] { animation: drift-11 40s ease-in-out infinite; }
 [data-drift="drift-12"] { animation: drift-12 48s ease-in-out infinite; }
 
-/* Navbar — white text over gradient (same as blog) */
-.navbar:not(.scrolled) .nav-wordmark,
-.navbar:not(.scrolled) .nav-cursor {
+/* Navbar — white text over dark hero gradient.
+   Scoped to body.dark-hero so pages with light backgrounds
+   (e.g. lab index) keep the default green/dark navbar text. */
+body.dark-hero .navbar:not(.scrolled) .nav-wordmark,
+body.dark-hero .navbar:not(.scrolled) .nav-cursor {
     color: white;
     transition: color 0.3s ease;
 }
 
-.navbar:not(.scrolled) .nav-wordmark:hover {
+body.dark-hero .navbar:not(.scrolled) .nav-wordmark:hover {
     color: rgba(255,255,255,0.8);
 }
 
-.navbar:not(.scrolled) .nav-links a {
+body.dark-hero .navbar:not(.scrolled) .nav-links a {
     color: rgba(255,255,255,0.85);
 }
 
-.navbar:not(.scrolled) .nav-links a:hover {
+body.dark-hero .navbar:not(.scrolled) .nav-links a:hover {
     color: white;
 }
 
-.navbar:not(.scrolled) .mobile-menu-btn span {
+body.dark-hero .navbar:not(.scrolled) .mobile-menu-btn span {
     background: white;
 }
 
@@ -2057,11 +2087,7 @@ p.large {
 /* ===== Section 2: Latest Lab Report ===== */
 .latest-report {
     padding: 72px 0;
-    background-color: var(--color-bg-alt);
-    background-image:
-        linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-    background-size: 22px 22px;
+    background-color: #ffffff;
 }
 
 .latest-report-grid {
@@ -2191,6 +2217,29 @@ p.large {
 }
 
 .read-link:hover { text-decoration-color: var(--color-green-dark); text-decoration-thickness: 2px; }
+
+.read-link-secondary {
+    color: var(--color-text-muted);
+    text-decoration-color: rgba(156,163,175,0.3);
+}
+
+.read-link-secondary:hover {
+    color: var(--color-green-dark);
+    text-decoration-color: var(--color-green-dark);
+}
+
+.latest-report-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.latest-report-links .sep {
+    opacity: 0.3;
+    font-size: 0.65rem;
+    color: var(--color-text-muted);
+}
 
 
 /* ===== Section 4: About + Contact Gradient ===== */
@@ -2430,7 +2479,7 @@ mark {
     height: 80px;
     object-fit: contain;
     transition: transform 0.3s ease, filter 0.3s ease;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
     animation: float 6s ease-in-out infinite;
 }
 
@@ -2463,7 +2512,7 @@ mark {
 .curiosity-object.active:hover img {
     animation-play-state: paused;
     transform: scale(1.1) translateY(-4px);
-    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.4));
 }
 
 .curiosity-object.inactive {
@@ -2472,7 +2521,7 @@ mark {
 }
 
 .curiosity-object.inactive img {
-    filter: grayscale(100%) brightness(0.7) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    filter: grayscale(100%) brightness(0.7) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
 }
 
 /* ===== Lab Post Cards ===== */
