@@ -77,15 +77,14 @@ Body text is Inter 400 at 17px (1.0625rem), line-height 1.7.
 
 ## Metadata Line Alignment
 
-All metadata rows (status pill, date, read time) use **`align-items: center`**. This vertically centers the status pill's box against the text items so they share a common midline. The pill has padding and a background — centering the whole box looks correct; baseline alignment would push the pill up or down relative to the adjacent text.
+All metadata rows (status pill, date, read time) use **`align-items: baseline`**. This keeps the date and read time text bottoms on the same line, even though they use different fonts and sizes (Inter 0.85rem vs JetBrains Mono 0.75rem). The status pill uses `position: relative; top: -1px` to visually center its box against the text baseline.
 
 This applies everywhere a metadata line appears:
 - `.latest-report-details` (homepage card)
 - `.lab-post-card-details` (lab page cards)
 - `body.blog-post .post-meta-line` (blog post pages)
-- `.post-meta` (base post styles)
 
-When adding new metadata containers, always use `align-items: center`.
+When adding new metadata containers, always use `align-items: baseline` and add `position: relative; top: -1px` to the `.status-pill` within that container.
 
 ## All Content Elements
 

@@ -183,19 +183,6 @@ body.blog-post .post-header .post-meta .separator {
     font-size: 0.75rem;
 }
 
-/* Status pill */
-body.blog-post .post-header .post-status {
-    background: rgba(255,255,255,0.2);
-    color: white;
-    padding: 3px 12px;
-    border-radius: 12px;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 0.75rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    display: inline-block;
-}
 
 /* Reading time — mono voice */
 body.blog-post .post-header .read-time {
@@ -283,10 +270,35 @@ body.blog-post .post-intro {
     box-sizing: border-box;
 }
 
-/* Status pill in meta line — reset margin from base .status-pill
-   so it sits inline with date and read time. Same treatment as cards. */
+/* Status pill in meta line — override the generic span rule above
+   and reset margin so it sits inline with date and read time.
+   Same treatment as lab/homepage cards. */
 body.blog-post .post-meta-line .status-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 3px 10px;
+    border-radius: 3px;
     margin-bottom: 0;
+    position: relative;
+    top: -1px;
+}
+
+body.blog-post .post-meta-line .status-exploring {
+    background: var(--color-blue-pale);
+    color: var(--color-blue);
+}
+
+body.blog-post .post-meta-line .status-building {
+    background: var(--color-amber-pale);
+    color: var(--color-amber);
+}
+
+body.blog-post .post-meta-line .status-shipped {
+    background: var(--color-bg-alt);
+    color: var(--color-text-light);
 }
 
 /* Animated gradient title — design signature
@@ -326,11 +338,12 @@ body.blog-post .post-intro .post-excerpt {
 }
 
 /* Meta line — date, read time, share links
-   center alignment keeps pill boxes and text vertically centered */
+   baseline alignment keeps date + read-time text bottoms on the same line;
+   the pill's vertical-align shifts it so its visual center sits on the baseline. */
 body.blog-post .post-meta-line {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: baseline;
     gap: 10px;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 0.85rem;
