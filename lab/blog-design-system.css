@@ -284,14 +284,15 @@ body.blog-post .post-intro {
 }
 
 /* Status label — mono voice
-   Reset padding/border-radius from styles.css .post-status */
+   Reset padding/border-radius from styles.css .post-status
+   Color comes from the status modifier class (status-exploring, etc.)
+   in styles.css, keeping it consistent with cards. */
 body.blog-post .post-intro .post-status {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #6db33f;
     display: block;
     margin-bottom: 16px;
     padding: 0;
@@ -335,7 +336,8 @@ body.blog-post .post-intro .post-excerpt {
     margin: 0 0 24px 0;
 }
 
-/* Meta line — date, read time, share links */
+/* Meta line — date, read time, share links
+   center alignment keeps pill boxes and text vertically centered */
 body.blog-post .post-meta-line {
     display: flex;
     flex-wrap: wrap;

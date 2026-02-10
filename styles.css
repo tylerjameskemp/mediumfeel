@@ -2058,6 +2058,18 @@ body.dark-hero .navbar:not(.scrolled) .mobile-menu-btn span {
     background: white;
 }
 
+/* Hamburger X — force dark when menu is open so it's visible on white overlay */
+body.dark-hero .navbar:not(.scrolled) .mobile-menu-btn.active span {
+    background: #111827;
+}
+
+/* Mobile menu overlay — force dark text on light bg when open */
+body.dark-hero .navbar:not(.scrolled) .nav-links.active a,
+body.dark-hero .navbar.scrolled .nav-links.active a,
+body.dark-hero .nav-links.active a {
+    color: #111827;
+}
+
 /* Section Label — mono voice */
 .home-section-label {
     font-family: var(--font-mono);
@@ -2157,7 +2169,9 @@ body.dark-hero .navbar:not(.scrolled) .mobile-menu-btn span {
     margin: 0 0 24px 0;
 }
 
-/* Meta line — pill + date + read time on one row */
+/* Meta line — pill + date + read time on one row
+   center alignment keeps the pill box vertically centered
+   with the text items on the same line */
 .latest-report-details {
     display: flex;
     align-items: center;

@@ -75,6 +75,18 @@ Three voices, clear cascade:
 
 Body text is Inter 400 at 17px (1.0625rem), line-height 1.7.
 
+## Metadata Line Alignment
+
+All metadata rows (status pill, date, read time) use **`align-items: center`**. This vertically centers the status pill's box against the text items so they share a common midline. The pill has padding and a background — centering the whole box looks correct; baseline alignment would push the pill up or down relative to the adjacent text.
+
+This applies everywhere a metadata line appears:
+- `.latest-report-details` (homepage card)
+- `.lab-post-card-details` (lab page cards)
+- `body.blog-post .post-meta-line` (blog post pages)
+- `.post-meta` (base post styles)
+
+When adding new metadata containers, always use `align-items: center`.
+
 ## All Content Elements
 
 ### Highlights
@@ -205,6 +217,29 @@ When adding a new post, update images in ALL of these locations:
 5. `index.html` — floater object in homepage hero (if linked)
 6. Post meta tags — og:image, twitter:image, schema.org image
 
+## Status Labels
+
+Two visual treatments, same modifier classes, different contexts:
+
+### On blog posts (above title)
+Plain text, no pill background. Mono font, color from modifier class.
+```html
+<span class="post-status status-exploring">Exploring</span>
+```
+Styled by `blog-design-system.css` — resets padding/background from base `.post-status`.
+
+### On cards (inline with date)
+Colored pill, inline with metadata.
+```html
+<span class="status-pill status-exploring">Exploring</span>
+```
+
+### Modifier classes
+Always pair the base class with a status modifier:
+- `status-exploring` — blue (researching, early stage)
+- `status-building` — amber (actively building)
+- `status-shipped` — green (complete, published)
+
 ## Post Navigation
 
 Every post needs prev/next links at the bottom:
@@ -316,6 +351,8 @@ Required for all posts:
 - [ ] Images saved to correct paths with alt text
 - [ ] Hero image updated in: post header, lab card, lab curiosity grid, homepage (if featured)
 - [ ] Floater object created (150x150 webp) and added to curiosity grid
+- [ ] Status label uses `post-status` + modifier class in post HTML
+- [ ] Status label uses `status-pill` + modifier class in lab/index.html card
 - [ ] Post navigation added (prev/next)
 - [ ] Share buttons in meta row with encoded URLs
 - [ ] Footer has current year
