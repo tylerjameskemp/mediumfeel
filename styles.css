@@ -2357,11 +2357,34 @@ body.dark-hero .nav-links.active a {
 .about-floater-email {
     top: 25%;
     left: 12%;
+    animation: aboutIconDrift1 42s ease-in-out infinite;
 }
 
 .about-floater-linkedin {
     bottom: 20%;
     right: 10%;
+    animation: aboutIconDrift2 38s ease-in-out infinite;
+}
+
+@keyframes aboutIconDrift1 {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    14%  { transform: translate(45px, -30px) rotate(8deg); }
+    28%  { transform: translate(-20px, 25px) rotate(-12deg); }
+    42%  { transform: translate(60px, 10px) rotate(5deg); }
+    57%  { transform: translate(-35px, -40px) rotate(-7deg); }
+    71%  { transform: translate(30px, 35px) rotate(10deg); }
+    85%  { transform: translate(-50px, -15px) rotate(-6deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes aboutIconDrift2 {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    16%  { transform: translate(-40px, 20px) rotate(-9deg); }
+    33%  { transform: translate(35px, -35px) rotate(7deg); }
+    50%  { transform: translate(-55px, -10px) rotate(-11deg); }
+    66%  { transform: translate(25px, 40px) rotate(6deg); }
+    83%  { transform: translate(-30px, -25px) rotate(-5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
 }
 
 @keyframes iconFloat {

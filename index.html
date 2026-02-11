@@ -152,13 +152,13 @@
                 <img src="assets/about-face.png" alt="" loading="lazy">
             </picture>
         </div>
-        <a href="#" data-contact="email" class="about-floater about-floater-email" title="Email" data-drift="drift-9">
+        <a href="#" data-contact="email" class="about-floater about-floater-email" title="Email">
             <picture>
                 <source srcset="assets/email-icon.webp" type="image/webp">
                 <img src="assets/email-icon.png" alt="Email" width="48" height="48">
             </picture>
         </a>
-        <a href="https://www.linkedin.com/in/tylerjameskemp/" target="_blank" rel="noopener" class="about-floater about-floater-linkedin" title="LinkedIn" data-drift="drift-12">
+        <a href="https://www.linkedin.com/in/tylerjameskemp/" target="_blank" rel="noopener" class="about-floater about-floater-linkedin" title="LinkedIn">
             <picture>
                 <source srcset="assets/linkedin-icon.webp" type="image/webp">
                 <img src="assets/linkedin-icon.png" alt="LinkedIn" width="48" height="48">
@@ -253,6 +253,19 @@
                 var s = 0.9 + Math.random() * 0.2;
                 el.style.setProperty('--rand-rotate', r + 'deg');
                 el.style.setProperty('--rand-scale', s);
+            });
+
+            // Randomize icon positions within the about section
+            var aboutIcons = document.querySelectorAll('.about-floater');
+            aboutIcons.forEach(function(el) {
+                var randTop = 10 + Math.floor(Math.random() * 60);
+                var randLeft = 5 + Math.floor(Math.random() * 75);
+                el.style.top = randTop + '%';
+                el.style.left = randLeft + '%';
+                el.style.right = '';
+                el.style.bottom = '';
+                // Random animation delay so they aren't in sync
+                el.style.animationDelay = '-' + Math.floor(Math.random() * 30) + 's';
             });
 
             // Wait for layout, then space out clustered objects + clear text zone
