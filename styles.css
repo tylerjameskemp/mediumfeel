@@ -664,7 +664,7 @@ p.large {
 
 /* ===== Footer ===== */
 .footer {
-    padding: 32px 0;
+    padding: 16px 0;
     background: var(--color-bg);
     border-top: 1px solid var(--color-border);
 }
@@ -2074,7 +2074,7 @@ body.dark-hero .nav-links.active a {
 
 /* ===== Section 2: Latest Lab Report ===== */
 .latest-report {
-    padding: 72px 0;
+    padding: 40px 0 56px;
     background-color: #ffffff;
 }
 
@@ -2240,10 +2240,9 @@ body.dark-hero .nav-links.active a {
     position: relative;
     background:
         radial-gradient(ellipse 150% 120% at 30% 50%,
-            var(--color-hero-dark) 0%, #0f2440 15%, #1a3a5c 25%,
-            var(--color-hero-mid) 35%, #3b82f6 45%, var(--color-hero-light) 50%,
-            #3b82f6 55%, var(--color-hero-mid) 65%, #1a3a5c 75%,
-            #0f2440 85%, var(--color-hero-dark) 100%
+            #1a3a5c 0%, #2563eb 20%, #60a5fa 35%,
+            var(--color-hero-light) 50%,
+            #60a5fa 65%, #2563eb 80%, #1a3a5c 100%
         );
     background-size: 200% 200%;
     animation: gradientShift 12s ease-in-out infinite;
@@ -2261,87 +2260,131 @@ body.dark-hero .nav-links.active a {
     z-index: 1;
 }
 
+.about-drifter {
+    position: absolute;
+    z-index: 1;
+    width: 280px;
+    top: 15%;
+    right: 8%;
+    pointer-events: auto;
+    cursor: grab;
+    animation: aboutDrift 52s ease-in-out infinite;
+}
+
+.about-drifter img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+    transform: rotate(var(--rand-rotate, -8deg)) scale(var(--rand-scale, 1));
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.about-drifter:hover img {
+    transform: rotate(var(--rand-rotate, -8deg)) scale(calc(var(--rand-scale, 1) * 1.12));
+    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.4));
+}
+
+.about-drifter.nudged {
+    transition: transform 2s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+@keyframes aboutDrift {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    12%  { transform: translate(-60px, 35px) rotate(-6deg); }
+    25%  { transform: translate(45px, -25px) rotate(5deg); }
+    37%  { transform: translate(-80px, -40px) rotate(-8deg); }
+    50%  { transform: translate(55px, 30px) rotate(7deg); }
+    62%  { transform: translate(-40px, -50px) rotate(-4deg); }
+    75%  { transform: translate(70px, 20px) rotate(6deg); }
+    87%  { transform: translate(-50px, 40px) rotate(-5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
 .about-contact-inner {
     position: relative;
     z-index: 2;
     max-width: 640px;
     margin: 0 auto;
     padding: 80px 24px;
-    text-align: center;
-}
-
-.about-contact-gradient h2 {
-    font-family: var(--font-serif);
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 400;
-    color: white;
-    margin-bottom: 16px;
-    text-align: center;
-    line-height: 1.15;
-}
-
-.about-contact-gradient p {
-    font-size: 0.9375rem;
-    line-height: 1.7;
-    color: rgba(255,255,255,0.8);
-    margin-bottom: 0.85em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
 }
 
 .about-title {
     font-family: var(--font-serif);
-    font-size: clamp(1.75rem, 3vw + 0.5rem, 2.25rem);
-    font-weight: 400;
-    line-height: 1.25;
-    letter-spacing: -0.015em;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 300;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
     color: white;
-    margin: 0 0 24px 0;
+    margin: 0;
     text-wrap: balance;
 }
 
-.about-excerpt {
-    font-family: var(--font-serif);
-    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.25rem);
-    font-style: italic;
-    line-height: 1.5;
-    color: rgba(255,255,255,0.92);
-    margin: 0 0 24px 0;
-}
-
-.about-icons {
-    margin-top: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-}
-
-.about-icons a {
+/* Floating contact icons — same behavior as hero objects */
+.about-floater {
+    position: absolute;
+    z-index: 3;
     display: block;
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
+    pointer-events: auto;
+    cursor: grab;
     filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25));
     transition: transform 0.2s ease, filter 0.2s ease;
-    animation: iconFloat 3s ease-in-out infinite;
 }
 
-.about-icons a:nth-child(1) {
-    animation-delay: 0s;
-}
-
-.about-icons a:nth-child(2) {
-    animation-delay: 0.5s;
-}
-
-.about-icons a:hover {
-    transform: translateY(-4px) scale(1.05);
-    filter: drop-shadow(0 6px 16px rgba(0,0,0,0.3));
-}
-
-.about-icons img {
+.about-floater img {
     display: block;
     width: 100%;
     height: 100%;
+    transform: rotate(var(--rand-rotate, 0deg)) scale(var(--rand-scale, 1));
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.about-floater:hover img {
+    transform: rotate(var(--rand-rotate, 0deg)) scale(calc(var(--rand-scale, 1) * 1.15));
+    filter: drop-shadow(0 6px 16px rgba(0,0,0,0.3));
+}
+
+.about-floater.nudged {
+    transition: transform 2s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.about-floater-email {
+    top: 25%;
+    left: 12%;
+    animation: aboutIconDrift1 42s ease-in-out infinite;
+}
+
+.about-floater-linkedin {
+    bottom: 20%;
+    right: 10%;
+    animation: aboutIconDrift2 38s ease-in-out infinite;
+}
+
+@keyframes aboutIconDrift1 {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    14%  { transform: translate(45px, -30px) rotate(8deg); }
+    28%  { transform: translate(-20px, 25px) rotate(-12deg); }
+    42%  { transform: translate(60px, 10px) rotate(5deg); }
+    57%  { transform: translate(-35px, -40px) rotate(-7deg); }
+    71%  { transform: translate(30px, 35px) rotate(10deg); }
+    85%  { transform: translate(-50px, -15px) rotate(-6deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes aboutIconDrift2 {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    16%  { transform: translate(-40px, 20px) rotate(-9deg); }
+    33%  { transform: translate(35px, -35px) rotate(7deg); }
+    50%  { transform: translate(-55px, -10px) rotate(-11deg); }
+    66%  { transform: translate(25px, 40px) rotate(6deg); }
+    83%  { transform: translate(-30px, -25px) rotate(-5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
 }
 
 @keyframes iconFloat {
@@ -2384,7 +2427,7 @@ mark {
     .floater-large { width: 100px; }
     .floater-large-behind { width: 100px; }
 
-    .latest-report { padding: 48px 0; }
+    .latest-report { padding: 32px 0 40px; }
     .latest-report-image { display: none; }
     .latest-report-grid { grid-template-columns: 1fr; gap: 0; }
 

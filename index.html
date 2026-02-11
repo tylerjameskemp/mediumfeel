@@ -146,25 +146,26 @@
 
     <!-- Section 4: About + Contact on Blue Gradient -->
     <section id="about" class="about-contact-gradient">
-        <div class="about-contact-inner">
-            <div class="about-col">
-                <h2 class="about-title">Medium Feel is run by Tyler Kemp, a project manager and brand strategist based in Portland, Maine.</h2>
-                <p class="about-excerpt">I'm exploring how AI is changing the way brands think, make, and show up, and how it's reshaping process, projects, and marketing work itself. This site is where I document those explorations publicly. Some of this is documentation. Some of this is demo. Most of it is curiosity in progress.</p>
-                <div id="contact" class="about-icons">
-                    <a href="#" data-contact="email" title="Email">
-                        <picture>
-                            <source srcset="assets/email-icon.webp" type="image/webp">
-                            <img src="assets/email-icon.png" alt="Email" width="48" height="48">
-                        </picture>
-                    </a>
-                    <a href="https://www.linkedin.com/in/tylerjameskemp/" target="_blank" rel="noopener" title="LinkedIn">
-                        <picture>
-                            <source srcset="assets/linkedin-icon.webp" type="image/webp">
-                            <img src="assets/linkedin-icon.png" alt="LinkedIn" width="48" height="48">
-                        </picture>
-                    </a>
-                </div>
-            </div>
+        <div class="about-drifter">
+            <picture>
+                <source srcset="assets/about-face.webp" type="image/webp">
+                <img src="assets/about-face.png" alt="" loading="lazy">
+            </picture>
+        </div>
+        <a href="#" data-contact="email" class="about-floater about-floater-email" title="Email">
+            <picture>
+                <source srcset="assets/email-icon.webp" type="image/webp">
+                <img src="assets/email-icon.png" alt="Email" width="48" height="48">
+            </picture>
+        </a>
+        <a href="https://www.linkedin.com/in/tylerjameskemp/" target="_blank" rel="noopener" class="about-floater about-floater-linkedin" title="LinkedIn">
+            <picture>
+                <source srcset="assets/linkedin-icon.webp" type="image/webp">
+                <img src="assets/linkedin-icon.png" alt="LinkedIn" width="48" height="48">
+            </picture>
+        </a>
+        <div id="contact" class="about-contact-inner">
+            <h2 class="about-title">Medium Feel is run by Tyler Kemp, a project manager and brand strategist based in Portland, Maine.</h2>
         </div>
     </section>
 
@@ -243,6 +244,28 @@
                 var scale = 0.85 + Math.random() * 0.3;
                 el.style.setProperty('--rand-rotate', rotation + 'deg');
                 el.style.setProperty('--rand-scale', scale);
+            });
+
+            // Random rotation + scale for about section objects
+            var aboutObjects = document.querySelectorAll('.about-drifter, .about-floater');
+            aboutObjects.forEach(function(el) {
+                var r = Math.floor(Math.random() * 30) - 15;
+                var s = 0.9 + Math.random() * 0.2;
+                el.style.setProperty('--rand-rotate', r + 'deg');
+                el.style.setProperty('--rand-scale', s);
+            });
+
+            // Randomize icon positions within the about section
+            var aboutIcons = document.querySelectorAll('.about-floater');
+            aboutIcons.forEach(function(el) {
+                var randTop = 10 + Math.floor(Math.random() * 60);
+                var randLeft = 5 + Math.floor(Math.random() * 75);
+                el.style.top = randTop + '%';
+                el.style.left = randLeft + '%';
+                el.style.right = '';
+                el.style.bottom = '';
+                // Random animation delay so they aren't in sync
+                el.style.animationDelay = '-' + Math.floor(Math.random() * 30) + 's';
             });
 
             // Wait for layout, then space out clustered objects + clear text zone
@@ -346,7 +369,7 @@
     <!-- Floater nudge interaction (mouse + touch) -->
     <script>
     (function() {
-        var floaters = document.querySelectorAll('.floater');
+        var floaters = document.querySelectorAll('.floater, .about-drifter, .about-floater');
         floaters.forEach(function(el) {
             var startX, startY, dragging = false;
 
@@ -356,7 +379,8 @@
                 startX = point.clientX;
                 startY = point.clientY;
                 el.classList.remove('nudged');
-                e.preventDefault();
+                // Don't preventDefault on links — let clicks through
+                if (!el.closest('a') && el.tagName !== 'A') e.preventDefault();
             }
 
             function onEnd(e) {
@@ -367,7 +391,7 @@
                 var dy = point.clientY - startY;
                 var distance = Math.sqrt(dx * dx + dy * dy);
 
-                // Only nudge if dragged more than 10px
+                // Short movement = click, let the link work
                 if (distance < 10) return;
 
                 // Fling in drag direction, scaled up
