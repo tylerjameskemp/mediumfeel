@@ -121,6 +121,26 @@
     .post-figure img {
         max-width: 540px;
     }
+
+    /* Bridge halves scroll animation */
+    body.blog-post .post-content .bridge-figure {
+        position: relative;
+        max-width: 540px;
+        margin: 2.5em auto;
+    }
+    .bridge-figure .bridge-halves {
+        display: flex;
+        align-items: flex-end;
+    }
+    .bridge-figure .bridge-half {
+        width: 50%;
+        will-change: transform;
+    }
+    .bridge-figure .bridge-half img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
     </style>
 </head>
 <body class="blog-post">
@@ -188,10 +208,24 @@
                 </div>
             </section>
 
-            <!-- FIGURE -->
-            <figure class="post-figure">
-                <img src="../../assets/blog/building-your-own-thinking-tools/bridging-the-gap.png"
-                     alt="Two bridge halves reaching toward each other">
+            <!-- FIGURE: Animated bridge halves -->
+            <figure class="post-figure bridge-figure" id="bridge-figure">
+                <div class="bridge-halves">
+                    <div class="bridge-half bridge-half--left" id="bridge-left">
+                        <picture>
+                            <source srcset="../../assets/blog/building-your-own-thinking-tools/bridge-left.webp" type="image/webp">
+                            <img src="../../assets/blog/building-your-own-thinking-tools/bridge-left.png"
+                                 alt="Left half of a broken bridge reaching toward the right">
+                        </picture>
+                    </div>
+                    <div class="bridge-half bridge-half--right" id="bridge-right">
+                        <picture>
+                            <source srcset="../../assets/blog/building-your-own-thinking-tools/bridge-right.webp" type="image/webp">
+                            <img src="../../assets/blog/building-your-own-thinking-tools/bridge-right.png"
+                                 alt="Right half of a broken bridge reaching toward the left">
+                        </picture>
+                    </div>
+                </div>
             </figure>
 
             <!-- SECTION: A Different Kind of Shift -->
@@ -210,8 +244,11 @@
 
             <!-- FIGURE -->
             <figure class="post-figure">
-                <img src="../../assets/blog/building-your-own-thinking-tools/building-with-claude-code.png"
-                     alt="Terminal window showing Claude Code interface">
+                <picture>
+                    <source srcset="../../assets/blog/building-your-own-thinking-tools/shattered-terminal.webp" type="image/webp">
+                    <img src="../../assets/blog/building-your-own-thinking-tools/shattered-terminal.png"
+                         alt="Shattered terminal window emerging from stone">
+                </picture>
             </figure>
 
             <!-- SECTION: The Problem I Finally Addressed -->
@@ -307,6 +344,63 @@
                 navbar.classList.remove('scrolled');
             }
         });
+
+        // Bridge halves scroll animation — smooth lerp
+        (function() {
+            var figure = document.getElementById('bridge-figure');
+            var left = document.getElementById('bridge-left');
+            var right = document.getElementById('bridge-right');
+            if (!figure || !left || !right) return;
+
+            var maxShift = 100; // start fully off to the sides (100%)
+            var currentShift = maxShift;
+            var targetShift = maxShift;
+            var ease = 0.08; // lerp factor — lower = smoother/slower
+            var ticking = false;
+
+            function getTarget() {
+                var rect = figure.getBoundingClientRect();
+                var windowH = window.innerHeight;
+                var start = windowH;
+                var end = windowH * 0.35;
+                var progress = (start - rect.top) / (start - end);
+                progress = Math.max(0, Math.min(1, progress));
+                // Ease-out curve for natural deceleration
+                progress = 1 - Math.pow(1 - progress, 3);
+                return maxShift * (1 - progress);
+            }
+
+            function tick() {
+                currentShift += (targetShift - currentShift) * ease;
+                // Snap when close enough
+                if (Math.abs(currentShift - targetShift) < 0.1) {
+                    currentShift = targetShift;
+                }
+                left.style.transform = 'translateX(-' + currentShift + '%)';
+                right.style.transform = 'translateX(' + currentShift + '%)';
+
+                if (Math.abs(currentShift - targetShift) > 0.1) {
+                    requestAnimationFrame(tick);
+                } else {
+                    ticking = false;
+                }
+            }
+
+            function onScroll() {
+                targetShift = getTarget();
+                if (!ticking) {
+                    ticking = true;
+                    requestAnimationFrame(tick);
+                }
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            // Set initial position
+            targetShift = getTarget();
+            currentShift = targetShift;
+            left.style.transform = 'translateX(-' + currentShift + '%)';
+            right.style.transform = 'translateX(' + currentShift + '%)';
+        })();
     </script>
 </body>
 </html>

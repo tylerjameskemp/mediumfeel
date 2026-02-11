@@ -968,6 +968,10 @@ body.blog-post .post-footer p {
         font-size: 0.65rem;
     }
 
+    body.blog-post .post-meta-line .share-links {
+        margin-left: 0;
+    }
+
     body.blog-post .post-intro {
         padding: 32px 16px 0;
     }
