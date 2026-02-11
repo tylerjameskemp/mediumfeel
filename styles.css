@@ -664,7 +664,7 @@ p.large {
 
 /* ===== Footer ===== */
 .footer {
-    padding: 32px 0;
+    padding: 16px 0;
     background: var(--color-bg);
     border-top: 1px solid var(--color-border);
 }
@@ -2074,7 +2074,7 @@ body.dark-hero .nav-links.active a {
 
 /* ===== Section 2: Latest Lab Report ===== */
 .latest-report {
-    padding: 72px 0;
+    padding: 40px 0 56px;
     background-color: #ffffff;
 }
 
@@ -2427,7 +2427,7 @@ mark {
     .floater-large { width: 100px; }
     .floater-large-behind { width: 100px; }
 
-    .latest-report { padding: 48px 0; }
+    .latest-report { padding: 32px 0 40px; }
     .latest-report-image { display: none; }
     .latest-report-grid { grid-template-columns: 1fr; gap: 0; }
 
