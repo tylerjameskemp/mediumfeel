@@ -1825,17 +1825,36 @@ p.large {
     max-width: 640px;
     margin: 0 auto;
     pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-logo {
+    display: block;
+    max-width: 320px;
+    margin-bottom: 16px;
+    animation: logoDrift 18s ease-in-out infinite;
+}
+
+@keyframes logoDrift {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25%      { transform: translateY(-4px) rotate(0.5deg); }
+    50%      { transform: translateY(2px) rotate(-0.4deg); }
+    75%      { transform: translateY(-3px) rotate(0.3deg); }
+}
+
+.hero-logo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 6px 20px rgba(0,0,0,0.3));
 }
 
 .hero-text-block .gradient-title {
     margin-bottom: 0;
     cursor: default;
-    transition: transform 0.4s ease, text-shadow 0.4s ease;
-}
-
-.hero-text-block:hover .gradient-title {
-    transform: scale(1.03);
-    text-shadow: 0 0 40px rgba(255,255,255,0.2);
 }
 
 /* ===== Floating Objects ===== */
@@ -2064,7 +2083,7 @@ body.dark-hero .nav-links.active a {
 .gradient-title {
     font-family: var(--font-serif);
     font-size: clamp(2rem, 4vw + 0.5rem, 2.75rem);
-    font-weight: 400;
+    font-weight: 300;
     line-height: 1.15;
     letter-spacing: -0.015em;
     text-wrap: balance;
@@ -2427,10 +2446,11 @@ mark {
     .floater-large { width: 100px; }
     .floater-large-behind { width: 100px; }
 
+    .hero-logo { max-width: 260px; }
+
     .latest-report { padding: 32px 0 40px; }
     .latest-report-image { display: none; }
     .latest-report-grid { grid-template-columns: 1fr; gap: 0; }
-
 
     .about-contact-inner {
         padding: 48px 16px;
@@ -2442,6 +2462,9 @@ mark {
         padding: 100px 12px 48px;
         min-height: 60vh;
     }
+
+    .hero-logo { max-width: 180px; }
+    .gradient-title { font-size: 1.65rem; }
 
     .floater-small { display: none; }
     .floater-mid { width: 45px; }
