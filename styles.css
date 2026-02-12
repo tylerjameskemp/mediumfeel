@@ -2086,9 +2086,27 @@ body.dark-hero .nav-links.active a {
     font-weight: 300;
     line-height: 1.15;
     letter-spacing: -0.015em;
-    text-wrap: balance;
+    text-wrap: normal;
     margin: 0 0 20px 0;
     color: #ffffff;
+    min-height: 3.5em;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+#hero-typewriter {
+    text-align: center;
+}
+
+.hero-cursor {
+    animation: blink 1s infinite;
+    color: white;
+}
+
+#hero-tw-selected {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
 }
 
 /* ===== Section 2: Latest Lab Report ===== */
@@ -2325,7 +2343,7 @@ body.dark-hero .nav-links.active a {
     z-index: 2;
     max-width: 640px;
     margin: 0 auto;
-    padding: 80px 24px;
+    padding: 48px 24px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2341,6 +2359,31 @@ body.dark-hero .nav-links.active a {
     color: white;
     margin: 0;
     text-wrap: balance;
+    min-height: 3.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#about-typewriter {
+    text-align: center;
+}
+
+.about-cursor {
+    animation: blink 1s infinite;
+    color: white;
+}
+
+#about-typewriter.highlighted {
+    background: rgba(255, 255, 255, 0.25);
+    padding: 2px 6px;
+    border-radius: 2px;
+    transition: background 0.15s ease;
+}
+
+#about-typewriter.highlighted .about-cursor {
+    opacity: 0;
+    animation: none;
 }
 
 /* Floating contact icons — same behavior as hero objects */
@@ -2453,7 +2496,11 @@ mark {
     .latest-report-grid { grid-template-columns: 1fr; gap: 0; }
 
     .about-contact-inner {
-        padding: 48px 16px;
+        padding: 32px 16px;
+    }
+
+    .about-title {
+        min-height: 4.5em;
     }
 }
 
@@ -2464,7 +2511,7 @@ mark {
     }
 
     .hero-logo { max-width: 180px; }
-    .gradient-title { font-size: 1.65rem; }
+    .gradient-title { font-size: 1.65rem; min-height: 4.5em; }
 
     .floater-small { display: none; }
     .floater-mid { width: 45px; }
