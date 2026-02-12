@@ -39,6 +39,43 @@
     <meta name="twitter:image" content="https://www.mediumfeel.com/assets/social/og-default.png">
     <meta name="twitter:image:alt" content="Medium Feel">
 
+    <!-- Schema.org Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Medium Feel",
+        "url": "https://www.mediumfeel.com",
+        "description": "A lab for brand, marketing, and the questions that sit between them.",
+        "founder": {
+            "@type": "Person",
+            "name": "Tyler Kemp"
+        },
+        "location": {
+            "@type": "Place",
+            "address": "Portland, Maine"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Medium Feel",
+        "url": "https://www.mediumfeel.com",
+        "description": "A lab for brand, marketing, and the questions that sit between them. Exploring how communication is changing as AI reshapes how brands think, make, and show up.",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Medium Feel"
+        },
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.mediumfeel.com/lab/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+
     <!-- RSS Feed -->
     <link rel="alternate" type="application/rss+xml" title="Medium Feel RSS Feed" href="https://www.mediumfeel.com/feed.xml">
 
