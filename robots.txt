@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /lab/posts/_template.html
+Disallow: /lab/templates/
+Disallow: /lab/posts/shipping-the-lab-new.html
 
 Sitemap: https://www.mediumfeel.com/sitemap.xml
