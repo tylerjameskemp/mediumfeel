@@ -3,6 +3,68 @@
 ## Overview
 This document defines the complete system for creating consistently formatted blog posts. All typography and element styles come from `lab/blog-design-system.css`. Posts only contain post-specific styles inline (gradient colors, hero animation).
 
+## Post Metadata Registry
+
+**Single source of truth for post metadata.** All post dates, read times, and status labels are defined in `assets/js/post-registry.js` and synced automatically to:
+- Post pages (`lab/posts/*.html`)
+- Lab page cards (`lab/index.html`)
+- Homepage featured cards (`index.html`)
+
+### How It Works
+
+1. **Define metadata once** in `assets/js/post-registry.js`:
+```javascript
+window.POST_REGISTRY = {
+  'post-slug': {
+    title: 'Post Title',
+    excerpt: 'Post excerpt...',
+    status: 'exploring',      // exploring, building, shipped
+    statusLabel: 'Exploring',
+    dateISO: '2026-02-10',
+    dateFormatted: 'February 10, 2026',
+    readTime: 6  // fallback; auto-calculated on post pages
+  }
+};
+```
+
+2. **Add data attributes** to HTML elements that should sync:
+```html
+<div class="post-meta-line" data-post-slug="post-slug">
+    <span class="status-pill status-exploring" data-post-field="status">Exploring</span>
+    <span class="separator">&middot;</span>
+    <time datetime="2026-02-10" data-post-field="date">February 10, 2026</time>
+    <span class="separator">&middot;</span>
+    <span class="read-time" data-post-field="readTime" data-post-auto="true">6 min read</span>
+</div>
+```
+
+3. **Include scripts** before closing `</body>`:
+```html
+<script src="../../assets/js/post-registry.js"></script>
+<script src="../../assets/js/post-sync.js"></script>
+```
+
+### Field Types
+
+- `data-post-field="status"` — Updates status pill class and text
+- `data-post-field="date"` — Updates `datetime` attribute and text content
+- `data-post-field="readTime"` — Updates read time text
+  - Add `data-post-auto="true"` on post pages to auto-calculate from word count
+
+### What Still Needs Manual Updates
+
+The registry **does not** update:
+- `feed.xml` — RSS feed entries (can't be JS-driven)
+- `<head>` meta tags — OG/Twitter/Schema.org dates in post HTML
+- Post titles and excerpts in HTML (only in registry for reference)
+
+When creating a new post:
+1. Add entry to `post-registry.js`
+2. Add `data-post-slug` and `data-post-field` attributes to all metadata elements
+3. Include the registry scripts
+4. Manually update `feed.xml` with the post entry
+5. Ensure `<head>` meta tags have correct dates
+
 ## Architecture
 
 ```
