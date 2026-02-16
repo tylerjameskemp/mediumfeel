@@ -278,6 +278,8 @@
                 background: #111113;
                 border-radius: calc(6px * var(--sf-scale));
                 flex-wrap: nowrap;
+                max-width: 100%;
+                overflow: hidden;
             }
             .sf-ch {
                 position: relative;
@@ -376,6 +378,9 @@
             }
             @media (max-width: 600px) {
                 .sf-board-embed { --sf-scale: 0.65; }
+            }
+            @media (max-width: 380px) {
+                .sf-board-embed { --sf-scale: 0.55; }
             }
             </style>
 
