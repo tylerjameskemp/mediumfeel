@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZ2YJPFJGR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-CZ2YJPFJGR');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>The Best Thing Claude Code Taught Me Was Something I Already Knew | Medium Feel</title>
+    <meta name="title" content="The Best Thing Claude Code Taught Me Was Something I Already Knew | Medium Feel">
+    <meta name="description" content="When building gets easy, the thing that derails you isn't complexity — it's opportunity. How PM fundamentals saved my first AI build project.">
+    <meta name="author" content="Tyler Kemp">
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.mediumfeel.com/lab/posts/the-best-thing-claude-code-taught-me.html">
+    <meta property="og:site_name" content="Medium Feel">
+    <meta property="og:title" content="The Best Thing Claude Code Taught Me Was Something I Already Knew">
+    <meta property="og:description" content="When building gets easy, the thing that derails you isn't complexity — it's opportunity. How PM fundamentals saved my first AI build project.">
+    <meta property="og:image" content="https://www.mediumfeel.com/assets/social/og-the-best-thing-claude-code-taught-me.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Medium Feel - The Best Thing Claude Code Taught Me Was Something I Already Knew">
+
+    <!-- Article Metadata -->
+    <meta property="article:published_time" content="2026-02-16T00:00:00Z">
+    <meta property="article:author" content="Tyler Kemp">
+    <meta property="article:section" content="Brand & Marketing">
+    <meta property="article:tag" content="Process">
+    <meta property="article:tag" content="Strategy">
+    <meta property="article:tag" content="AI">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.mediumfeel.com/lab/posts/the-best-thing-claude-code-taught-me.html">
+    <meta name="twitter:title" content="The Best Thing Claude Code Taught Me Was Something I Already Knew">
+    <meta name="twitter:description" content="When building gets easy, the thing that derails you isn't complexity — it's opportunity. How PM fundamentals saved my first AI build project.">
+    <meta name="twitter:image" content="https://www.mediumfeel.com/assets/social/og-the-best-thing-claude-code-taught-me.png">
+    <meta name="twitter:image:alt" content="Medium Feel - The Best Thing Claude Code Taught Me Was Something I Already Knew">
+
+    <!-- Schema.org Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "The Best Thing Claude Code Taught Me Was Something I Already Knew",
+        "description": "When building gets easy, the thing that derails you isn't complexity — it's opportunity. How PM fundamentals saved my first AI build project.",
+        "image": "https://www.mediumfeel.com/assets/social/og-the-best-thing-claude-code-taught-me.png",
+        "author": {
+            "@type": "Person",
+            "name": "Tyler Kemp",
+            "url": "https://www.mediumfeel.com"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Medium Feel",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.mediumfeel.com/assets/logo-playdo.png"
+            }
+        },
+        "datePublished": "2026-02-16T00:00:00Z",
+        "dateModified": "2026-02-16T00:00:00Z",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://www.mediumfeel.com/lab/posts/the-best-thing-claude-code-taught-me.html"
+        },
+        "keywords": "Process, Strategy, AI",
+        "articleSection": "Brand & Marketing",
+        "wordCount": "770",
+        "timeRequired": "PT4M"
+    }
+    </script>
+
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" title="Medium Feel RSS Feed" href="https://www.mediumfeel.com/feed.xml">
+
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Shared blog design system -->
+    <link rel="stylesheet" href="../blog-design-system.css">
+
+    <style>
+    /* ===================================================
+       POST-SPECIFIC STYLES ONLY
+       Typography, spacing, and element styles come from
+       blog-design-system.css. Only layout/animation here.
+       =================================================== */
+
+    /* Gradient — same as other posts */
+    .post-header {
+        background:
+            radial-gradient(ellipse 150% 120% at var(--gradient-x, 30%) var(--gradient-y, 50%),
+                #2d5a3d 0%,
+                #3a6b47 15%,
+                #4a8f5c 25%,
+                #6db33f 35%,
+                #7cd92e 45%,
+                #adff2f 50%,
+                #7cd92e 55%,
+                #6db33f 65%,
+                #4a8f5c 75%,
+                #3a6b47 85%,
+                #2d5a3d 100%
+            );
+    }
+
+    /* Floating hero image */
+    .post-hero img {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%   { transform: translateY(0); }
+        50%  { transform: translateY(-12px); }
+        100% { transform: translateY(0); }
+    }
+    </style>
+</head>
+<body class="blog-post">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="nav-wordmark">
+                <span id="nav-typewriter"></span>
+                <span class="nav-cursor">|</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="../index.html" class="active">Lab</a></li>
+                <li><a href="../../index.html#about">About</a></li>
+                <li><a href="../../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <article class="post">
+
+        <!-- HEADER: Gradient zone — hero image only -->
+        <header class="post-header">
+            <div class="post-header-inner">
+                <figure class="post-hero">
+                    <picture>
+                        <source srcset="../../assets/blog/the-best-thing-claude-code-taught-me/hero-claude-code-taught-me.webp" type="image/webp">
+                        <img src="../../assets/blog/the-best-thing-claude-code-taught-me/hero-claude-code-taught-me.png"
+                             alt="A heavy ring of mismatched keys — the skills you already carry">
+                    </picture>
+                </figure>
+            </div>
+        </header>
+
+        <!-- POST INTRO: Text zone on white -->
+        <div class="post-intro">
+            <h1 class="post-title-gradient">The Best Thing Claude Code Taught Me Was Something I Already Knew</h1>
+            <p class="post-excerpt">The most valuable thing I built wasn&rsquo;t code. It was a list of everything I didn&rsquo;t build.</p>
+            <div class="post-meta-line">
+                <span class="status-pill status-building">Building</span>
+                <span class="separator">&middot;</span>
+                <time datetime="2026-02-16">February 16, 2026</time>
+                <span class="separator">&middot;</span>
+                <span class="read-time">4 min read</span>
+                <span class="share-links">
+                    <a href="https://twitter.com/intent/tweet?url=https://www.mediumfeel.com/lab/posts/the-best-thing-claude-code-taught-me.html&text=The%20Best%20Thing%20Claude%20Code%20Taught%20Me%20Was%20Something%20I%20Already%20Knew" target="_blank" rel="noopener" title="Share on Twitter">&#x1d54f;</a>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.mediumfeel.com/lab/posts/the-best-thing-claude-code-taught-me.html" target="_blank" rel="noopener" title="Share on LinkedIn">in</a>
+                    <a href="mailto:?subject=The%20Best%20Thing%20Claude%20Code%20Taught%20Me%20Was%20Something%20I%20Already%20Knew&body=Check%20out%20this%20post%3A%20https://www.mediumfeel.com/lab/posts/the-best-thing-claude-code-taught-me.html" title="Share via Email">&#x2709;</a>
+                </span>
+            </div>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="post-content">
+
+            <!-- SECTION: TL;DR -->
+            <section class="post-section">
+                <div class="section-label">TL;DR</div>
+                <div class="section-content">
+                    <ul>
+                        <li>When building gets easy, the thing that derails you isn&rsquo;t complexity. It&rsquo;s opportunity. Ideas spiral before you can evaluate them.</li>
+                        <li>The icebox, a parking lot for every idea you&rsquo;re not allowed to chase yet, was the most valuable thing I built. Not the code.</li>
+                        <li>PM fundamentals (scoping, prioritizing, parking ideas) saved this project. They transfer directly. They might be the point.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <hr>
+
+            <!-- SECTION: Opening (no label) -->
+            <section class="post-section">
+                <div class="section-content">
+                    <p>In the <a href="building-your-own-thinking-tools.html">previous post</a>, I wrote about testing whether building your own tools was actually accessible. This is what it looked like when I went deeper.</p>
+                </div>
+            </section>
+
+            <!-- SECTION: The Intoxication Problem -->
+            <section class="post-section">
+                <div class="section-label">The Intoxication Problem</div>
+                <div class="section-content">
+                    <p>Everyone who&rsquo;s used Claude Code says the same thing: you describe what you want and it just builds it. I&rsquo;d heard it enough times to be jaded about it. But within a couple of hours of <a href="shipping-the-lab.html">shipping v1 of this site</a>, I was building something more ambitious: a system that could ingest client documents and answer questions about them. It was working the same day.</p>
+
+                    <p>And that&rsquo;s when the trouble started. Because when building is that immediate, ideas don&rsquo;t stay ideas. They become prototypes. Prototypes become features. Features suggest other features. <mark>You look up and you&rsquo;ve got this sprawling thing made of a dozen half-explored directions, and you realize: it&rsquo;s very hard to make a move from here.</mark></p>
+
+                    <p>I&rsquo;ve managed projects like this before. The ones where the scope starts expanding faster than anyone can evaluate what&rsquo;s actually worth doing. I recognized it. I just didn&rsquo;t expect it to happen to <em>me</em> this fast. The excitement, the potential, the sheer possibility of it. That&rsquo;s what can derail you. <mark>Not the complexity. The opportunity.</mark></p>
+
+                    <p>I needed a plan. Not eventually. Immediately.</p>
+                </div>
+            </section>
+
+            <!-- FIGURE: Feature pileup -->
+            <figure class="post-figure">
+                <picture>
+                    <source srcset="../../assets/blog/the-best-thing-claude-code-taught-me/feature-pileup.webp" type="image/webp">
+                    <img src="../../assets/blog/the-best-thing-claude-code-taught-me/feature-pileup.png"
+                         alt="A green clay car crushed and mangled from every direction — scope explosion made physical">
+                </picture>
+            </figure>
+
+            <!-- SECTION: The Icebox -->
+            <section class="post-section">
+                <div class="section-label">The Icebox</div>
+                <div class="section-content">
+                    <p>I threw everything into a conversation with Claude: ideas, goals, documents, questions. Help me make sense of this. Come up with a game plan.</p>
+
+                    <p>What came back was a sprint structure, done criteria, and a focused proof of concept. If you&rsquo;ve managed projects or run sprints, you know the shape of this: a backlog, a focused scope, and a parking lot for everything else. That&rsquo;s the icebox. A list of every idea and feature I wasn&rsquo;t allowed to build yet.</p>
+
+                    <p>I&rsquo;ve used some version of this on every project I&rsquo;ve managed. The surprise wasn&rsquo;t the technique. It was that it applied directly, one-to-one, to a side project I was building alone. The same discipline that keeps a team focused kept me focused.</p>
+
+                    <p>Kieran Klaassen, who writes about building with AI at <a href="https://every.to" target="_blank" rel="noopener">Every.to</a>, argued recently that <a href="https://every.to/source-code/stop-coding-and-start-planning-be0b4fd1-5898-4b09-bfda-0b00ea0004fd" target="_blank" rel="noopener">AI made us sloppy because it made us forget how to plan</a>. I&rsquo;d frame it a little differently. I didn&rsquo;t forget to plan. I got swept up. The building was so immediate that I skipped the part where I figured out <em>what</em> I was building.</p>
+
+                    <p>The icebox fixed that. Every time a new idea came up, it went on the list. Not thrown away. Parked. I could glance at it and know nothing was lost, just deferred. It was the difference between seeing this through and getting stuck in a feature hellscape of half-finished ideas.</p>
+
+                    <div class="pull-quote">
+                        <p>Not thrown away. Parked.</p>
+                    </div>
+
+                    <p>If you&rsquo;ve ever been in the middle of a project and felt that tension between the thing you&rsquo;re supposed to be finishing and the idea that just showed up that feels way more interesting, the icebox is for that. It turns a distraction into inventory.</p>
+                </div>
+            </section>
+
+            <!-- SECTION: What the Proof of Concept Revealed -->
+            <section class="post-section">
+                <div class="section-label">What the Proof of Concept Revealed</div>
+                <div class="section-content">
+                    <p>The POC tested a specific question: could AI extract key concepts from documents and track how those ideas evolve across files? I uploaded meeting transcripts, strategy notes, brain dumps. It worked, and where it broke was almost more useful.</p>
+
+                    <p>The system confidently identified &ldquo;Speaker Yeah&rdquo; and &ldquo;Like That&rdquo; as key strategic concepts from my meeting transcripts. With confidence scores.</p>
+                </div>
+            </section>
+
+            <!-- FIGURE: Speaker Yeah — split-flap display -->
+            <figure class="post-figure">
+                <div id="sf-speaker-yeah" role="img" aria-label="Split-flap display cycling between 'Speaker Yeah' and 'Like That'"></div>
+            </figure>
+
+            <style>
+            /* ─── Split-Flap Embed ─────────────────────────── */
+            .sf-board-embed {
+                --sf-scale: 1;
+                display: inline-flex;
+                gap: calc(3px * var(--sf-scale));
+                padding: calc(10px * var(--sf-scale));
+                background: #111113;
+                border-radius: calc(6px * var(--sf-scale));
+                flex-wrap: nowrap;
+            }
+            .sf-ch {
+                position: relative;
+                width: calc(40px * var(--sf-scale));
+                height: calc(60px * var(--sf-scale));
+                perspective: calc(300px * var(--sf-scale));
+                font-family: 'JetBrains Mono', monospace;
+                font-weight: 600;
+                font-size: calc(40px * var(--sf-scale));
+                line-height: calc(60px * var(--sf-scale));
+                text-align: center;
+                color: #adff2f;
+            }
+            .sf-st, .sf-sb {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #1a1a1e;
+                overflow: hidden;
+            }
+            .sf-st {
+                clip-path: inset(0 0 50% 0);
+                border-radius: calc(3px * var(--sf-scale)) calc(3px * var(--sf-scale)) 0 0;
+                box-shadow: inset 0 calc(-2px * var(--sf-scale)) calc(3px * var(--sf-scale)) rgba(0,0,0,0.4);
+            }
+            .sf-sb {
+                clip-path: inset(50% 0 0 0);
+                border-radius: 0 0 calc(3px * var(--sf-scale)) calc(3px * var(--sf-scale));
+            }
+            .sf-ch::after {
+                content: '';
+                position: absolute;
+                left: 0; right: 0; top: 50%;
+                height: calc(1px * var(--sf-scale));
+                background: #111113;
+                z-index: 5;
+                pointer-events: none;
+                transform: translateY(-50%);
+            }
+            .sf-ft, .sf-fb {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #1a1a1e;
+                backface-visibility: hidden;
+                z-index: 4;
+                pointer-events: none;
+                visibility: hidden;
+            }
+            .sf-ft {
+                clip-path: inset(0 0 50% 0);
+                border-radius: calc(3px * var(--sf-scale)) calc(3px * var(--sf-scale)) 0 0;
+                transform-origin: center bottom;
+                transform: rotateX(0deg);
+                box-shadow: 0 calc(1px * var(--sf-scale)) calc(3px * var(--sf-scale)) rgba(0,0,0,0.3);
+            }
+            .sf-fb {
+                clip-path: inset(50% 0 0 0);
+                border-radius: 0 0 calc(3px * var(--sf-scale)) calc(3px * var(--sf-scale));
+                transform-origin: center top;
+                transform: rotateX(90deg);
+            }
+            .sf-ft::after, .sf-fb::after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+            }
+            .sf-ft::after {
+                background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.15));
+                opacity: 0;
+            }
+            .sf-fb::after {
+                background: linear-gradient(to top, transparent, rgba(0,0,0,0.3));
+                opacity: 1;
+            }
+            .sf-ft.sf-a, .sf-fb.sf-a {
+                visibility: visible;
+                will-change: transform;
+            }
+            @keyframes sf-fa { 0% { transform: rotateX(0deg); } 100% { transform: rotateX(-90deg); } }
+            @keyframes sf-fas { 0% { opacity: 0; } 100% { opacity: 1; } }
+            @keyframes sf-fi { 0% { transform: rotateX(90deg); } 100% { transform: rotateX(0deg); } }
+            @keyframes sf-fis { 0% { opacity: 1; } 100% { opacity: 0; } }
+            .sf-ft.sf-a { animation: sf-fa var(--sf-dur) ease-in forwards; }
+            .sf-ft.sf-a::after { animation: sf-fas var(--sf-dur) ease-in forwards; }
+            .sf-fb.sf-a { animation: sf-fi var(--sf-dur) ease-out forwards; animation-delay: calc(var(--sf-dur) * 0.5); }
+            .sf-fb.sf-a::after { animation: sf-fis var(--sf-dur) ease-out forwards; animation-delay: calc(var(--sf-dur) * 0.5); }
+            @media (prefers-reduced-motion: reduce) {
+                .sf-ft.sf-a, .sf-fb.sf-a,
+                .sf-ft.sf-a::after, .sf-fb.sf-a::after { animation: none !important; }
+            }
+            @media (max-width: 600px) {
+                .sf-board-embed { --sf-scale: 0.65; }
+            }
+            </style>
+
+            <script>
+            (function() {
+                const CHARSET = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?-:&';
+                const PHRASES = ['SPEAKER YEAH', 'LIKE THAT'];
+                const CYCLE_MS = 70, FLIP_MS = 300, STAGGER_MS = 60, HOLD_MS = 5000;
+                const CHAR_COUNT = 12;
+                const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+                function charIndex(ch) { const i = CHARSET.indexOf(ch); return i === -1 ? 0 : i; }
+
+                function createBoard(container) {
+                    const board = document.createElement('div');
+                    board.className = 'sf-board-embed';
+                    const positions = [];
+
+                    for (let i = 0; i < CHAR_COUNT; i++) {
+                        const el = document.createElement('div');
+                        el.className = 'sf-ch';
+                        el.setAttribute('aria-hidden', 'true');
+
+                        const st = document.createElement('div'); st.className = 'sf-st';
+                        const sts = document.createElement('span'); st.appendChild(sts);
+                        const sb = document.createElement('div'); sb.className = 'sf-sb';
+                        const sbs = document.createElement('span'); sb.appendChild(sbs);
+                        const ft = document.createElement('div'); ft.className = 'sf-ft';
+                        const fts = document.createElement('span'); ft.appendChild(fts);
+                        const fb = document.createElement('div'); fb.className = 'sf-fb';
+                        const fbs = document.createElement('span'); fb.appendChild(fbs);
+
+                        el.appendChild(st); el.appendChild(sb);
+                        el.appendChild(ft); el.appendChild(fb);
+                        board.appendChild(el);
+
+                        positions.push({ el, sts, sbs, ft, fts, fb, fbs, cur: ' ', tgt: ' ', cycling: false });
+                    }
+                    container.appendChild(board);
+                    return positions;
+                }
+
+                function flipTo(pos, newChar, duration) {
+                    return new Promise(resolve => {
+                        if (reducedMotion) {
+                            pos.cur = newChar;
+                            pos.sts.textContent = newChar;
+                            pos.sbs.textContent = newChar;
+                            resolve(); return;
+                        }
+                        const oldChar = pos.cur;
+                        pos.fts.textContent = oldChar;
+                        pos.fbs.textContent = newChar;
+                        pos.sts.textContent = newChar;
+                        pos.sbs.textContent = oldChar;
+
+                        pos.ft.style.setProperty('--sf-dur', duration + 'ms');
+                        pos.fb.style.setProperty('--sf-dur', duration + 'ms');
+                        pos.ft.classList.remove('sf-a');
+                        pos.fb.classList.remove('sf-a');
+                        void pos.ft.offsetHeight;
+                        pos.ft.classList.add('sf-a');
+                        pos.fb.classList.add('sf-a');
+                        pos.cur = newChar;
+
+                        let done = false;
+                        const cleanup = () => {
+                            if (done) return; done = true;
+                            pos.ft.classList.remove('sf-a');
+                            pos.fb.classList.remove('sf-a');
+                            pos.sts.textContent = newChar;
+                            pos.sbs.textContent = newChar;
+                            resolve();
+                        };
+                        pos.fb.addEventListener('animationend', function h(e) {
+                            if (e.target === pos.fb) { pos.fb.removeEventListener('animationend', h); cleanup(); }
+                        });
+                        setTimeout(cleanup, duration * 1.6 + 50);
+                    });
+                }
+
+                async function cyclePos(pos, target, delay) {
+                    if (delay > 0) await new Promise(r => setTimeout(r, delay));
+                    pos.tgt = target;
+                    if (pos.cycling) return;
+                    pos.cycling = true;
+                    while (pos.cur !== pos.tgt) {
+                        const nextIdx = (charIndex(pos.cur) + 1) % CHARSET.length;
+                        const nextChar = CHARSET[nextIdx];
+                        const isFinal = nextChar === pos.tgt;
+                        await flipTo(pos, nextChar, isFinal ? FLIP_MS : CYCLE_MS);
+                    }
+                    pos.cycling = false;
+                }
+
+                function setText(positions, text) {
+                    text = text.toUpperCase().padEnd(CHAR_COUNT, ' ').slice(0, CHAR_COUNT);
+                    for (let i = 0; i < CHAR_COUNT; i++) {
+                        const ch = CHARSET.includes(text[i]) ? text[i] : ' ';
+                        cyclePos(positions[i], ch, i * STAGGER_MS);
+                    }
+                }
+
+                document.fonts.ready.then(() => {
+                    const container = document.getElementById('sf-speaker-yeah');
+                    if (!container) return;
+                    const positions = createBoard(container);
+
+                    let phraseIdx = 0;
+                    let timer = null;
+                    setText(positions, PHRASES[phraseIdx]);
+
+                    function startCycling() {
+                        if (timer) return;
+                        timer = setInterval(() => {
+                            phraseIdx = (phraseIdx + 1) % PHRASES.length;
+                            setText(positions, PHRASES[phraseIdx]);
+                        }, HOLD_MS);
+                    }
+
+                    function stopCycling() {
+                        clearInterval(timer);
+                        timer = null;
+                    }
+
+                    const observer = new IntersectionObserver(([entry]) => {
+                        if (entry.isIntersecting) startCycling();
+                        else stopCycling();
+                    }, { threshold: 0.1 });
+                    observer.observe(container);
+                });
+            })();
+            </script>
+
+            <section class="post-section">
+                <div class="section-content">
+                    <p>I laughed. Reading raw transcripts is brutal. They&rsquo;re messy, full of filler, hard to learn from. But seeing how the system tried to filter and represent that data, watching it attempt to surface what mattered and fail in specific ways, that grounded me in the problem. It engaged the part of my brain I love working in: how do you represent messy information so it becomes useful? How do existing tools handle this invisibly? What layers of filtering and classification sit between raw data and something you can actually act on?</p>
+
+                    <p>I started logging those questions. Not answers. Questions. I was learning to formalize the discovery phase, to treat &ldquo;I don&rsquo;t know yet&rdquo; as progress instead of a blocker. <mark>Those question documents became some of the most useful output from the entire project.</mark></p>
+                </div>
+            </section>
+
+            <!-- FIGURE: Broken fence -->
+            <figure class="post-figure">
+                <picture>
+                    <source srcset="../../assets/blog/the-best-thing-claude-code-taught-me/broken-fence.webp" type="image/webp">
+                    <img src="../../assets/blog/the-best-thing-claude-code-taught-me/broken-fence.png"
+                         alt="A green chain-link fence with a hole torn through it — the barrier between problem and solution, broken open">
+                </picture>
+            </figure>
+
+            <!-- SECTION: The Skills Were Already There -->
+            <section class="post-section">
+                <div class="section-label">The Skills Were Already There</div>
+                <div class="section-content">
+                    <p>Here&rsquo;s the part I didn&rsquo;t expect.</p>
+
+                    <p>I came into this wanting to learn about AI tools: embeddings, retrieval systems, how models process documents. And I did learn some of that. But the thing that actually made the project work wasn&rsquo;t technical. It was scoping. Prioritizing. Knowing when to park an idea instead of chasing it. Keeping momentum going forward instead of outward.</p>
+
+                    <p>I&rsquo;d been building those skills on other people&rsquo;s projects for years, across branding, marketing ops, web, packaging. I just didn&rsquo;t realize they&rsquo;d be the most valuable thing I brought to this.</p>
+
+                    <p><mark>Building is an opportunity to exercise and evolve skills you already have. Not replace them.</mark> The technology handles the implementation. The strategy skills handle everything else. And building sharpens them in ways that managing someone else&rsquo;s project never quite does.</p>
+                </div>
+            </section>
+
+            <hr>
+
+            <!-- SECTION: Closing teaser -->
+            <section class="post-section">
+                <div class="section-content">
+                    <p><em>Next post: everything that ended up on the chopping block, and why none of it was wasted.</em></p>
+                </div>
+            </section>
+
+            <!-- Post Navigation -->
+            <nav class="post-nav">
+                <a href="building-your-own-thinking-tools.html" class="post-nav-link prev">
+                    <span class="post-nav-direction">&larr; Previous</span>
+                    <span class="post-nav-title">I&rsquo;ve Spent My Career on Other People&rsquo;s Projects</span>
+                </a>
+                <span></span>
+            </nav>
+
+        </div>
+
+    </article>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-nav">
+                <a href="../index.html">Lab</a>
+                <span class="footer-separator">&middot;</span>
+                <a href="../../index.html#about">About</a>
+                <span class="footer-separator">&middot;</span>
+                <a href="mailto:tyler@mediumfeel.com">Contact</a>
+            </p>
+            <span class="footer-separator footer-divider">&middot;</span>
+            <p class="footer-legal">&copy; 2026 Medium Feel <span class="footer-separator">&middot;</span> Portland, Maine</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuBtn.classList.toggle('active');
+        });
+    </script>
+    <script src="../../assets/js/typewriter.js"></script>
+    <script>
+        // Navbar scroll behavior
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
