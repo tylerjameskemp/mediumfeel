@@ -15,69 +15,92 @@ with the site's crosshatch line grid, and saves it to:
 
 import sys
 import math
-import random
 from pathlib import Path
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFilter
+import numpy as np
 
 WIDTH, HEIGHT = 1200, 630
 
-# Green gradient colors matching .post-header in blog posts
-GRADIENT_STOPS = [
-    (0.00, (45, 90, 61)),    # #2d5a3d
-    (0.15, (58, 107, 71)),   # #3a6b47
-    (0.25, (74, 143, 92)),   # #4a8f5c
-    (0.35, (109, 179, 63)),  # #6db33f
-    (0.45, (124, 217, 46)),  # #7cd92e
-    (0.50, (173, 255, 47)),  # #adff2f
-    (0.55, (124, 217, 46)),  # #7cd92e
-    (0.65, (109, 179, 63)),  # #6db33f
-    (0.75, (74, 143, 92)),   # #4a8f5c
-    (0.85, (58, 107, 71)),   # #3a6b47
-    (1.00, (45, 90, 61)),    # #2d5a3d
-]
+# Key colors from the green gradient
+COLOR_LIME = np.array([173, 255, 47])       # #adff2f — bright center
+COLOR_SPRING = np.array([124, 217, 46])     # #7cd92e
+COLOR_GREEN = np.array([109, 179, 63])      # #6db33f
+COLOR_MID = np.array([74, 143, 92])         # #4a8f5c
+COLOR_DARK = np.array([45, 90, 61])         # #2d5a3d — edges
+
+
+def lerp_color(c1, c2, t):
+    """Linearly interpolate between two colors."""
+    return (c1 * (1 - t) + c2 * t).astype(np.uint8)
+
+
+def sample_gradient(t):
+    """Map t (0=bright lime, 1=dark forest) to a color."""
+    t = max(0.0, min(1.0, t))
+    stops = [
+        (0.00, COLOR_LIME),
+        (0.20, COLOR_SPRING),
+        (0.40, COLOR_GREEN),
+        (0.65, COLOR_MID),
+        (1.00, COLOR_DARK),
+    ]
+    for i in range(len(stops) - 1):
+        if stops[i][0] <= t <= stops[i+1][0]:
+            local_t = (t - stops[i][0]) / (stops[i+1][0] - stops[i][0])
+            return lerp_color(stops[i][1], stops[i+1][1], local_t)
+    return COLOR_DARK
 
 
 def create_gradient(w, h):
-    img = Image.new('RGBA', (w, h))
+    """Create an amorphous green gradient using overlapping elliptical blobs
+    blurred together for a soft, organic look — no visible arcs or rings."""
 
-    # Multiple gradient centers with very wide spread for maximum diffusion
-    # Each center has (x, y, influence_weight, spread_radius)
-    # Extra-wide spread prevents visible arcs/lines
-    centers = [
-        (int(w * 0.35), int(h * 0.45), 1.3, w * 0.95),   # Primary very-wide glow
-        (int(w * 0.65), int(h * 0.55), 1.0, w * 1.00),   # Secondary ultra-wide
-        (int(w * 0.50), int(h * 0.70), 0.8, w * 0.90),   # Bottom diffuse accent
-        (int(w * 0.20), int(h * 0.30), 0.6, w * 0.85),   # Top-left subtle
+    # Build a floating-point "brightness" field using multiple elliptical blobs
+    # Each blob: (center_x, center_y, radius_x, radius_y, intensity)
+    blobs = [
+        (0.30, 0.40, 0.55, 0.70, 1.0),    # Large primary glow, left-center
+        (0.72, 0.50, 0.40, 0.55, 0.85),    # Secondary glow, right
+        (0.50, 0.75, 0.50, 0.40, 0.60),    # Bottom accent
+        (0.15, 0.20, 0.30, 0.35, 0.50),    # Top-left subtle
+        (0.85, 0.25, 0.25, 0.30, 0.40),    # Top-right subtle
     ]
 
-    pixels = img.load()
-    for y in range(h):
-        for x in range(w):
-            # Ultra-soft gaussian falloff for completely diffuse effect
-            influence_sum = 0.0
-            for cx, cy, weight, spread in centers:
-                dx = x - cx
-                dy = y - cy
-                dist_sq = dx * dx + dy * dy
-                # Very gentle gaussian with wide spread to eliminate visible transitions
-                influence = weight * math.exp(-dist_sq / (3 * spread * spread))
-                influence_sum += influence
+    # Create coordinate grids
+    xs = np.linspace(0, 1, w)
+    ys = np.linspace(0, 1, h)
+    xv, yv = np.meshgrid(xs, ys)
 
-            # Map to bright lime green range (0.35-0.60 for spring greens + lime)
-            # Higher denominator for more subtle influence mapping
-            t = 1.0 - min(influence_sum / 1.6, 1.0)
-            t = max(0.0, t)
-            # Focus on 0.35-0.60 range (bright greens to lime center)
-            t = 0.35 + t * 0.25
+    # Accumulate brightness from all blobs
+    brightness = np.zeros((h, w), dtype=np.float64)
+    for cx, cy, rx, ry, intensity in blobs:
+        # Elliptical distance (no circular rings — different x/y radii)
+        dx = (xv - cx) / rx
+        dy = (yv - cy) / ry
+        dist_sq = dx * dx + dy * dy
+        # Smooth gaussian falloff
+        blob_val = intensity * np.exp(-dist_sq * 1.8)
+        brightness += blob_val
 
-            for i in range(len(GRADIENT_STOPS) - 1):
-                if GRADIENT_STOPS[i][0] <= t <= GRADIENT_STOPS[i+1][0]:
-                    t_local = (t - GRADIENT_STOPS[i][0]) / (GRADIENT_STOPS[i+1][0] - GRADIENT_STOPS[i][0])
-                    r = int(GRADIENT_STOPS[i][1][0] + (GRADIENT_STOPS[i+1][1][0] - GRADIENT_STOPS[i][1][0]) * t_local)
-                    g = int(GRADIENT_STOPS[i][1][1] + (GRADIENT_STOPS[i+1][1][1] - GRADIENT_STOPS[i][1][1]) * t_local)
-                    b = int(GRADIENT_STOPS[i][1][2] + (GRADIENT_STOPS[i+1][1][2] - GRADIENT_STOPS[i][1][2]) * t_local)
-                    pixels[x, y] = (r, g, b, 255)
-                    break
+    # Normalize to 0-1 range
+    brightness = brightness / brightness.max()
+
+    # Apply a smooth S-curve for more contrast between bright and dark zones
+    # This pushes the midtones apart — brights get brighter, darks get darker
+    brightness = 0.5 - 0.5 * np.cos(brightness * math.pi)
+
+    # Map brightness → gradient color (0 = bright lime, 1 = dark forest)
+    t_field = 1.0 - brightness  # invert: high brightness = low t = bright lime
+
+    # Build the RGB image from the t_field
+    pixels = np.zeros((h, w, 3), dtype=np.uint8)
+    for y_idx in range(h):
+        for x_idx in range(w):
+            pixels[y_idx, x_idx] = sample_gradient(t_field[y_idx, x_idx])
+
+    img = Image.fromarray(pixels, 'RGB').convert('RGBA')
+
+    # Heavy gaussian blur to eliminate any remaining contour lines
+    img = img.filter(ImageFilter.GaussianBlur(radius=30))
 
     # Crosshatch line grid (matches .bg-grid: 1px lines, 32px spacing)
     grid = Image.new('RGBA', (w, h), (0, 0, 0, 0))
