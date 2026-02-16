@@ -2270,6 +2270,122 @@ body.dark-hero .nav-links.active a {
     color: var(--color-text-muted);
 }
 
+/* ===== Section 2b: From the Lab — Card Grid ===== */
+.from-the-lab {
+    padding: 48px 0 56px;
+    background-color: #ffffff;
+}
+
+.from-the-lab .home-section-label {
+    margin-bottom: 24px;
+}
+
+.from-the-lab-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+.lab-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.lab-card-image {
+    display: block;
+    height: 240px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.lab-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    transition: transform 0.2s ease;
+}
+
+.lab-card-image:hover img {
+    transform: scale(1.03);
+}
+
+.lab-card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.lab-card-body h3 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.15rem, 1.5vw + 0.4rem, 1.45rem);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0 0 8px 0;
+}
+
+.lab-card-body > .status-pill {
+    align-self: flex-start;
+    margin-bottom: 10px;
+}
+
+.lab-card-body h3 a {
+    text-decoration: none;
+    background:
+        radial-gradient(ellipse 150% 120% at 30% 50%,
+            #2d5a3d 0%, #3a6b47 15%, #4a8f5c 25%,
+            #6db33f 35%, #7cd92e 45%, #adff2f 50%,
+            #7cd92e 55%, #6db33f 65%, #4a8f5c 75%,
+            #3a6b47 85%, #2d5a3d 100%
+        );
+    background-size: 200% 200%;
+    animation: gradientShift 12s ease-in-out infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.lab-card-body h3 a:hover {
+    filter: brightness(1.15);
+}
+
+.lab-card-excerpt {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    font-style: italic;
+    line-height: 1.45;
+    color: var(--color-text-muted);
+    margin: 0 0 14px 0;
+    flex: 1;
+}
+
+.lab-card-meta {
+    display: block;
+    font-family: var(--font-sans);
+    font-style: normal;
+    font-size: 0.75rem;
+    color: var(--color-text-light);
+    margin-top: 6px;
+}
+
+.lab-card-meta .sep {
+    opacity: 0.4;
+    font-size: 0.6rem;
+}
+
+.lab-card-meta .read-time {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.02em;
+}
+
+.from-the-lab-footer {
+    margin-top: 32px;
+    text-align: center;
+}
+
 
 /* ===== Section 4: About + Contact Gradient ===== */
 .about-contact-gradient {
@@ -2305,7 +2421,7 @@ body.dark-hero .nav-links.active a {
     right: 8%;
     pointer-events: auto;
     cursor: grab;
-    animation: aboutDrift 52s ease-in-out infinite;
+    animation: aboutDrift 58s ease-in-out infinite;
 }
 
 .about-drifter img {
@@ -2328,13 +2444,9 @@ body.dark-hero .nav-links.active a {
 
 @keyframes aboutDrift {
     0%   { transform: translate(0, 0) rotate(0deg); }
-    12%  { transform: translate(-60px, 35px) rotate(-6deg); }
-    25%  { transform: translate(45px, -25px) rotate(5deg); }
-    37%  { transform: translate(-80px, -40px) rotate(-8deg); }
-    50%  { transform: translate(55px, 30px) rotate(7deg); }
-    62%  { transform: translate(-40px, -50px) rotate(-4deg); }
-    75%  { transform: translate(70px, 20px) rotate(6deg); }
-    87%  { transform: translate(-50px, 40px) rotate(-5deg); }
+    25%  { transform: translate(-25px, 20px) rotate(-3deg); }
+    50%  { transform: translate(15px, -30px) rotate(4deg); }
+    75%  { transform: translate(-20px, -10px) rotate(-2deg); }
     100% { transform: translate(0, 0) rotate(0deg); }
 }
 
@@ -2419,33 +2531,27 @@ body.dark-hero .nav-links.active a {
 .about-floater-email {
     top: 25%;
     left: 12%;
-    animation: aboutIconDrift1 42s ease-in-out infinite;
+    animation: aboutIconDrift1 50s ease-in-out infinite;
 }
 
 .about-floater-linkedin {
     bottom: 20%;
     right: 10%;
-    animation: aboutIconDrift2 38s ease-in-out infinite;
+    animation: aboutIconDrift2 45s ease-in-out infinite;
 }
 
 @keyframes aboutIconDrift1 {
     0%   { transform: translate(0, 0) rotate(0deg); }
-    14%  { transform: translate(45px, -30px) rotate(8deg); }
-    28%  { transform: translate(-20px, 25px) rotate(-12deg); }
-    42%  { transform: translate(60px, 10px) rotate(5deg); }
-    57%  { transform: translate(-35px, -40px) rotate(-7deg); }
-    71%  { transform: translate(30px, 35px) rotate(10deg); }
-    85%  { transform: translate(-50px, -15px) rotate(-6deg); }
+    25%  { transform: translate(20px, -15px) rotate(4deg); }
+    50%  { transform: translate(-10px, 20px) rotate(-3deg); }
+    75%  { transform: translate(15px, 10px) rotate(5deg); }
     100% { transform: translate(0, 0) rotate(0deg); }
 }
 
 @keyframes aboutIconDrift2 {
     0%   { transform: translate(0, 0) rotate(0deg); }
-    16%  { transform: translate(-40px, 20px) rotate(-9deg); }
-    33%  { transform: translate(35px, -35px) rotate(7deg); }
-    50%  { transform: translate(-55px, -10px) rotate(-11deg); }
-    66%  { transform: translate(25px, 40px) rotate(6deg); }
-    83%  { transform: translate(-30px, -25px) rotate(-5deg); }
+    33%  { transform: translate(-20px, 15px) rotate(-4deg); }
+    66%  { transform: translate(15px, -20px) rotate(3deg); }
     100% { transform: translate(0, 0) rotate(0deg); }
 }
 
@@ -2494,6 +2600,11 @@ mark {
     .latest-report { padding: 32px 0 40px; }
     .latest-report-image { display: none; }
     .latest-report-grid { grid-template-columns: 1fr; gap: 0; }
+
+    .from-the-lab { padding: 32px 0 40px; }
+    .from-the-lab-grid { grid-template-columns: 1fr; gap: 0; }
+    .lab-card + .lab-card { padding-top: 28px; border-top: 1px solid var(--color-border); margin-top: 28px; }
+    .lab-card-image { height: 200px; margin-bottom: 12px; }
 
     .about-contact-inner {
         padding: 32px 16px;
