@@ -21,77 +21,68 @@ import numpy as np
 
 WIDTH, HEIGHT = 1200, 630
 
-# Key colors from the green gradient
-COLOR_LIME = np.array([173, 255, 47])       # #adff2f — bright center
-COLOR_SPRING = np.array([124, 217, 46])     # #7cd92e
-COLOR_GREEN = np.array([109, 179, 63])      # #6db33f
-COLOR_MID = np.array([74, 143, 92])         # #4a8f5c
-COLOR_DARK = np.array([45, 90, 61])         # #2d5a3d — edges
-
-
-def lerp_color(c1, c2, t):
-    """Linearly interpolate between two colors."""
-    return (c1 * (1 - t) + c2 * t).astype(np.uint8)
+# Colors matching the CSS radial-gradient stops in blog-design-system.css
+# radial-gradient(ellipse 150% 120% at 30% 50%,
+#   #2d5a3d 0%, #3a6b47 15%, #4a8f5c 25%,
+#   #6db33f 35%, #7cd92e 45%, #adff2f 50%,
+#   #7cd92e 55%, #6db33f 65%, #4a8f5c 75%,
+#   #3a6b47 85%, #2d5a3d 100%)
+GRADIENT_COLORS = [
+    (0.00, np.array([45, 90, 61])),      # #2d5a3d
+    (0.15, np.array([58, 107, 71])),     # #3a6b47
+    (0.25, np.array([74, 143, 92])),     # #4a8f5c
+    (0.35, np.array([109, 179, 63])),    # #6db33f
+    (0.45, np.array([124, 217, 46])),    # #7cd92e
+    (0.50, np.array([173, 255, 47])),    # #adff2f — brightest
+    (0.55, np.array([124, 217, 46])),    # #7cd92e
+    (0.65, np.array([109, 179, 63])),    # #6db33f
+    (0.75, np.array([74, 143, 92])),     # #4a8f5c
+    (0.85, np.array([58, 107, 71])),     # #3a6b47
+    (1.00, np.array([45, 90, 61])),      # #2d5a3d
+]
 
 
 def sample_gradient(t):
-    """Map t (0=bright lime, 1=dark forest) to a color."""
+    """Map t (0.0–1.0) through the CSS gradient stops."""
     t = max(0.0, min(1.0, t))
-    stops = [
-        (0.00, COLOR_LIME),
-        (0.20, COLOR_SPRING),
-        (0.40, COLOR_GREEN),
-        (0.65, COLOR_MID),
-        (1.00, COLOR_DARK),
-    ]
-    for i in range(len(stops) - 1):
-        if stops[i][0] <= t <= stops[i+1][0]:
-            local_t = (t - stops[i][0]) / (stops[i+1][0] - stops[i][0])
-            return lerp_color(stops[i][1], stops[i+1][1], local_t)
-    return COLOR_DARK
+    for i in range(len(GRADIENT_COLORS) - 1):
+        t0, c0 = GRADIENT_COLORS[i]
+        t1, c1 = GRADIENT_COLORS[i + 1]
+        if t0 <= t <= t1:
+            local = (t - t0) / (t1 - t0)
+            return (c0 * (1 - local) + c1 * local).astype(np.uint8)
+    return GRADIENT_COLORS[-1][1]
 
 
 def create_gradient(w, h):
-    """Create an amorphous green gradient using overlapping elliptical blobs
-    blurred together for a soft, organic look — no visible arcs or rings."""
+    """Replicate the CSS elliptical radial-gradient as closely as possible,
+    then blur to keep it amorphous with no visible arcs."""
 
-    # Build a floating-point "brightness" field using multiple elliptical blobs
-    # Each blob: (center_x, center_y, radius_x, radius_y, intensity)
-    blobs = [
-        (0.30, 0.40, 0.55, 0.70, 1.0),    # Large primary glow, left-center
-        (0.72, 0.50, 0.40, 0.55, 0.85),    # Secondary glow, right
-        (0.50, 0.75, 0.50, 0.40, 0.60),    # Bottom accent
-        (0.15, 0.20, 0.30, 0.35, 0.50),    # Top-left subtle
-        (0.85, 0.25, 0.25, 0.30, 0.40),    # Top-right subtle
-    ]
+    # The CSS is: radial-gradient(ellipse 150% 120% at 30% 50%, ...)
+    # "150% 120%" means the ellipse radii are 1.5× width and 1.2× height
+    # "at 30% 50%" is the center point
+    cx, cy = 0.30, 0.50
+    # Radii as fractions of the image (CSS % of element size)
+    rx, ry = 1.50, 1.20
 
     # Create coordinate grids
     xs = np.linspace(0, 1, w)
     ys = np.linspace(0, 1, h)
     xv, yv = np.meshgrid(xs, ys)
 
-    # Accumulate brightness from all blobs
-    brightness = np.zeros((h, w), dtype=np.float64)
-    for cx, cy, rx, ry, intensity in blobs:
-        # Elliptical distance (no circular rings — different x/y radii)
-        dx = (xv - cx) / rx
-        dy = (yv - cy) / ry
-        dist_sq = dx * dx + dy * dy
-        # Smooth gaussian falloff
-        blob_val = intensity * np.exp(-dist_sq * 1.8)
-        brightness += blob_val
+    # Elliptical distance from center — matches CSS radial-gradient geometry
+    dx = (xv - cx) / rx
+    dy = (yv - cy) / ry
+    dist = np.sqrt(dx * dx + dy * dy)
 
-    # Normalize to 0-1 range
-    brightness = brightness / brightness.max()
+    # dist=0 at center (brightest, t=0.50), dist=1 at ellipse edge (t=0 or 1)
+    # The CSS gradient maps center→#adff2f and edge→#2d5a3d
+    # We map dist 0→0.50 (center of gradient) and dist 1→1.0 (edge)
+    # For distances > 1, clamp to edge color
+    t_field = 0.50 + dist * 0.50
+    t_field = np.clip(t_field, 0.0, 1.0)
 
-    # Apply a smooth S-curve for more contrast between bright and dark zones
-    # This pushes the midtones apart — brights get brighter, darks get darker
-    brightness = 0.5 - 0.5 * np.cos(brightness * math.pi)
-
-    # Map brightness → gradient color (0 = bright lime, 1 = dark forest)
-    t_field = 1.0 - brightness  # invert: high brightness = low t = bright lime
-
-    # Build the RGB image from the t_field
+    # Build the RGB image
     pixels = np.zeros((h, w, 3), dtype=np.uint8)
     for y_idx in range(h):
         for x_idx in range(w):
@@ -99,16 +90,17 @@ def create_gradient(w, h):
 
     img = Image.fromarray(pixels, 'RGB').convert('RGBA')
 
-    # Heavy gaussian blur to eliminate any remaining contour lines
-    img = img.filter(ImageFilter.GaussianBlur(radius=30))
+    # Moderate blur to soften the gradient and prevent banding
+    img = img.filter(ImageFilter.GaussianBlur(radius=12))
 
-    # Crosshatch line grid (matches .bg-grid: 1px lines, 32px spacing)
+    # Crosshatch grid — lime-tinted to match the CSS
+    # CSS uses: rgba(173, 255, 47, 0.3) for grid lines
     grid = Image.new('RGBA', (w, h), (0, 0, 0, 0))
     draw = ImageDraw.Draw(grid)
     for yy in range(0, h, 32):
-        draw.line([(0, yy), (w, yy)], fill=(255, 255, 255, 40), width=1)
+        draw.line([(0, yy), (w, yy)], fill=(173, 255, 47, 45), width=1)
     for xx in range(0, w, 32):
-        draw.line([(xx, 0), (xx, h)], fill=(255, 255, 255, 40), width=1)
+        draw.line([(xx, 0), (xx, h)], fill=(173, 255, 47, 45), width=1)
 
     return Image.alpha_composite(img, grid)
 
