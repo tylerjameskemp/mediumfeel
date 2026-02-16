@@ -3036,6 +3036,9 @@ body.about-page .nav-links.active a {
     padding: 48px 24px 80px;
     box-sizing: border-box;
     background: var(--color-white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 /* Section labels — matching blog-design-system.css .section-label */
