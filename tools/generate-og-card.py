@@ -8,19 +8,20 @@ Usage:
 Example:
     python3 tools/generate-og-card.py assets/blog/my-post/hero.png my-post
 
-This places the hero image centered on the green post-header gradient
+This places the hero image centered on an amorphous green gradient
 with the site's crosshatch line grid, and saves it to:
     assets/social/og-<post-slug>.png
 """
 
 import sys
 import math
+import random
 from pathlib import Path
 from PIL import Image, ImageDraw
 
 WIDTH, HEIGHT = 1200, 630
 
-# Green radial gradient matching .post-header in blog posts
+# Green gradient colors matching .post-header in blog posts
 GRADIENT_STOPS = [
     (0.00, (45, 90, 61)),    # #2d5a3d
     (0.15, (58, 107, 71)),   # #3a6b47
@@ -38,14 +39,37 @@ GRADIENT_STOPS = [
 
 def create_gradient(w, h):
     img = Image.new('RGBA', (w, h))
-    cx, cy = int(w * 0.3), int(h * 0.5)
-    max_r = math.sqrt((w * 1.5)**2 + (h * 1.2)**2) / 2
+
+    # Multiple gradient centers with very wide spread for maximum diffusion
+    # Each center has (x, y, influence_weight, spread_radius)
+    # Extra-wide spread prevents visible arcs/lines
+    centers = [
+        (int(w * 0.35), int(h * 0.45), 1.3, w * 0.95),   # Primary very-wide glow
+        (int(w * 0.65), int(h * 0.55), 1.0, w * 1.00),   # Secondary ultra-wide
+        (int(w * 0.50), int(h * 0.70), 0.8, w * 0.90),   # Bottom diffuse accent
+        (int(w * 0.20), int(h * 0.30), 0.6, w * 0.85),   # Top-left subtle
+    ]
 
     pixels = img.load()
     for y in range(h):
         for x in range(w):
-            dist = math.sqrt((x - cx)**2 + (y - cy)**2)
-            t = min(dist / max_r, 1.0)
+            # Ultra-soft gaussian falloff for completely diffuse effect
+            influence_sum = 0.0
+            for cx, cy, weight, spread in centers:
+                dx = x - cx
+                dy = y - cy
+                dist_sq = dx * dx + dy * dy
+                # Very gentle gaussian with wide spread to eliminate visible transitions
+                influence = weight * math.exp(-dist_sq / (3 * spread * spread))
+                influence_sum += influence
+
+            # Map to bright lime green range (0.35-0.60 for spring greens + lime)
+            # Higher denominator for more subtle influence mapping
+            t = 1.0 - min(influence_sum / 1.6, 1.0)
+            t = max(0.0, t)
+            # Focus on 0.35-0.60 range (bright greens to lime center)
+            t = 0.35 + t * 0.25
+
             for i in range(len(GRADIENT_STOPS) - 1):
                 if GRADIENT_STOPS[i][0] <= t <= GRADIENT_STOPS[i+1][0]:
                     t_local = (t - GRADIENT_STOPS[i][0]) / (GRADIENT_STOPS[i+1][0] - GRADIENT_STOPS[i][0])
