@@ -2912,6 +2912,318 @@ mark {
     }
 }
 
+/* ===== About Page ===== */
+
+/* Navbar — white text over green gradient hero */
+body.about-page .navbar:not(.scrolled) .nav-wordmark,
+body.about-page .navbar:not(.scrolled) .nav-cursor {
+    color: white;
+    transition: color 0.3s ease;
+}
+
+body.about-page .navbar:not(.scrolled) .nav-wordmark:hover {
+    color: rgba(255,255,255,0.8);
+}
+
+body.about-page .navbar:not(.scrolled) .nav-links a {
+    color: rgba(255,255,255,0.85);
+}
+
+body.about-page .navbar:not(.scrolled) .nav-links a:hover,
+body.about-page .navbar:not(.scrolled) .nav-links a.active {
+    color: white;
+}
+
+body.about-page .navbar:not(.scrolled) .mobile-menu-btn span {
+    background: white;
+}
+
+body.about-page .navbar:not(.scrolled) .mobile-menu-btn.active span {
+    background: #111827;
+}
+
+body.about-page .navbar:not(.scrolled) .nav-links.active a,
+body.about-page .navbar.scrolled .nav-links.active a,
+body.about-page .nav-links.active a {
+    color: #111827;
+}
+
+/* Hero — matches blog-design-system.css post-header pattern */
+.about-hero {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+    background:
+        radial-gradient(ellipse 150% 120% at 30% 50%,
+            #2d5a3d 0%, #3a6b47 15%, #4a8f5c 25%,
+            #6db33f 35%, #7cd92e 45%, #adff2f 50%,
+            #7cd92e 55%, #6db33f 65%, #4a8f5c 75%,
+            #3a6b47 85%, #2d5a3d 100%
+        );
+    background-size: 200% 200%;
+    background-position: 15% 35%;
+    animation: aboutGradientShift 12s ease-in-out infinite;
+    padding: 0 24px 48px;
+    margin-top: -80px;
+    padding-top: calc(80px + 48px);
+    overflow: hidden;
+}
+
+@keyframes aboutGradientShift {
+    0%   { background-position: 15% 35%; }
+    20%  { background-position: 85% 45%; }
+    40%  { background-position: 60% 75%; }
+    60%  { background-position: 30% 65%; }
+    80%  { background-position: 70% 25%; }
+    100% { background-position: 15% 35%; }
+}
+
+/* Grid overlay — matches blog posts */
+.about-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+        linear-gradient(0deg, rgba(173, 255, 47, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(173, 255, 47, 0.3) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-attachment: fixed;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Inner wrapper — matches blog .post-header-inner */
+.about-hero-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    padding: 16px 0 0;
+}
+
+/* Bust — matches blog post .post-hero sizing + float animation */
+.about-hero-bust {
+    max-width: 320px;
+    height: 280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-hero-bust img {
+    max-width: 100%;
+    max-height: 280px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.35));
+    animation: aboutBustFloat 6s ease-in-out infinite;
+}
+
+@keyframes aboutBustFloat {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-12px); }
+    100% { transform: translateY(0); }
+}
+
+/* Text section — matches blog post .post-content pattern */
+.about-text {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+    box-sizing: border-box;
+    background: var(--color-white);
+}
+
+/* Section labels — matching blog-design-system.css .section-label */
+.about-text .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6db33f;
+    margin-top: 48px;
+    margin-bottom: 24px;
+}
+
+.about-text p {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: #111827;
+    margin: 0 0 1.5em 0;
+}
+
+/* Gradient lead — matches blog post .post-title-gradient */
+.about-lead-gradient {
+    font-family: var(--font-serif);
+    font-size: clamp(2.25rem, 4vw + 1rem, 3.25rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+    margin: 0 0 20px 0;
+    background:
+        radial-gradient(ellipse 150% 120% at 30% 50%,
+            #2d5a3d 0%, #3a6b47 15%, #4a8f5c 25%,
+            #6db33f 35%, #7cd92e 45%, #adff2f 50%,
+            #7cd92e 55%, #6db33f 65%, #4a8f5c 75%,
+            #3a6b47 85%, #2d5a3d 100%
+        );
+    background-size: 200% 200%;
+    animation: aboutGradientShift 12s ease-in-out infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Highlighter — marker pen effect (matches blog design system) */
+.about-text mark {
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 30%,
+        rgba(173, 255, 47, 0.5) 30%,
+        rgba(173, 255, 47, 0.5) 70%,
+        transparent 70%
+    );
+    padding: 0 2px;
+}
+
+/* Pull quote — gradient text with border accents */
+.about-text .pull-quote {
+    border-left: none;
+    border-top: 2px solid #6db33f;
+    border-bottom: 2px solid #6db33f;
+    padding: 24px 0;
+    margin: 2.5em 0;
+    text-align: center;
+}
+
+.about-text .pull-quote p {
+    font-family: var(--font-serif);
+    font-size: clamp(1.375rem, 2.5vw + 0.5rem, 1.875rem);
+    line-height: 1.3;
+    font-style: italic;
+    margin-bottom: 0;
+    background:
+        radial-gradient(ellipse 150% 120% at 30% 50%,
+            #2d5a3d 0%, #3a6b47 15%, #4a8f5c 25%,
+            #6db33f 35%, #7cd92e 45%, #adff2f 50%,
+            #7cd92e 55%, #6db33f 65%, #4a8f5c 75%,
+            #3a6b47 85%, #2d5a3d 100%
+        );
+    background-size: 200% 200%;
+    animation: aboutGradientShift 12s ease-in-out infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Contact icons — floating green icons with bobble */
+.about-contact-icons {
+    display: flex;
+    gap: 32px;
+    margin-top: 24px;
+    align-items: center;
+}
+
+.about-contact-icon {
+    display: block;
+    width: 56px;
+    height: 56px;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+    transition: transform 0.2s ease, filter 0.2s ease;
+    cursor: pointer;
+}
+
+.about-contact-icon img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.about-contact-icon:nth-child(1) {
+    animation: aboutIconBobble1 4s ease-in-out infinite;
+}
+
+.about-contact-icon:nth-child(2) {
+    animation: aboutIconBobble2 4.5s ease-in-out infinite;
+}
+
+.about-contact-icon:hover {
+    transform: scale(1.15);
+    filter: drop-shadow(0 6px 16px rgba(0,0,0,0.25));
+}
+
+@keyframes aboutIconBobble1 {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25%  { transform: translateY(-4px) rotate(2deg); }
+    75%  { transform: translateY(3px) rotate(-1.5deg); }
+}
+
+@keyframes aboutIconBobble2 {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    30%  { transform: translateY(3px) rotate(-2deg); }
+    70%  { transform: translateY(-5px) rotate(1.5deg); }
+}
+
+/* Responsive — matches blog-design-system.css breakpoints */
+@media (max-width: 768px) {
+    .about-hero {
+        margin-top: -60px;
+        padding-top: calc(60px + 32px);
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-bottom: 32px;
+    }
+
+    .about-hero-bust {
+        max-width: 240px;
+        height: 220px;
+    }
+
+    .about-hero-bust img {
+        max-height: 220px;
+    }
+
+    .about-text {
+        padding: 32px 16px 64px;
+    }
+
+    .about-hero-inner {
+        padding: 8px 0 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-hero-bust {
+        max-width: 200px;
+        height: 180px;
+    }
+
+    .about-hero-bust img {
+        max-height: 180px;
+    }
+
+    .about-text p {
+        font-size: 0.875rem;
+    }
+
+    .about-contact-icons {
+        gap: 24px;
+    }
+
+    .about-contact-icon {
+        width: 48px;
+        height: 48px;
+    }
+}
+
 /* ===== Reduced Motion Accessibility ===== */
 @media (prefers-reduced-motion: reduce) {
     *,
