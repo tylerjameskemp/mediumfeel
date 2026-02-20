@@ -111,6 +111,10 @@ Use `subsection-label` for sub-headings within a section. Renders as Instrument 
 ```
 
 ### 4. Images Between Sections
+
+Choose the right figure class based on the image's role:
+
+**Default — primary/landscape images:**
 ```html
 <figure class="post-figure">
     <img src="../../assets/blog/{{POST_SLUG}}/image-name.png"
@@ -118,7 +122,31 @@ Use `subsection-label` for sub-headings within a section. Renders as Instrument 
 </figure>
 ```
 
-With caption:
+**Medium — mid-weight visual breaks (object images, illustrations):**
+```html
+<figure class="post-figure figure-medium">
+    <img src="../../assets/blog/{{POST_SLUG}}/image-name.png"
+         alt="Description">
+</figure>
+```
+
+**Accent — small secondary/supporting/portrait images:**
+```html
+<figure class="post-figure figure-accent">
+    <img src="../../assets/blog/{{POST_SLUG}}/image-name.png"
+         alt="Description">
+</figure>
+```
+
+**Wide — panoramic/screenshot images:**
+```html
+<figure class="post-figure figure-wide">
+    <img src="../../assets/blog/{{POST_SLUG}}/image-name.png"
+         alt="Description">
+</figure>
+```
+
+With caption (works with any tier):
 ```html
 <figure class="post-figure">
     <img src="../../assets/blog/{{POST_SLUG}}/image-name.png"
@@ -126,6 +154,13 @@ With caption:
     <figcaption>Caption text</figcaption>
 </figure>
 ```
+
+**How to choose:**
+- Is this the key visual for the section? → default `post-figure` (540px)
+- Is this an object/illustration that shouldn't fill the column? → `figure-medium` (420px)
+- Is this a small supporting accent or visual break? → `figure-accent` (320px)
+- Is the source image portrait (taller than wide)? → almost always `figure-accent` or `figure-medium`
+- Is this a wide screenshot or panoramic? → `figure-wide`
 
 ## Typography Hierarchy
 
@@ -135,7 +170,7 @@ Three voices, clear cascade:
 2. **Subsection labels** — Instrument Serif italic, 1.25rem, dark (`subsection-label`)
 3. **Bold text** — Inter 600, inline emphasis (`<strong>`)
 
-Body text is Inter 400 at 17px (1.0625rem), line-height 1.7.
+Body text is Inter 400 at 17px (1.0625rem), line-height 1.8, color #374151.
 
 ## Metadata Line Alignment
 
@@ -251,7 +286,20 @@ The primary image for the post. Appears in:
 
 Save to: `assets/blog/{{POST_SLUG}}/hero-{{POST_SLUG}}.png`
 Reference from post: `../../assets/blog/{{POST_SLUG}}/hero-{{POST_SLUG}}.png`
-Max width: 420px desktop, 320px tablet, 280px mobile
+
+**Hero container dimensions** (set in `blog-design-system.css`, DO NOT CHANGE):
+- Desktop: `max-width: 360px; height: 340px; max-height: 340px` (on img)
+- Tablet (768px): `max-width: 270px; height: 260px; max-height: 260px` (on img)
+- Mobile (480px): `max-width: 220px; height: 210px; max-height: 210px` (on img)
+
+The container uses a wider width + taller height with explicit `max-height` on the img (not percentages, which don't resolve in flex containers). This equalizes visual weight across aspect ratios:
+- **Portrait** (e.g. keys, 840x913): fills height, slightly narrower than container width
+- **Square** (e.g. letterbox, 1024x1024): fills both dimensions nearly equally
+- **Landscape** (e.g. correction fluid): fills width, shorter than container height
+
+No post-specific hero size overrides should be needed. If one is, something is wrong with the image itself.
+
+NEVER change the design system values — that affects every post.
 
 ### Floater Object
 A small (150x150) object image representing the post in grid/floater contexts. Appears in:
@@ -264,7 +312,12 @@ Size: 150x150px, webp format, transparent background
 ### Content Images
 Save to: `assets/blog/{{POST_SLUG}}/descriptive-name.png`
 Reference: `../../assets/blog/{{POST_SLUG}}/descriptive-name.png`
-Max width: 540px desktop, 440px tablet
+
+**Content figure tiers** (set in `blog-design-system.css`):
+- **Default** (`post-figure`): max-width 540px — for primary/landscape images
+- **Medium** (`post-figure figure-medium`): max-width 420px — for mid-weight objects/illustrations
+- **Accent** (`post-figure figure-accent`): max-width 320px — for small secondary/portrait images
+- **Wide** (`post-figure figure-wide`): for panoramic/screenshots
 
 ### Shared Images
 Reference existing: `../../assets/blog/image-name.png`
@@ -341,9 +394,29 @@ Consistent language across the site. These are the standard conventions:
 The ONLY things that go in a post's `<style>` block:
 - Header gradient colors (`.post-header { background: radial-gradient(...) }`)
 - Hero animation keyframes (if needed)
-- Hero/figure size overrides (if needed)
+- Hero animation overrides (e.g. `animation: none` for static heroes)
 
 Everything else comes from `blog-design-system.css`.
+
+## Global vs Post-Specific Changes (CRITICAL)
+
+**`blog-design-system.css` is the shared foundation.** Every change to an existing rule affects ALL published posts. Before editing this file, verify the change won't break any live post.
+
+**Safe changes to the design system:**
+- Adding NEW classes (e.g. `figure-accent`) — no existing element uses them yet
+- Bug fixes that are genuinely broken across all posts
+
+**NEVER do this:**
+- Change an existing rule (hero size, font size, spacing) to fix one post's layout
+- Tweak a shared value because one image looks wrong
+
+**Instead, use post-specific overrides** in the post's own `<style>` block. Overrides must match design system specificity — always use the `body.blog-post` prefix:
+```css
+/* No float animation for this post */
+body.blog-post .post-hero img { animation: none; }
+```
+
+This keeps every published post stable while giving each post full control over its own appearance.
 
 ## User Workflow
 
@@ -383,29 +456,81 @@ Closing thoughts.
 ## Template Variables
 
 Required for all posts:
-- `{{POST_SLUG}}` - URL-friendly slug
+- `{{POST_SLUG}}` - URL-friendly slug (e.g. `building-your-own-thinking-tools`)
 - `{{TITLE}}` - Full title
-- `{{TITLE_ENCODED}}` - URL-encoded for sharing
+- `{{TITLE_ENCODED}}` - URL-encoded for sharing links
 - `{{EXCERPT}}` - 1-2 sentence summary
-- `{{STATUS}}` - Exploring, Building, Thinking, or Shipped
+- `{{STATUS}}` - Exploring, Building, or Shipped
+- `{{STATUS_CLASS}}` - Lowercase for CSS class: `exploring`, `building`, or `shipped`
 - `{{DATE_ISO}}` - ISO date (YYYY-MM-DD)
-- `{{DATE_FORMATTED}}` - Readable date
-- `{{READ_TIME}}` - Minutes
+- `{{DATE_FORMATTED}}` - Readable date (e.g. `February 20, 2026`)
+- `{{READ_TIME}}` - Minutes (integer)
+- `{{WORD_COUNT}}` - Total word count of post body
+- `{{KEYWORDS}}` - Comma-separated tags for schema.org
+- `{{ARTICLE_TAGS}}` - One `<meta property="article:tag" content="Tag">` per tag
 - `{{HERO_ALT}}` - Hero image alt text
 - `{{PREV_SLUG}}` / `{{NEXT_SLUG}}` - For post navigation
+- `{{PREV_TITLE}}` / `{{NEXT_TITLE}}` - Display titles for post navigation
 
-## Checklist Before Publishing
+## Full Publishing Checklist
 
-- [ ] Links to `../blog-design-system.css` (after `../../styles.css`)
-- [ ] No inline typography styles (only gradient/animation)
+### 1. Post HTML file (`lab/posts/{{POST_SLUG}}.html`)
+- [ ] Generated from `lab/templates/blog-post-template.html`
+- [ ] All `{{VARIABLES}}` replaced — no leftover placeholders
+- [ ] Google Analytics (gtag.js) present
+- [ ] `<link rel="canonical">` present and correct
+- [ ] OG meta tags: `og:type`, `og:url`, `og:site_name`, `og:title`, `og:description`, `og:image`, `og:image:width`, `og:image:height`, `og:image:alt`
+- [ ] Article meta tags: `article:published_time`, `article:author`, `article:section`, `article:tag`
+- [ ] Twitter meta tags use `name=` (NOT `property=`)
+- [ ] Schema.org JSON-LD block with correct `wordCount` and `timeRequired`
+- [ ] RSS feed `<link>` present
+- [ ] Links `../../styles.css` then `../blog-design-system.css` (in that order)
+- [ ] No inline typography styles (only gradient/animation in `<style>`)
+- [ ] `<picture>` with webp `<source>` for hero image
+- [ ] Hero in header gradient, title/excerpt/meta in `.post-intro` on white
+- [ ] `data-post-slug` and `data-post-field` attributes on metadata elements
+- [ ] `data-post-auto="true"` on read time span
+- [ ] Share buttons with encoded URLs (Twitter, LinkedIn, Email)
+- [ ] Post navigation (prev/next) — use `<span></span>` for missing direction
+- [ ] Footer matches site footer (Lab / About / Contact + copyright)
+- [ ] `post-registry.js` and `post-sync.js` scripts before `</body>`
 - [ ] Section labels use `<div class="section-label">`
-- [ ] Subsections use `<div class="subsection-label">` (NOT `<p><strong>`)
+- [ ] Subsections use `<div class="subsection-label">`
 - [ ] Highlights use `<mark>` tags
-- [ ] Images saved to correct paths with alt text
-- [ ] Hero image updated in: post header, lab card, lab curiosity grid, homepage (if featured)
-- [ ] Floater object created (150x150 webp) and added to curiosity grid
-- [ ] Status pill uses `status-pill` + modifier class in meta line (post, lab card, homepage card)
-- [ ] Post navigation added (prev/next)
-- [ ] Share buttons in meta row with encoded URLs
-- [ ] Footer has current year
+
+### 2. Post Registry (`assets/js/post-registry.js`)
+- [ ] New entry added with slug, title, excerpt, status, dates, readTime
+
+### 3. Lab page (`lab/index.html`)
+- [ ] New post card added (newest first)
+- [ ] Hero image with `<picture>` + webp source
+- [ ] `data-post-slug` and `data-post-field` attributes on metadata
+- [ ] Floater object added to curiosity grid (if available)
+
+### 4. Homepage (`index.html`)
+- [ ] Featured post card updated (if this is the newest post)
+- [ ] Hero image with `<picture>` + webp source
+- [ ] `data-post-slug` and `data-post-field` attributes on metadata
+- [ ] Floater object added to homepage hero (if available)
+
+### 5. Previous post (`lab/posts/{{PREV_SLUG}}.html`)
+- [ ] "Next" navigation link updated to point to new post
+
+### 6. Sitemap (`sitemap.xml`)
+- [ ] New post URL added
+- [ ] `lastmod` dates updated for homepage and lab page
+
+### 7. RSS Feed (`feed.xml`)
+- [ ] New `<item>` added (newest first)
+- [ ] `lastBuildDate` updated in `<channel>`
+
+### 8. Images
+- [ ] Hero image saved to `assets/blog/{{POST_SLUG}}/hero-{{POST_SLUG}}.png` + `.webp`
+- [ ] OG image saved to `assets/social/og-{{POST_SLUG}}-v2.png` (1200x630)
+- [ ] Content images saved to `assets/blog/{{POST_SLUG}}/`
+- [ ] Floater object (150x150 webp) saved to `assets/floaters/`
+
+### 9. Final checks
 - [ ] Tested at 768px and 480px breakpoints
+- [ ] No console errors
+- [ ] All internal links work (prev/next, lab cards, homepage cards)
