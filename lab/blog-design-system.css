@@ -111,12 +111,13 @@ body.blog-post .post-header-inner {
     padding: 16px 0 0;
 }
 
-/* Hero image — fixed-height container keeps gradient band consistent
-   across posts regardless of image aspect ratio. Image is centered
-   and contained within the box. */
+/* Hero image — height-constrained container equalizes visual weight
+   across all aspect ratios. Explicit max-height on img (not %) because
+   percentage max-height doesn't resolve in flex containers.
+   Portrait = slightly narrower, square = fills evenly, landscape = wider. */
 body.blog-post .post-header .post-hero {
-    max-width: 320px;
-    height: 280px;
+    max-width: 360px;
+    height: 340px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -125,7 +126,7 @@ body.blog-post .post-header .post-hero {
 
 body.blog-post .post-header .post-hero img {
     max-width: 100%;
-    max-height: 100%;
+    max-height: 340px;
     width: auto;
     height: auto;
     object-fit: contain;
@@ -266,7 +267,7 @@ body.blog-post .post-header .back-link:hover { color: white; }
 body.blog-post .post-intro {
     max-width: 640px;
     margin: 0 auto;
-    padding: 48px 24px 0;
+    padding: 40px 24px 0;
     box-sizing: border-box;
 }
 
@@ -307,12 +308,11 @@ body.blog-post .post-meta-line .status-shipped {
    with post-specific inline styles if using a different palette. */
 body.blog-post .post-title-gradient {
     font-family: 'Instrument Serif', Georgia, serif;
-    font-size: clamp(2.25rem, 4vw + 1rem, 3.25rem);
+    font-size: clamp(2.25rem, 3.5vw + 0.75rem, 2.75rem);
     font-weight: 400;
-    line-height: 1.1;
+    line-height: 1.15;
     letter-spacing: -0.015em;
-    text-wrap: balance;
-    margin: 0 0 20px 0;
+    margin: 0 0 16px 0;
     background:
         radial-gradient(ellipse 150% 120% at 30% 50%,
             #2d5a3d 0%, #3a6b47 15%, #4a8f5c 25%,
@@ -419,7 +419,7 @@ body.blog-post .post-content .pull-quote p {
 body.blog-post .post-content {
     max-width: 640px;
     margin: 0 auto;
-    padding: 40px 24px 0;
+    padding: 48px 24px 0;
     position: relative;
     background: none;
     box-sizing: border-box;
@@ -520,8 +520,8 @@ body.blog-post .tldr li:last-child {
 body.blog-post .post-content p {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 1.0625rem;
-    line-height: 1.7;
-    color: #111827;
+    line-height: 1.8;
+    color: #374151;
     margin: 0 0 1.5em 0;
 }
 
@@ -578,7 +578,7 @@ body.blog-post .post-content a:visited {
 body.blog-post .post-content ul,
 body.blog-post .post-content ol {
     font-size: 1.0625rem;
-    line-height: 1.7;
+    line-height: 1.8;
     margin: 0 0 1.5em 0;
     padding-left: 1.5em;
 }
@@ -586,7 +586,7 @@ body.blog-post .post-content ol {
 body.blog-post .post-content li {
     margin-bottom: 0.5em;
     font-size: 1.0625rem;
-    color: #111827;
+    color: #374151;
 }
 
 body.blog-post .post-content li:last-child { margin-bottom: 0; }
@@ -628,6 +628,23 @@ body.blog-post .post-figure img {
     max-width: 540px;
     width: 100%;
     display: inline-block;
+}
+
+/* Medium figure — mid-weight visual breaks */
+body.blog-post .post-figure.figure-medium img {
+    max-width: 420px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Accent figure — smaller secondary/supporting images */
+body.blog-post .post-figure.figure-accent img {
+    max-width: 320px;
+    max-height: 400px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
 }
 
 /* --- Blockquote --- */
@@ -956,8 +973,12 @@ body.blog-post .post-footer p {
     }
 
     body.blog-post .post-header .post-hero {
-        max-width: 240px;
-        height: 220px;
+        max-width: 270px;
+        height: 260px;
+    }
+
+    body.blog-post .post-header .post-hero img {
+        max-height: 260px;
     }
 
     /* Title and excerpt use clamp() — no breakpoint override needed */
@@ -984,6 +1005,14 @@ body.blog-post .post-footer p {
         max-width: 440px;
     }
 
+    body.blog-post .post-figure.figure-medium img {
+        max-width: 340px;
+    }
+
+    body.blog-post .post-figure.figure-accent img {
+        max-width: 240px;
+    }
+
     body.blog-post .post-nav {
         flex-direction: column;
         gap: 24px;
@@ -1001,8 +1030,12 @@ body.blog-post .post-footer p {
 
 @media (max-width: 480px) {
     body.blog-post .post-header .post-hero {
-        max-width: 200px;
-        height: 180px;
+        max-width: 220px;
+        height: 210px;
+    }
+
+    body.blog-post .post-header .post-hero img {
+        max-height: 210px;
     }
 
     /* Title uses clamp() — no override. Body text scales down more

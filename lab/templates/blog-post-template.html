@@ -1,29 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZ2YJPFJGR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-CZ2YJPFJGR');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{TITLE}} | Medium Feel</title>
-    <meta name="description" content="{{EXCERPT}}">
 
-    <!-- Open Graph / Facebook -->
+    <!-- Primary Meta Tags -->
+    <title>{{TITLE}} | Medium Feel</title>
+    <meta name="title" content="{{TITLE}} | Medium Feel">
+    <meta name="description" content="{{EXCERPT}}">
+    <meta name="author" content="Tyler Kemp">
+    <link rel="canonical" href="https://www.mediumfeel.com/lab/posts/{{POST_SLUG}}.html">
+
+    <!-- Open Graph / Facebook / LinkedIn -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://www.mediumfeel.com/lab/posts/{{POST_SLUG}}.html">
+    <meta property="og:site_name" content="Medium Feel">
     <meta property="og:title" content="{{TITLE}}">
     <meta property="og:description" content="{{EXCERPT}}">
-    <meta property="og:image" content="https://www.mediumfeel.com/assets/blog/{{POST_SLUG}}/hero-{{POST_SLUG}}.png">
+    <meta property="og:image" content="https://www.mediumfeel.com/assets/social/og-{{POST_SLUG}}-v2.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Medium Feel - {{TITLE}}">
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.mediumfeel.com/lab/posts/{{POST_SLUG}}.html">
-    <meta property="twitter:title" content="{{TITLE}}">
-    <meta property="twitter:description" content="{{EXCERPT}}">
-    <meta property="twitter:image" content="https://www.mediumfeel.com/assets/blog/{{POST_SLUG}}/hero-{{POST_SLUG}}.png">
+    <!-- Article Metadata -->
+    <meta property="article:published_time" content="{{DATE_ISO}}T00:00:00Z">
+    <meta property="article:author" content="Tyler Kemp">
+    <meta property="article:section" content="Brand & Marketing">
+    <!-- {{ARTICLE_TAGS}} — one <meta property="article:tag" content="Tag"> per tag -->
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.mediumfeel.com/lab/posts/{{POST_SLUG}}.html">
+    <meta name="twitter:title" content="{{TITLE}}">
+    <meta name="twitter:description" content="{{EXCERPT}}">
+    <meta name="twitter:image" content="https://www.mediumfeel.com/assets/social/og-{{POST_SLUG}}-v2.png">
+    <meta name="twitter:image:alt" content="Medium Feel - {{TITLE}}">
+
+    <!-- Schema.org Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "{{TITLE}}",
+        "description": "{{EXCERPT}}",
+        "image": "https://www.mediumfeel.com/assets/social/og-{{POST_SLUG}}-v2.png",
+        "author": {
+            "@type": "Person",
+            "name": "Tyler Kemp",
+            "url": "https://www.mediumfeel.com"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Medium Feel",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.mediumfeel.com/assets/logo-playdo.png"
+            }
+        },
+        "datePublished": "{{DATE_ISO}}T00:00:00Z",
+        "dateModified": "{{DATE_ISO}}T00:00:00Z",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://www.mediumfeel.com/lab/posts/{{POST_SLUG}}.html"
+        },
+        "keywords": "{{KEYWORDS}}",
+        "articleSection": "Brand & Marketing",
+        "wordCount": "{{WORD_COUNT}}",
+        "timeRequired": "PT{{READ_TIME}}M"
+    }
+    </script>
+
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" title="Medium Feel RSS Feed" href="https://www.mediumfeel.com/feed.xml">
 
     <link rel="stylesheet" href="../../styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <!-- Shared blog design system -->
     <link rel="stylesheet" href="../blog-design-system.css">
@@ -53,7 +116,23 @@
             );
     }
 
-    /* Add post-specific styles below (hero animations, custom widths, etc.) */
+    /* Floating hero image */
+    .post-hero img {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%   { transform: translateY(0); }
+        50%  { transform: translateY(-12px); }
+        100% { transform: translateY(0); }
+    }
+
+    /* Add post-specific overrides below.
+       Must use body.blog-post prefix to match design system specificity.
+       Example: No float animation? body.blog-post .post-hero img { animation: none; }
+       Hero sizing is handled by the design system — all aspect ratios produce
+       equal visual weight. Do NOT add hero size overrides here.
+       NEVER change blog-design-system.css for one post's needs. */
     </style>
 </head>
 <body class="blog-post">
@@ -79,119 +158,50 @@
 
     <article class="post">
 
-        <!-- HEADER: Gradient zone with hero, title, meta -->
+        <!-- HEADER: Gradient zone — hero image only -->
         <header class="post-header">
             <div class="post-header-inner">
-                <!-- Hero image -->
                 <figure class="post-hero">
-                    <img src="../../assets/blog/{{POST_SLUG}}/hero-{{POST_SLUG}}.png"
-                         alt="{{HERO_ALT}}">
+                    <picture>
+                        <source srcset="../../assets/blog/{{POST_SLUG}}/hero-{{POST_SLUG}}.webp" type="image/webp">
+                        <img src="../../assets/blog/{{POST_SLUG}}/hero-{{POST_SLUG}}.png"
+                             alt="{{HERO_ALT}}">
+                    </picture>
                 </figure>
-
-                <h1>{{TITLE}}</h1>
-                <!-- Optional subtitle/byline — delete if not needed -->
-                <!-- <p class="post-subtitle">{{SUBTITLE}}</p> -->
-
-                <div class="post-meta">
-                    <span class="status-pill status-{{STATUS_CLASS}}">{{STATUS}}</span>
-                    <span class="separator">&middot;</span>
-                    <time datetime="{{DATE_ISO}}">{{DATE_FORMATTED}}</time>
-                    <span class="separator">&middot;</span>
-                    <span class="read-time">{{READ_TIME}} min read</span>
-                    <span class="separator">&middot;</span>
-                    <a href="https://twitter.com/intent/tweet?url=https://www.mediumfeel.com/lab/posts/{{POST_SLUG}}.html&text={{TITLE_ENCODED}}" target="_blank" rel="noopener" class="share-btn" title="Share on Twitter">&#x1d54f;</a>
-                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.mediumfeel.com/lab/posts/{{POST_SLUG}}.html" target="_blank" rel="noopener" class="share-btn" title="Share on LinkedIn">in</a>
-                    <a href="mailto:?subject={{TITLE_ENCODED}}&body=Check%20out%20this%20post%3A%20https://www.mediumfeel.com/lab/posts/{{POST_SLUG}}.html" class="share-btn" title="Share via Email">&#x2709;</a>
-                </div>
-
-                <p class="post-excerpt">{{EXCERPT}}</p>
             </div>
         </header>
 
+        <!-- POST INTRO: Title, excerpt, metadata on white -->
+        <div class="post-intro">
+            <h1 class="post-title-gradient">{{TITLE}}</h1>
+            <p class="post-excerpt">{{EXCERPT}}</p>
+            <div class="post-meta-line" data-post-slug="{{POST_SLUG}}">
+                <span class="status-pill status-{{STATUS_CLASS}}" data-post-field="status">{{STATUS}}</span>
+                <span class="separator">&middot;</span>
+                <time datetime="{{DATE_ISO}}" data-post-field="date">{{DATE_FORMATTED}}</time>
+                <span class="separator">&middot;</span>
+                <span class="read-time" data-post-field="readTime" data-post-auto="true">{{READ_TIME}} min read</span>
+                <span class="share-links">
+                    <a href="https://twitter.com/intent/tweet?url=https://www.mediumfeel.com/lab/posts/{{POST_SLUG}}.html&text={{TITLE_ENCODED}}" target="_blank" rel="noopener" title="Share on Twitter">&#x1d54f;</a>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.mediumfeel.com/lab/posts/{{POST_SLUG}}.html" target="_blank" rel="noopener" title="Share on LinkedIn">in</a>
+                    <a href="mailto:?subject={{TITLE_ENCODED}}&body=Check%20out%20this%20post%3A%20https://www.mediumfeel.com/lab/posts/{{POST_SLUG}}.html" title="Share via Email">&#x2709;</a>
+                </span>
+            </div>
+        </div>
+
         <!-- CONTENT -->
         <div class="post-content">
-
-            <!-- SECTION: Example section with label -->
-            <!--
-            <section class="post-section">
-                <div class="section-label">Section Name</div>
-                <div class="section-content">
-                    <p>Body text here.</p>
-                </div>
-            </section>
-            -->
-
-            <!-- SECTION: Example section with subsections -->
-            <!--
-            <section class="post-section">
-                <div class="section-label">The Retro</div>
-                <div class="section-content">
-                    <div class="subsection-label">Keep</div>
-                    <ul>
-                        <li><strong>Bold lead-in.</strong> Explanation text here.</li>
-                    </ul>
-
-                    <div class="subsection-label">Drop</div>
-                    <ul>
-                        <li>Plain list item.</li>
-                    </ul>
-                </div>
-            </section>
-            -->
-
-            <!-- FIGURE -->
-            <!--
-            <figure class="post-figure">
-                <img src="../../assets/blog/{{POST_SLUG}}/image-name.png"
-                     alt="Description">
-                <figcaption>Optional caption text.</figcaption>
-            </figure>
-            -->
-
-            <!-- BLOCKQUOTE -->
-            <!--
-            <blockquote>
-                <p>Quoted text here.</p>
-                <cite>Author Name</cite>
-            </blockquote>
-            -->
-
-            <!-- PULL QUOTE -->
-            <!--
-            <blockquote class="pull-quote">
-                <p>Your own words, pulled out for visual emphasis.</p>
-            </blockquote>
-            -->
-
-            <!-- CALLOUT -->
-            <!--
-            <div class="callout">
-                <div class="callout-label">Note</div>
-                <p>Callout content here.</p>
-            </div>
-            -->
-
-            <!-- HIGHLIGHT -->
-            <!-- <p>Regular text <mark>highlighted phrase</mark> more text.</p> -->
-
-            <!-- COLLAPSIBLE -->
-            <!--
-            <details class="backstory">
-                <summary>Backstory</summary>
-                <p>Hidden content here.</p>
-            </details>
-            -->
 
             {{CONTENT_SECTIONS}}
 
             <!-- Post Navigation -->
             <nav class="post-nav">
-                <!-- Previous post (leave empty <span> if no previous) -->
+                <!-- Previous post (use empty <span></span> if no previous) -->
                 <a href="{{PREV_SLUG}}.html" class="post-nav-link prev">
                     <span class="post-nav-direction">&larr; Previous</span>
                     <span class="post-nav-title">{{PREV_TITLE}}</span>
                 </a>
-                <!-- Next post (leave empty <span> if no next) -->
+                <!-- Next post (use empty <span></span> if no next) -->
                 <a href="{{NEXT_SLUG}}.html" class="post-nav-link next">
                     <span class="post-nav-direction">Next &rarr;</span>
                     <span class="post-nav-title">{{NEXT_TITLE}}</span>
@@ -200,15 +210,24 @@
 
         </div>
 
-        <!-- FOOTER -->
-        <footer class="post-footer">
-            <p>&copy; 2026 Medium Feel &middot; Portland, Maine</p>
-        </footer>
-
     </article>
 
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-nav">
+                <a href="../index.html">Lab</a>
+                <span class="footer-separator">&middot;</span>
+                <a href="../../about.html">About</a>
+                <span class="footer-separator">&middot;</span>
+                <a href="mailto:tyler@mediumfeel.com">Contact</a>
+            </p>
+            <span class="footer-separator footer-divider">&middot;</span>
+            <p class="footer-legal">&copy; 2026 Medium Feel <span class="footer-separator">&middot;</span> Portland, Maine</p>
+        </div>
+    </footer>
+
     <script>
-        // Mobile menu toggle
+        // Mobile Menu
         const menuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');
 
@@ -229,5 +248,7 @@
             }
         });
     </script>
+    <script src="../../assets/js/post-registry.js"></script>
+    <script src="../../assets/js/post-sync.js"></script>
 </body>
 </html>
