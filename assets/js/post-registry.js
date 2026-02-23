@@ -25,8 +25,8 @@ window.POST_REGISTRY = {
     readTime: 4
   },
   'building-your-own-thinking-tools': {
-    title: 'What If You Could Build Your Own Thinking Tools?',
-    excerpt: 'After 18 months of AI hype, the dust is starting to settle. The future isn\'t "AI does everything"—it\'s tools that think with you, not for you. What if you could build your own?',
+    title: 'I\'ve Spent My Career on Other People\'s Projects. Here\'s What Happened When I Started Building My Own.',
+    excerpt: 'The entry point wasn\'t technical. It was the work I already do.',
     status: 'exploring',
     statusLabel: 'Exploring',
     dateISO: '2026-02-10',
@@ -34,8 +34,8 @@ window.POST_REGISTRY = {
     readTime: 6  // fallback; auto-calculated on post pages
   },
   'shipping-the-lab': {
-    title: 'Shipping the Lab',
-    excerpt: 'The first post is always the hardest. Here\'s why I\'m starting with a lab, what I hope to explore, and how this whole thing came together.',
+    title: 'Shipping the Lab: A Build Log',
+    excerpt: 'How I built and shipped the Medium Feel website in a half-day using Claude Code, with no coding experience. This is the first documented experiment.',
     status: 'shipped',
     statusLabel: 'Shipped',
     dateISO: '2026-01-31',
