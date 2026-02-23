@@ -351,7 +351,7 @@ Step 3 — Composite hero with drop shadow and optimize:
 magick /tmp/og-bg.png \
   \( assets/blog/{{POST_SLUG}}/hero-{{POST_SLUG}}.png \
      -resize x420 \
-     \( +clone -background black -shadow 60x15+0+8 \) \
+     \( +clone -background black -shadow 25x8+0+4 \) \
      +swap -background none -layers merge +repage \
   \) \
   -gravity center -composite \
