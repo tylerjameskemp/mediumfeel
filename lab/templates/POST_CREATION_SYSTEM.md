@@ -346,7 +346,7 @@ magick /tmp/og-base.png \
   /tmp/og-bg.png
 ```
 
-Step 3 — Composite hero with drop shadow:
+Step 3 — Composite hero with drop shadow and optimize:
 ```bash
 magick /tmp/og-bg.png \
   \( assets/blog/{{POST_SLUG}}/hero-{{POST_SLUG}}.png \
@@ -355,10 +355,15 @@ magick /tmp/og-bg.png \
      +swap -background none -layers merge +repage \
   \) \
   -gravity center -composite \
+  -background none -flatten \
+  -type TrueColor -depth 8 -strip \
+  -define png:compression-level=9 \
+  -define png:compression-filter=5 \
+  -define png:compression-strategy=1 \
   assets/social/og-{{POST_SLUG}}-v2.png
 ```
 
-This produces: green radial gradient (bright center offset left, dark edges) with a subtle 32px graph-paper grid overlay, hero image centered at 420px height with drop shadow. Matches all existing OG cards.
+**Target: 300-500KB PNG.** The `-flatten` removes alpha (critical for file size), and the compression flags match existing OG images. All OG images must be 8-bit TrueColor PNG, 1200x630, in this size range. LinkedIn will blur images over ~500KB.
 
 ### Shared Images
 Reference existing: `../../assets/blog/image-name.png`
