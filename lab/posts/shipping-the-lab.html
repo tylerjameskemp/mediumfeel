@@ -85,6 +85,9 @@
     <!-- RSS Feed -->
     <link rel="alternate" type="application/rss+xml" title="Medium Feel RSS Feed" href="https://www.mediumfeel.com/feed.xml">
 
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32.png">
+    <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+
     <link rel="stylesheet" href="../../styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -222,7 +225,10 @@
 
             <!-- FIGURE -->
             <figure class="post-figure">
-                <img src="../../assets/blog/winter-woods-walk.png" alt="Walking in the winter woods">
+                <picture>
+                    <source srcset="../../assets/blog/winter-woods-walk.webp" type="image/webp">
+                    <img src="../../assets/blog/winter-woods-walk.png" alt="Walking in the winter woods">
+                </picture>
                 <figcaption>Where a lot of the thinking happens</figcaption>
             </figure>
 
