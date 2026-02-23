@@ -319,6 +319,26 @@ Reference: `../../assets/blog/{{POST_SLUG}}/descriptive-name.png`
 - **Accent** (`post-figure figure-accent`): max-width 320px — for small secondary/portrait images
 - **Wide** (`post-figure figure-wide`): for panoramic/screenshots
 
+### OG / Social Image (1200x630)
+Every post needs a branded OG image at `assets/social/og-{{POST_SLUG}}-v2.png`.
+
+**Generate with ImageMagick:**
+```bash
+magick -size 1200x630 xc:none \
+  \( -size 1200x630 radial-gradient:"#adff2f-#2d5a3d" \
+     -distort SRT "600,315 1 0 360,315" \) \
+  -composite \
+  \( assets/blog/{{POST_SLUG}}/hero-{{POST_SLUG}}.png \
+     -resize x420 \
+     \( +clone -background black -shadow 60x15+0+8 \) \
+     +swap -background none -layers merge +repage \
+  \) \
+  -gravity center -composite \
+  assets/social/og-{{POST_SLUG}}-v2.png
+```
+
+This produces: green radial gradient (bright center offset left, dark edges) with the hero image centered at 420px height and a subtle drop shadow. Matches all existing OG cards.
+
 ### Shared Images
 Reference existing: `../../assets/blog/image-name.png`
 
