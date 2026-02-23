@@ -322,12 +322,33 @@ Reference: `../../assets/blog/{{POST_SLUG}}/descriptive-name.png`
 ### OG / Social Image (1200x630)
 Every post needs a branded OG image at `assets/social/og-{{POST_SLUG}}-v2.png`.
 
-**Generate with ImageMagick:**
+**Generate with ImageMagick (3 steps):**
+
+Step 1 — Base gradient (offset bright spot at ~30% from left):
 ```bash
 magick -size 1200x630 xc:none \
-  \( -size 1200x630 radial-gradient:"#adff2f-#2d5a3d" \
+  \( -size 1200x630 radial-gradient:"#a5f92e-#2d5a3d" \
      -distort SRT "600,315 1 0 360,315" \) \
-  -composite \
+  -composite /tmp/og-base.png
+```
+
+Step 2 — Add 32px grid overlay (subtle bright lines, 5% brighter):
+```bash
+magick -size 1200x630 xc:black \
+  -fill white \
+  -draw "$(for x in $(seq 0 32 1200); do echo "line $x,0 $x,630 "; done)" \
+  -draw "$(for y in $(seq 0 32 630); do echo "line 0,$y 1200,$y "; done)" \
+  -alpha off /tmp/og-grid.png
+
+magick /tmp/og-base.png \
+  \( +clone -evaluate Add 5% \) \
+  /tmp/og-grid.png -composite \
+  /tmp/og-bg.png
+```
+
+Step 3 — Composite hero with drop shadow:
+```bash
+magick /tmp/og-bg.png \
   \( assets/blog/{{POST_SLUG}}/hero-{{POST_SLUG}}.png \
      -resize x420 \
      \( +clone -background black -shadow 60x15+0+8 \) \
@@ -337,7 +358,7 @@ magick -size 1200x630 xc:none \
   assets/social/og-{{POST_SLUG}}-v2.png
 ```
 
-This produces: green radial gradient (bright center offset left, dark edges) with the hero image centered at 420px height and a subtle drop shadow. Matches all existing OG cards.
+This produces: green radial gradient (bright center offset left, dark edges) with a subtle 32px graph-paper grid overlay, hero image centered at 420px height with drop shadow. Matches all existing OG cards.
 
 ### Shared Images
 Reference existing: `../../assets/blog/image-name.png`
