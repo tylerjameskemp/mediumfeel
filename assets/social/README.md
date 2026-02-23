@@ -44,6 +44,6 @@ Before publishing, test your social cards:
 When you create a new social card, update the post's meta tags:
 
 ```html
-<meta property="og:image" content="https://www.mediumfeel.com/assets/social/your-post-slug.png">
-<meta name="twitter:image" content="https://www.mediumfeel.com/assets/social/your-post-slug.png">
+<meta property="og:image" content="https://mediumfeel.com/assets/social/your-post-slug.png">
+<meta name="twitter:image" content="https://mediumfeel.com/assets/social/your-post-slug.png">
 ```

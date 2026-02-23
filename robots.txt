@@ -3,4 +3,4 @@ Allow: /
 Disallow: /lab/posts/_template.html
 Disallow: /lab/templates/
 
-Sitemap: https://www.mediumfeel.com/sitemap.xml
+Sitemap: https://mediumfeel.com/sitemap.xml

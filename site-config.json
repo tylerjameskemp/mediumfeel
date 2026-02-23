@@ -1,18 +1,18 @@
 {
   "site": {
     "name": "Medium Feel",
-    "url": "https://www.mediumfeel.com",
+    "url": "https://mediumfeel.com",
     "description": "A lab for brand, marketing, and AI",
     "tagline": "Exploring how communication is changing as AI reshapes how brands think, make, and show up."
   },
   "author": {
     "name": "Tyler Kemp",
-    "url": "https://www.mediumfeel.com",
+    "url": "https://mediumfeel.com",
     "location": "Portland, Maine"
   },
   "defaults": {
     "articleSection": "Brand & Marketing",
-    "defaultImage": "https://www.mediumfeel.com/assets/logo-playdo.png",
+    "defaultImage": "https://mediumfeel.com/assets/logo-playdo.png",
     "readingSpeed": 200,
     "postPriority": 0.7,
     "postChangeFreq": "monthly"

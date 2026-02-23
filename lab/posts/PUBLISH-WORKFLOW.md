@@ -242,7 +242,7 @@ Just paste that too. Claude Code will insert it directly.
 > [Creates file, updates all pages, commits, pushes]
 >
 > ✅ Published! Your post is live at:
-> https://www.mediumfeel.com/lab/posts/ai-brand-voice-first-draft.html
+> https://mediumfeel.com/lab/posts/ai-brand-voice-first-draft.html
 >
 > Want to test the social preview?
 > - LinkedIn: https://www.linkedin.com/post-inspector/

@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Medium Feel</title>
-    <link>https://www.mediumfeel.com/</link>
+    <link>https://mediumfeel.com/</link>
     <description>A lab for brand, marketing, and AI. Exploring how communication is changing as AI reshapes how brands think, make, and show up.</description>
     <language>en-us</language>
     <lastBuildDate>Mon, 23 Feb 2026 00:00:00 GMT</lastBuildDate>
-    <atom:link href="https://www.mediumfeel.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://mediumfeel.com/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
-      <url>https://www.mediumfeel.com/assets/logo-playdo.png</url>
+      <url>https://mediumfeel.com/assets/logo-playdo.png</url>
       <title>Medium Feel</title>
-      <link>https://www.mediumfeel.com/</link>
+      <link>https://mediumfeel.com/</link>
     </image>
 
     <!-- POSTS - Newest first -->
 
     <item>
       <title>What I Didn't Build Told Me More Than What I Did</title>
-      <link>https://www.mediumfeel.com/lab/posts/the-chopping-block.html</link>
-      <guid isPermaLink="true">https://www.mediumfeel.com/lab/posts/the-chopping-block.html</guid>
+      <link>https://mediumfeel.com/lab/posts/the-chopping-block.html</link>
+      <guid isPermaLink="true">https://mediumfeel.com/lab/posts/the-chopping-block.html</guid>
       <description>Everything I parked pointed at the same problem. What you defer tells you more about the real problem than what you build.</description>
       <author>tyler@mediumfeel.com (Tyler Kemp)</author>
       <pubDate>Mon, 23 Feb 2026 00:00:00 GMT</pubDate>
@@ -29,8 +29,8 @@
 
     <item>
       <title>The Best Thing Claude Code Taught Me Was Something I Already Knew</title>
-      <link>https://www.mediumfeel.com/lab/posts/the-best-thing-claude-code-taught-me.html</link>
-      <guid isPermaLink="true">https://www.mediumfeel.com/lab/posts/the-best-thing-claude-code-taught-me.html</guid>
+      <link>https://mediumfeel.com/lab/posts/the-best-thing-claude-code-taught-me.html</link>
+      <guid isPermaLink="true">https://mediumfeel.com/lab/posts/the-best-thing-claude-code-taught-me.html</guid>
       <description>The most valuable thing I built wasn't code. It was a list of everything I didn't build.</description>
       <author>tyler@mediumfeel.com (Tyler Kemp)</author>
       <pubDate>Mon, 16 Feb 2026 00:00:00 GMT</pubDate>
@@ -41,8 +41,8 @@
 
     <item>
       <title>I've Spent My Career on Other People's Projects. Here's What Happened When I Started Building My Own.</title>
-      <link>https://www.mediumfeel.com/lab/posts/building-your-own-thinking-tools.html</link>
-      <guid isPermaLink="true">https://www.mediumfeel.com/lab/posts/building-your-own-thinking-tools.html</guid>
+      <link>https://mediumfeel.com/lab/posts/building-your-own-thinking-tools.html</link>
+      <guid isPermaLink="true">https://mediumfeel.com/lab/posts/building-your-own-thinking-tools.html</guid>
       <description>The entry point wasn't technical. It was the work I already do.</description>
       <author>tyler@mediumfeel.com (Tyler Kemp)</author>
       <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
@@ -53,8 +53,8 @@
 
     <item>
       <title>Shipping the Lab: A Build Log</title>
-      <link>https://www.mediumfeel.com/lab/posts/shipping-the-lab.html</link>
-      <guid isPermaLink="true">https://www.mediumfeel.com/lab/posts/shipping-the-lab.html</guid>
+      <link>https://mediumfeel.com/lab/posts/shipping-the-lab.html</link>
+      <guid isPermaLink="true">https://mediumfeel.com/lab/posts/shipping-the-lab.html</guid>
       <description>How I built and shipped the Medium Feel website in a half-day using Claude Code, with no coding experience. A build log documenting the first experiment.</description>
       <author>tyler@mediumfeel.com (Tyler Kemp)</author>
       <pubDate>Sat, 31 Jan 2026 00:00:00 GMT</pubDate>

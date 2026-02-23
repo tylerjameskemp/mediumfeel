@@ -49,7 +49,7 @@
 5. **Optional: Create social card**
    - See `/assets/social/README.md` for instructions
    - Size: 1200x630px
-   - Or use: `https://www.mediumfeel.com/assets/logo-playdo.png`
+   - Or use: `https://mediumfeel.com/assets/logo-playdo.png`
 
 6. **Add to site**
    - Update `/lab/index.html` - add post card to archive grid (newest first)
