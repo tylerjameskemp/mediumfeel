@@ -136,7 +136,7 @@ def main():
     bg = place_hero(bg, str(hero_path))
     bg.convert('RGB').save(str(out_path), 'PNG')
     print(f"Done! Update your post's OG tags to point to:")
-    print(f"  https://www.mediumfeel.com/{out_path}")
+    print(f"  https://mediumfeel.com/{out_path}")
 
 
 if __name__ == "__main__":
