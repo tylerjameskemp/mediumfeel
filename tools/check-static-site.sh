@@ -63,4 +63,8 @@ done
 
 grep -q 'Sitemap: https://mediumfeel.com/sitemap.xml' robots.txt || fail "robots.txt must reference the apex sitemap URL"
 
+python3 tools/check-site-integrity.py
+python3 tools/sync-post-metadata.py --check
+python3 -m unittest discover -s tools -p 'test_*.py'
+
 echo "Static site checks passed."

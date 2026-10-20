@@ -1,7 +1,31 @@
+(function() {
+    var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var timers = new Set();
+    function schedule(callback, delay) {
+        if (motion.matches) return;
+        var timer = setTimeout(function() {
+            timers.delete(timer);
+            if (!motion.matches) callback();
+        }, delay);
+        timers.add(timer);
+        return timer;
+    }
+    function showStaticText() {
+        if (!motion.matches) return;
+        timers.forEach(clearTimeout);
+        timers.clear();
+        document.querySelectorAll('.typewriter-enhanced').forEach(function(heading) {
+            heading.classList.remove('typewriter-enhanced');
+        });
+        var navText = document.getElementById('nav-typewriter');
+        if (navText) navText.textContent = 'Medium Feel';
+    }
+    if (motion.addEventListener) motion.addEventListener('change', showStaticText);
+    else motion.addListener(showStaticText);
+
 // ===== Nav Typewriter Animation =====
 (function() {
     const navTypewriter = document.getElementById('nav-typewriter');
-    const navCursor = document.querySelector('.nav-cursor');
 
     if (!navTypewriter) return;
 
@@ -48,9 +72,9 @@
             if (i < text.length) {
                 span.textContent += text.charAt(i);
                 i++;
-                setTimeout(typeChar, 80);
+                schedule(typeChar, 80);
             } else if (callback) {
-                setTimeout(callback, 800);
+                schedule(callback, 800);
             }
         }
         typeChar();
@@ -70,10 +94,10 @@
             if (i > 0) {
                 span.textContent = text.substring(0, i - 1);
                 i--;
-                setTimeout(eraseChar, 50);
+                schedule(eraseChar, 50);
             } else {
                 navTypewriter.removeChild(span);
-                if (callback) setTimeout(callback, 200);
+                if (callback) schedule(callback, 200);
             }
         }
         eraseChar();
@@ -87,7 +111,7 @@
                 const span = navTypewriter.querySelector('.nav-iteration');
                 if (span) {
                     span.classList.add('struck');
-                    setTimeout(() => {
+                    schedule(() => {
                         eraseNavText(() => {
                             navIterationIndex = (navIterationIndex + 1) % navIterations.length;
                             navTypewriterLoop();
@@ -95,7 +119,7 @@
                     }, 600);
                 }
             } else {
-                setTimeout(() => {
+                schedule(() => {
                     eraseNavText(() => {
                         navIterationIndex = (navIterationIndex + 1) % navIterations.length;
                         navTypewriterLoop();
@@ -105,8 +129,11 @@
         });
     }
 
-    // Start nav typewriter after a brief delay
-    setTimeout(navTypewriterLoop, 500);
+    // Keep the static wordmark visible until the animation starts.
+    schedule(function() {
+        navTypewriter.textContent = '';
+        navTypewriterLoop();
+    }, 500);
 })();
 
 // ===== Hero Typewriter =====
@@ -130,7 +157,7 @@
         afterEl.textContent   = after;
     }
 
-    // Script — plays once, cursor blinks at end
+    // Script : plays once, cursor blinks at end
     var script = [
         // "An Experiment in brand"
         { action: 'type', text: 'An Experiment in brand' },
@@ -202,7 +229,7 @@
                 var delay = TYPE_SPEED + Math.floor(Math.random() * 40);
                 if (text.charAt(i - 1) === ' ') delay += 25;
                 if (text.charAt(i - 1) === ',') delay += 80;
-                setTimeout(next, delay);
+                schedule(next, delay);
             } else {
                 cb();
             }
@@ -217,7 +244,7 @@
                 before = before.slice(0, -1);
                 render();
                 remaining--;
-                setTimeout(next, ERASE_SPEED);
+                schedule(next, ERASE_SPEED);
             } else {
                 cb();
             }
@@ -233,7 +260,7 @@
                 before = before.slice(0, -1);
                 render();
                 remaining--;
-                setTimeout(next, MOVE_SPEED);
+                schedule(next, MOVE_SPEED);
             } else {
                 cb();
             }
@@ -250,7 +277,7 @@
                 before += after.charAt(0);
                 after = after.slice(1);
                 render();
-                setTimeout(next, MOVE_SPEED);
+                schedule(next, MOVE_SPEED);
             } else {
                 cb();
             }
@@ -265,7 +292,7 @@
                 before = before.slice(0, -1);
                 render();
                 remaining--;
-                setTimeout(next, MOVE_SPEED);
+                schedule(next, MOVE_SPEED);
             } else {
                 cb();
             }
@@ -278,14 +305,15 @@
         var advance = function() { run(steps, i + 1, done); };
         if      (s.action === 'type')       typeText(s.text, advance);
         else if (s.action === 'erase')      eraseChars(s.count, advance);
-        else if (s.action === 'pause')      setTimeout(advance, s.ms);
+        else if (s.action === 'pause')      schedule(advance, s.ms);
         else if (s.action === 'moveLeft')   moveLeft(s.count, advance);
         else if (s.action === 'moveEnd')    moveEnd(advance);
         else if (s.action === 'selectLeft') selectLeft(s.count, advance);
     }
 
     // Start after a short delay
-    setTimeout(function() {
+    schedule(function() {
+        wrapper.parentElement.classList.add('typewriter-enhanced');
         run(script, 0);
     }, 800);
 })();
@@ -297,7 +325,7 @@
     var afterEl  = document.getElementById('about-tw-after');
     if (!wrapper || !beforeEl || !afterEl) return;
 
-    // Respect reduced motion — show final line and stop
+    // Respect reduced motion : show final line and stop
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         beforeEl.textContent = "Don't be a stranger.";
         return;
@@ -313,13 +341,13 @@
     }
 
     // Script actions:
-    //   type      — type text at cursor position
-    //   erase     — backspace `count` chars left of cursor
-    //   pause     — wait ms
-    //   moveLeft  — cursor travels left `count` chars
-    //   moveEnd   — cursor travels to end of text
-    //   highlight — Cmd-A select-all visual
-    //   clearAll  — instant delete + remove highlight
+    //   type      : type text at cursor position
+    //   erase     : backspace `count` chars left of cursor
+    //   pause     : wait ms
+    //   moveLeft  : cursor travels left `count` chars
+    //   moveEnd   : cursor travels to end of text
+    //   highlight : Cmd-A select-all visual
+    //   clearAll  : instant delete + remove highlight
     var script = [
         { action: 'type',  text: "Don't be a stranger." },
         { action: 'pause', ms: 2500 },
@@ -379,7 +407,7 @@
                 var delay = TYPE_SPEED + Math.floor(Math.random() * 45);
                 if (text.charAt(i - 1) === ' ') delay += 30;
                 if (text.charAt(i - 1) === '?') delay += 120;
-                setTimeout(next, delay);
+                schedule(next, delay);
             } else {
                 cb();
             }
@@ -393,7 +421,7 @@
                 before = before.slice(0, -1);
                 render();
                 remaining--;
-                setTimeout(next, ERASE_SPEED);
+                schedule(next, ERASE_SPEED);
             } else {
                 cb();
             }
@@ -408,7 +436,7 @@
                 before = before.slice(0, -1);
                 render();
                 remaining--;
-                setTimeout(next, MOVE_SPEED);
+                schedule(next, MOVE_SPEED);
             } else {
                 cb();
             }
@@ -421,7 +449,7 @@
                 before += after.charAt(0);
                 after = after.slice(1);
                 render();
-                setTimeout(next, MOVE_SPEED);
+                schedule(next, MOVE_SPEED);
             } else {
                 cb();
             }
@@ -434,7 +462,7 @@
         var advance = function() { run(steps, i + 1, done); };
         if      (s.action === 'type')      typeText(s.text, advance);
         else if (s.action === 'erase')     eraseChars(s.count, advance);
-        else if (s.action === 'pause')     setTimeout(advance, s.ms);
+        else if (s.action === 'pause')     schedule(advance, s.ms);
         else if (s.action === 'moveLeft')  moveLeft(s.count, advance);
         else if (s.action === 'moveEnd')   moveEnd(advance);
         else if (s.action === 'highlight') { wrapper.classList.add('highlighted'); advance(); }
@@ -447,7 +475,9 @@
 
     function startLoop() {
         if (started) return;
+        if (motion.matches) return;
         started = true;
+        wrapper.parentElement.classList.add('typewriter-enhanced');
         (function loop() {
             run(script, 0, function() { loop(); });
         })();
@@ -461,6 +491,8 @@
             }
         }, { threshold: 0.3 }).observe(section);
     } else {
-        setTimeout(startLoop, 1000);
+        schedule(startLoop, 1000);
     }
+})();
+
 })();

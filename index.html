@@ -85,23 +85,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Caveat:wght@500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body class="dark-hero">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main navigation">
         <div class="nav-container">
-            <a href="/" class="nav-wordmark">
-                <span id="nav-typewriter"></span>
-                <span class="nav-cursor">|</span>
+            <a href="/" class="nav-wordmark" aria-label="Medium Feel home">
+                <span id="nav-typewriter" aria-hidden="true">Medium Feel</span>
+                <span class="nav-cursor" aria-hidden="true">|</span>
             </a>
-            <button class="mobile-menu-btn" aria-label="Toggle menu">
+            <button id="navToggle" class="mobile-menu-btn" type="button" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false">
                 <span></span><span></span><span></span>
             </button>
-            <ul class="nav-links">
+            <ul id="navLinks" class="nav-links">
                 <li><a href="/lab/">Lab</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="mailto:tyler@mediumfeel.com">Contact</a></li>
             </ul>
         </div>
     </nav>
+
+    <main id="main-content" tabindex="-1">
 
     <!-- Section 1: Hero — Blue gradient + floating objects + text -->
     <section class="hero-gradient">
@@ -150,10 +153,11 @@
         <div class="hero-text-block">
             <picture class="hero-logo">
                 <source srcset="assets/hero-logo-pool.webp" type="image/webp">
-                <img src="assets/hero-logo-pool.png" alt="Medium Feel">
+                <img src="assets/hero-logo-pool.png" alt="Medium Feel" loading="eager" fetchpriority="high">
             </picture>
             <h1 class="gradient-title">
-                <span id="hero-typewriter"><span id="hero-tw-before"></span><span class="hero-cursor">|</span><span id="hero-tw-selected"></span><span id="hero-tw-after"></span></span>
+                <span class="typewriter-static">A lab for brand, marketing, and the questions that sit between them.</span>
+                <span id="hero-typewriter" class="typewriter-animated" aria-hidden="true"><span id="hero-tw-before"></span><span class="hero-cursor" aria-hidden="true">|</span><span id="hero-tw-selected"></span><span id="hero-tw-after"></span></span>
             </h1>
         </div>
     </section>
@@ -168,14 +172,14 @@
                     <a href="lab/posts/the-chopping-block.html" class="lab-card-image">
                         <picture>
                             <source srcset="assets/blog/the-chopping-block/hero-the-chopping-block.webp" type="image/webp">
-                            <img src="assets/blog/the-chopping-block/hero-the-chopping-block.png" alt="A wooden printer's tray with green tools sorted into compartments — ideas organized but parked">
+                            <img src="assets/blog/the-chopping-block/hero-the-chopping-block.png" alt="A wooden printer's tray with green tools sorted into compartments, ideas organized but parked" loading="lazy" decoding="async">
                         </picture>
                     </a>
                     <div class="lab-card-body">
                         <h3><a href="lab/posts/the-chopping-block.html">What I Didn&rsquo;t Build Told Me More Than What I Did</a></h3>
                         <div data-post-slug="the-chopping-block">
                             <span class="status-pill status-building" data-post-field="status">Building</span>
-                            <p class="lab-card-excerpt">Everything I parked pointed at the same problem. <span class="lab-card-meta"><time datetime="2026-02-23" data-post-field="date">Feb 23, 2026</time> <span class="sep">&middot;</span> <span class="read-time" data-post-field="readTime">3 min</span></span></p>
+                            <p class="lab-card-excerpt">Everything I parked pointed at the same problem. <span class="lab-card-meta"><time datetime="2026-02-23" data-post-field="date">Feb 23, 2026</time> <span class="sep">&middot;</span> <span class="read-time" data-post-field="readTime">3 min read</span></span></p>
                         </div>
                     </div>
                 </article>
@@ -184,14 +188,14 @@
                     <a href="lab/posts/the-best-thing-claude-code-taught-me.html" class="lab-card-image">
                         <picture>
                             <source srcset="assets/blog/the-best-thing-claude-code-taught-me/hero-claude-code-taught-me.webp" type="image/webp">
-                            <img src="assets/blog/the-best-thing-claude-code-taught-me/hero-claude-code-taught-me.png" alt="The Best Thing Claude Code Taught Me — hero illustration">
+                            <img src="assets/blog/the-best-thing-claude-code-taught-me/hero-claude-code-taught-me.png" alt="The Best Thing Claude Code Taught Me, hero illustration" loading="lazy" decoding="async">
                         </picture>
                     </a>
                     <div class="lab-card-body">
                         <h3><a href="lab/posts/the-best-thing-claude-code-taught-me.html">The Best Thing Claude Code Taught Me Was Something I Already Knew</a></h3>
                         <div data-post-slug="the-best-thing-claude-code-taught-me">
                             <span class="status-pill status-building" data-post-field="status">Building</span>
-                            <p class="lab-card-excerpt">The most valuable thing I built wasn&rsquo;t code. It was a list of everything I didn&rsquo;t build. <span class="lab-card-meta"><time datetime="2026-02-16" data-post-field="date">Feb 16, 2026</time> <span class="sep">&middot;</span> <span class="read-time" data-post-field="readTime">4 min</span></span></p>
+                            <p class="lab-card-excerpt">The most valuable thing I built wasn&rsquo;t code. It was a list of everything I didn&rsquo;t build. <span class="lab-card-meta"><time datetime="2026-02-16" data-post-field="date">Feb 16, 2026</time> <span class="sep">&middot;</span> <span class="read-time" data-post-field="readTime">5 min read</span></span></p>
                         </div>
                     </div>
                 </article>
@@ -200,14 +204,14 @@
                     <a href="lab/posts/building-your-own-thinking-tools.html" class="lab-card-image">
                         <picture>
                             <source srcset="assets/blog/building-your-own-thinking-tools/hero-thinking-tools.webp" type="image/webp">
-                            <img src="assets/blog/building-your-own-thinking-tools/hero-thinking-tools.png" alt="Building Your Own Thinking Tools — hero illustration">
+                            <img src="assets/blog/building-your-own-thinking-tools/hero-thinking-tools.png" alt="Building Your Own Thinking Tools, hero illustration" loading="lazy" decoding="async">
                         </picture>
                     </a>
                     <div class="lab-card-body">
                         <h3><a href="lab/posts/building-your-own-thinking-tools.html">I&rsquo;ve Spent My Career on Other People&rsquo;s Projects. Here&rsquo;s What Happened When I Started Building My Own.</a></h3>
                         <div data-post-slug="building-your-own-thinking-tools">
                             <span class="status-pill status-exploring" data-post-field="status">Exploring</span>
-                            <p class="lab-card-excerpt">The entry point wasn&rsquo;t technical. It was the work I already do. <span class="lab-card-meta"><time datetime="2026-02-10" data-post-field="date">Feb 10, 2026</time> <span class="sep">&middot;</span> <span class="read-time" data-post-field="readTime">6 min</span></span></p>
+                            <p class="lab-card-excerpt">The entry point wasn&rsquo;t technical. It was the work I already do. <span class="lab-card-meta"><time datetime="2026-02-10" data-post-field="date">Feb 10, 2026</time> <span class="sep">&middot;</span> <span class="read-time" data-post-field="readTime">4 min read</span></span></p>
                         </div>
                     </div>
                 </article>
@@ -227,7 +231,7 @@
                 <img src="assets/about-face.png" alt="" loading="lazy">
             </picture>
         </div>
-        <a href="#" data-contact="email" class="about-floater about-floater-email" title="Email">
+        <a href="mailto:tyler@mediumfeel.com" data-contact="email" class="about-floater about-floater-email" title="Email">
             <picture>
                 <source srcset="assets/email-icon.webp" type="image/webp">
                 <img src="assets/email-icon.png" alt="Email" width="48" height="48">
@@ -241,12 +245,15 @@
         </a>
         <div id="contact" class="about-contact-inner">
             <h2 class="about-title">
-                <span id="about-typewriter"><span id="about-tw-before"></span><span class="about-cursor">|</span><span id="about-tw-after"></span></span>
+                <span class="typewriter-static">Don't be a stranger.</span>
+                <span id="about-typewriter" class="typewriter-animated" aria-hidden="true"><span id="about-tw-before"></span><span class="about-cursor" aria-hidden="true">|</span><span id="about-tw-after"></span></span>
             </h2>
         </div>
     </section>
 
     <!-- Section 5: Footer -->
+    </main>
+
     <footer class="footer">
         <div class="container">
             <p class="footer-nav">
@@ -262,34 +269,6 @@
     </footer>
 
     <script>
-        // Mobile Menu
-        const menuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        menuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            menuBtn.classList.toggle('active');
-        });
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                menuBtn.classList.remove('active');
-            });
-        });
-
-        // Navbar Scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
-        });
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        });
 
         // Randomize floater positions, rotation, and scale on each page load
         (function() {
@@ -540,20 +519,9 @@
     </script>
 
 
-    <!-- Obfuscated email link -->
-    <script>
-    (function() {
-        var btn = document.querySelector('[data-contact="email"]');
-        if (!btn) return;
-        var u = 'tyler', d = 'mediumfeel.com';
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            window.location.href = 'mail' + 'to:' + u + '@' + d;
-        });
-    })();
-    </script>
 
-    <script src="assets/js/typewriter.js"></script>
+    <script src="assets/js/site-ui.js" defer></script>
+    <script src="assets/js/typewriter.js" defer></script>
     <script src="assets/js/post-registry.js"></script>
     <script src="assets/js/post-sync.js"></script>
 </body>

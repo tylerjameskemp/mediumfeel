@@ -15,15 +15,10 @@
    cp _template.html your-post-slug.html
    ```
 
-2. **Calculate read time**
-   - Copy post content to word counter
-   - Formula: `word count ÷ 200 = minutes` (round up)
-   - Or use browser console on the post page:
-   ```javascript
-   const text = document.querySelector('.post-content').innerText;
-   const words = text.split(/\s+/).length;
-   console.log(`${Math.ceil(words / 200)} min read`);
-   ```
+2. **Use publication metadata**
+   - After writing the post and registering its slug, run the helper in step 7.
+   - It counts reader prose at 200 words per minute, rounded up.
+   - It updates the registry, article/listing read times, and JSON-LD together.
 
 3. **Update all placeholders in HTML**
 
@@ -33,12 +28,11 @@
    - `[post-slug]` → URL-friendly slug (e.g., "my-new-post")
    - `[YYYY-MM-DD]` → Publication date (format: 2026-01-28)
    - `[Tag 1]`, `[Tag 2]`, `[Tag 3]` → Article tags
-   - `[word count]` → Total words in post content (use calculator from step 2)
-   - `[X]` → Minutes for read time (in timeRequired: "PT[X]M")
+   - Keep `wordCount` and `timeRequired` keys in JSON-LD. The helper fills their values.
 
    **Content (in `<body>`):**
    - `Month DD, YYYY` → Formatted date display (e.g., "January 28, 2026")
-   - `[X] min read` → Calculated read time (e.g., "7 min read")
+   - Put the read-time span inside a `data-post-slug="your-post-slug"` container and add `data-post-field="readTime"` to the span. The helper fills its text.
    - `POST_TITLE` → Title in header
    - `POST_EXCERPT` → Excerpt/subtitle
    - Status: Choose `status-exploring`, `status-building`, or `status-shipped`
@@ -52,11 +46,18 @@
    - Or use: `https://mediumfeel.com/assets/logo-playdo.png`
 
 6. **Add to site**
+   - Add the post slug and metadata to `/assets/js/post-registry.js`, including an initial numeric `readTime` value. The helper refreshes that value.
    - Update `/lab/index.html` - add post card to archive grid (newest first)
    - Update `/index.html` - update featured post if this is latest
    - Update `/sitemap.xml` - add new URL entry
 
 7. **Test before publishing**
+   ```bash
+   python3 tools/sync-post-metadata.py --write
+   python3 tools/sync-post-metadata.py --check
+   ```
+   Run these commands from the repository root. The default mode is read-only checking; stale metadata fails the site guardrails in CI. Run `--write` again whenever article prose changes.
+
    - [ ] View post locally
    - [ ] Check on mobile (portrait and landscape)
    - [ ] Verify all links work
@@ -170,9 +171,9 @@ Examples:
 - File size under 300KB
 
 **Read time seems off**
-- Double-check word count calculation
-- Don't include code blocks or captions in count
-- Average is 200 words/min for body text
+- Run `python3 tools/sync-post-metadata.py --write` from the repository root.
+- The count includes section headings and reader prose inside `.post-content`. It excludes scripts/styles, navigation, figures/captions, code blocks, hidden content, interactive experiments, and duplicate pull quotes.
+- Use `data-reading-time-exclude` for other decorative content that should not count. Browser animations never affect the estimate.
 
 **Mobile layout broken**
 - Check for unclosed HTML tags

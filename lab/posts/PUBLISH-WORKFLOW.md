@@ -78,9 +78,10 @@ Claude Code will:
 ## What Claude Code Handles Automatically
 
 ### ✅ Word Count & Read Time
-- Counts actual content words (excludes HTML, navigation)
-- Calculates read time: `words ÷ 200 = minutes` (rounded up)
-- Fills in both display ("5 min read") and schema ("PT5M")
+- After creating the article and registry entry, run `python3 tools/sync-post-metadata.py --write` from the repository root.
+- The helper counts reader prose at 200 words per minute, rounded up, then refreshes article/listing text, registry `readTime`, and JSON-LD `wordCount` and `timeRequired` together.
+- It excludes scripts/styles, navigation, figures/captions, code blocks, hidden content, interactive experiments, and duplicate pull quotes. Use `data-reading-time-exclude` for other decorative content.
+- Run `python3 tools/sync-post-metadata.py --check` before publishing. CI fails when this metadata is stale.
 
 ### ✅ All Meta Tags
 - Primary meta (title, description, author)
@@ -300,8 +301,8 @@ After Claude Code pushes to GitHub:
 - Say: "Please add [tag] to the schema and meta tags in [post-slug].html"
 
 **"The read time seems off"**
-- Claude Code calculates from actual content words
-- You can manually override: "Set read time to X minutes"
+- Refresh it with `python3 tools/sync-post-metadata.py --write` after editing prose.
+- Keep the generated value consistent across the registry, listings, and article schema.
 
 ---
 

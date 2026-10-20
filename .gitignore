@@ -1,3 +1,6 @@
 .DS_Store
 .context/
 assets-uncompressed/
+node_modules/
+test-results/
+playwright-report/

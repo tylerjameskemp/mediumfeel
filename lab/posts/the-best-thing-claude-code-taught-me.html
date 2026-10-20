@@ -77,8 +77,8 @@
         },
         "keywords": "Process, Strategy, AI",
         "articleSection": "Brand & Marketing",
-        "wordCount": "770",
-        "timeRequired": "PT4M"
+        "wordCount": 903,
+        "timeRequired": "PT5M"
     }
     </script>
 
@@ -134,25 +134,28 @@
     </style>
 </head>
 <body class="blog-post">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main navigation">
         <div class="nav-container">
-            <a href="/" class="nav-wordmark">
-                <span id="nav-typewriter"></span>
-                <span class="nav-cursor">|</span>
+            <a href="/" class="nav-wordmark" aria-label="Medium Feel home">
+                <span id="nav-typewriter" aria-hidden="true">Medium Feel</span>
+                <span class="nav-cursor" aria-hidden="true">|</span>
             </a>
-            <button class="mobile-menu-btn" aria-label="Toggle menu">
+            <button id="navToggle" class="mobile-menu-btn" type="button" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-            <ul class="nav-links">
+            <ul id="navLinks" class="nav-links">
                 <li><a href="/lab/" class="active">Lab</a></li>
                 <li><a href="/about.html">About</a></li>
                 <li><a href="mailto:tyler@mediumfeel.com">Contact</a></li>
             </ul>
         </div>
     </nav>
+
+    <main id="main-content" tabindex="-1">
 
     <article class="post">
 
@@ -163,7 +166,7 @@
                     <picture>
                         <source srcset="../../assets/blog/the-best-thing-claude-code-taught-me/hero-claude-code-taught-me.webp" type="image/webp">
                         <img src="../../assets/blog/the-best-thing-claude-code-taught-me/hero-claude-code-taught-me.png"
-                             alt="A heavy ring of mismatched keys — the skills you already carry">
+                             alt="A heavy ring of mismatched keys, the skills you already carry" loading="eager" fetchpriority="high">
                     </picture>
                 </figure>
             </div>
@@ -178,7 +181,7 @@
                 <span class="separator">&middot;</span>
                 <time datetime="2026-02-16" data-post-field="date">February 16, 2026</time>
                 <span class="separator">&middot;</span>
-                <span class="read-time" data-post-field="readTime" data-post-auto="true">4 min read</span>
+                <span class="read-time" data-post-field="readTime">5 min read</span>
                 <span class="share-links">
                     <a href="https://twitter.com/intent/tweet?url=https://mediumfeel.com/lab/posts/the-best-thing-claude-code-taught-me.html&text=The%20Best%20Thing%20Claude%20Code%20Taught%20Me%20Was%20Something%20I%20Already%20Knew" target="_blank" rel="noopener" title="Share on Twitter">&#x1d54f;</a>
                     <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://mediumfeel.com/lab/posts/the-best-thing-claude-code-taught-me.html" target="_blank" rel="noopener" title="Share on LinkedIn">in</a>
@@ -230,7 +233,7 @@
                 <picture>
                     <source srcset="../../assets/blog/the-best-thing-claude-code-taught-me/feature-pileup.webp" type="image/webp">
                     <img src="../../assets/blog/the-best-thing-claude-code-taught-me/feature-pileup.png"
-                         alt="A green clay car crushed and mangled from every direction — scope explosion made physical">
+                         alt="A green clay car crushed and mangled from every direction, scope explosion made physical" loading="lazy" decoding="async">
                 </picture>
             </figure>
 
@@ -531,7 +534,7 @@
                 <picture>
                     <source srcset="../../assets/blog/the-best-thing-claude-code-taught-me/broken-fence.webp" type="image/webp">
                     <img src="../../assets/blog/the-best-thing-claude-code-taught-me/broken-fence.png"
-                         alt="A green chain-link fence with a hole torn through it — the barrier between problem and solution, broken open">
+                         alt="A green chain-link fence with a hole torn through it, the barrier between problem and solution, broken open" loading="lazy" decoding="async">
                 </picture>
             </figure>
 
@@ -574,6 +577,8 @@
 
     </article>
 
+    </main>
+
     <footer class="footer">
         <div class="container">
             <p class="footer-nav">
@@ -588,28 +593,8 @@
         </div>
     </footer>
 
-    <script>
-        // Mobile Menu
-        const menuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-
-        menuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            menuBtn.classList.toggle('active');
-        });
-    </script>
-    <script src="../../assets/js/typewriter.js"></script>
-    <script>
-        // Navbar scroll behavior
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-    </script>
+    <script src="../../assets/js/site-ui.js" defer></script>
+    <script src="../../assets/js/typewriter.js" defer></script>
     <script src="../../assets/js/post-registry.js"></script>
     <script src="../../assets/js/post-sync.js"></script>
 </body>

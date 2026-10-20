@@ -48,18 +48,8 @@
           break;
 
         case 'readTime':
-          // Auto-calculate from word count if on post page
-          if (field.getAttribute('data-post-auto') === 'true') {
-            var content = document.querySelector('.post-content');
-            if (content) {
-              var text = content.textContent || content.innerText;
-              var words = text.trim().split(/\s+/).length;
-              var minutes = Math.ceil(words / 200);
-              field.textContent = minutes + ' min read';
-            }
-          } else {
-            field.textContent = post.readTime + ' min read';
-          }
+          // Publication-time prose count keeps listings and articles consistent.
+          field.textContent = post.readTime + ' min read';
           break;
 
         default:

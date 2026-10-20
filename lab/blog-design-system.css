@@ -43,19 +43,19 @@ body.blog-post .navbar:not(.scrolled) .mobile-menu-btn.active span {
 /* Mobile menu overlay — force dark text on light bg when open.
    Must match or exceed the :not(.scrolled) specificity above
    so dark text wins over white when the menu is open. */
-body.blog-post .navbar:not(.scrolled) .nav-links.active a,
-body.blog-post .navbar.scrolled .nav-links.active a,
-body.blog-post .nav-links.active a {
+body.blog-post .navbar:not(.scrolled) .nav-links.is-open a,
+body.blog-post .navbar.scrolled .nav-links.is-open a,
+body.blog-post .nav-links.is-open a {
     color: #111827;
 }
 
-body.blog-post .navbar:not(.scrolled) .nav-links.active a:hover,
-body.blog-post .navbar:not(.scrolled) .nav-links.active a.active,
-body.blog-post .navbar.scrolled .nav-links.active a:hover,
-body.blog-post .navbar.scrolled .nav-links.active a.active,
-body.blog-post .nav-links.active a:hover,
-body.blog-post .nav-links.active a.active {
-    color: #6db33f;
+body.blog-post .navbar:not(.scrolled) .nav-links.is-open a:hover,
+body.blog-post .navbar:not(.scrolled) .nav-links.is-open a.active,
+body.blog-post .navbar.scrolled .nav-links.is-open a:hover,
+body.blog-post .navbar.scrolled .nav-links.is-open a.active,
+body.blog-post .nav-links.is-open a:hover,
+body.blog-post .nav-links.is-open a.active {
+    color: var(--color-green-dark);
 }
 
 
@@ -347,7 +347,7 @@ body.blog-post .post-meta-line {
     gap: 10px;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 0.85rem;
-    color: #9ca3af;
+    color: var(--color-text-muted);
     padding-bottom: 32px;
     border-bottom: 1px solid #e5e7eb;
 }
@@ -356,7 +356,7 @@ body.blog-post .post-meta-line time,
 body.blog-post .post-meta-line span {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 0.85rem;
-    color: #9ca3af;
+    color: var(--color-text-muted);
 }
 
 body.blog-post .post-meta-line .separator {
@@ -382,14 +382,14 @@ body.blog-post .post-meta-line .share-links {
 }
 
 body.blog-post .post-meta-line .share-links a {
-    color: #9ca3af;
+    color: var(--color-text-muted);
     text-decoration: none;
     font-size: 0.9rem;
     transition: color 0.15s;
 }
 
 body.blog-post .post-meta-line .share-links a:hover {
-    color: #6db33f;
+    color: var(--color-green-dark);
 }
 
 /* Animated gradient pull quote — same treatment as title */
@@ -466,7 +466,7 @@ body.blog-post .section-label {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #6db33f;
+    color: var(--color-green-dark);
     margin-bottom: 24px;
 }
 
@@ -496,7 +496,7 @@ body.blog-post .tldr-label {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #6db33f;
+    color: var(--color-green-dark);
     margin-bottom: 24px;
 }
 
@@ -618,7 +618,7 @@ body.blog-post .post-figure figcaption {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 0.875rem;
     line-height: 1.5;
-    color: #9ca3af;
+    color: var(--color-text-muted);
     margin-top: 10px;
     text-align: center;
     font-style: normal;
@@ -632,7 +632,7 @@ body.blog-post .post-figure img {
 
 /* Medium figure — mid-weight visual breaks */
 body.blog-post .post-figure.figure-medium img {
-    max-width: 420px;
+    max-width: min(420px, 100%);
     width: auto;
     height: auto;
     object-fit: contain;
@@ -666,7 +666,7 @@ body.blog-post .post-content blockquote cite {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 0.875rem;
     font-style: normal;
-    color: #9ca3af;
+    color: var(--color-text-muted);
     margin-top: 0.5em;
 }
 
@@ -733,7 +733,7 @@ body.blog-post .post-content .callout-label {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: #6db33f;
+    color: var(--color-green-dark);
     margin-bottom: 8px;
 }
 
@@ -827,7 +827,7 @@ body.blog-post details.backstory summary {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #6db33f;
+    color: var(--color-green-dark);
     cursor: pointer;
     list-style: none;
     margin-bottom: 24px;
@@ -898,7 +898,7 @@ body.blog-post .post-nav-direction {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #9ca3af;
+    color: var(--color-text-muted);
     display: block;
     margin-bottom: 4px;
 }
@@ -1006,7 +1006,7 @@ body.blog-post .post-footer p {
     }
 
     body.blog-post .post-figure.figure-medium img {
-        max-width: 340px;
+        max-width: min(340px, 100%);
     }
 
     body.blog-post .post-figure.figure-accent img {
@@ -1049,4 +1049,9 @@ body.blog-post .post-footer p {
     body.blog-post .subsection-label { font-size: 1.0625rem; }
 
     body.blog-post .section-label { font-size: 0.8125rem; }
+}
+
+/* Keep translated bridge artwork inside its article figure. */
+body.blog-post .post-content .bridge-figure {
+    overflow: hidden;
 }
