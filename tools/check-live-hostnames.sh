@@ -10,7 +10,7 @@ fail() {
 }
 
 fetch_headers() {
-  curl --silent --show-error --max-redirs 0 --head "$1" 2>&1 | tr -d '\r' || true
+  curl --silent --show-error --connect-timeout 10 --max-time 30 --max-redirs 0 --head "$1" 2>&1 | tr -d '\r' || true
 }
 
 apex_headers="$(fetch_headers "$EXPECTED_APEX")"
@@ -20,7 +20,7 @@ echo "$apex_headers" | grep -q '^HTTP/.* 200' || fail "Apex homepage must return
 echo "$www_headers" | grep -q '^HTTP/.* 301' || fail "www hostname must issue an HTTP 301 redirect"
 echo "$www_headers" | grep -iq '^location: https://mediumfeel.com/$' || fail "www hostname must redirect to https://mediumfeel.com/"
 
-apex_body="$(curl --silent --show-error "$EXPECTED_APEX")"
+apex_body="$(curl --silent --show-error --connect-timeout 10 --max-time 30 "$EXPECTED_APEX")"
 echo "$apex_body" | grep -q '<link rel="canonical" href="https://mediumfeel.com/">' || fail "Homepage canonical tag must point to the apex URL"
 
 cert_details="$(echo | openssl s_client -connect www.mediumfeel.com:443 -servername www.mediumfeel.com 2>/dev/null | openssl x509 -noout -ext subjectAltName)"

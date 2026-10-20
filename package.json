@@ -1,0 +1,12 @@
+{
+  "name": "mediumfeel-site-checks",
+  "private": true,
+  "scripts": {
+    "check": "bash tools/check-static-site.sh",
+    "test:browser": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "axe-core": "4.14.0"
+  }
+}

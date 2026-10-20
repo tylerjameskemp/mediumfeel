@@ -77,8 +77,8 @@
         },
         "keywords": "AI, Brand Strategy, Building Tools",
         "articleSection": "Brand & Marketing",
-        "wordCount": "1101",
-        "timeRequired": "PT6M"
+        "wordCount": 697,
+        "timeRequired": "PT4M"
     }
     </script>
 
@@ -148,25 +148,28 @@
     </style>
 </head>
 <body class="blog-post">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main navigation">
         <div class="nav-container">
-            <a href="/" class="nav-wordmark">
-                <span id="nav-typewriter"></span>
-                <span class="nav-cursor">|</span>
+            <a href="/" class="nav-wordmark" aria-label="Medium Feel home">
+                <span id="nav-typewriter" aria-hidden="true">Medium Feel</span>
+                <span class="nav-cursor" aria-hidden="true">|</span>
             </a>
-            <button class="mobile-menu-btn" aria-label="Toggle menu">
+            <button id="navToggle" class="mobile-menu-btn" type="button" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-            <ul class="nav-links">
+            <ul id="navLinks" class="nav-links">
                 <li><a href="/lab/" class="active">Lab</a></li>
                 <li><a href="/about.html">About</a></li>
                 <li><a href="mailto:tyler@mediumfeel.com">Contact</a></li>
             </ul>
         </div>
     </nav>
+
+    <main id="main-content" tabindex="-1">
 
     <article class="post">
 
@@ -177,7 +180,7 @@
                     <picture>
                         <source srcset="../../assets/blog/building-your-own-thinking-tools/hero-thinking-tools.webp" type="image/webp">
                         <img src="../../assets/blog/building-your-own-thinking-tools/hero-thinking-tools.png"
-                             alt="Abstract bridge made of green architectural elements representing building thinking tools">
+                             alt="Abstract bridge made of green architectural elements representing building thinking tools" loading="eager" fetchpriority="high">
                     </picture>
                 </figure>
             </div>
@@ -192,7 +195,7 @@
                 <span class="separator">&middot;</span>
                 <time datetime="2026-02-10" data-post-field="date">February 10, 2026</time>
                 <span class="separator">&middot;</span>
-                <span class="read-time" data-post-field="readTime" data-post-auto="true">6 min read</span>
+                <span class="read-time" data-post-field="readTime">4 min read</span>
                 <span class="share-links">
                     <a href="https://twitter.com/intent/tweet?url=https://mediumfeel.com/lab/posts/building-your-own-thinking-tools.html&text=I%27ve%20Spent%20My%20Career%20on%20Other%20People%27s%20Projects.%20Here%27s%20What%20Happened%20When%20I%20Started%20Building%20My%20Own." target="_blank" rel="noopener" title="Share on Twitter">&#x1d54f;</a>
                     <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://mediumfeel.com/lab/posts/building-your-own-thinking-tools.html" target="_blank" rel="noopener" title="Share on LinkedIn">in</a>
@@ -238,14 +241,14 @@
                         <picture>
                             <source srcset="../../assets/blog/building-your-own-thinking-tools/bridge-left.webp" type="image/webp">
                             <img src="../../assets/blog/building-your-own-thinking-tools/bridge-left.png"
-                                 alt="Left half of a broken bridge reaching toward the right">
+                                 alt="Left half of a broken bridge reaching toward the right" loading="lazy" decoding="async">
                         </picture>
                     </div>
                     <div class="bridge-half bridge-half--right" id="bridge-right">
                         <picture>
                             <source srcset="../../assets/blog/building-your-own-thinking-tools/bridge-right.webp" type="image/webp">
                             <img src="../../assets/blog/building-your-own-thinking-tools/bridge-right.png"
-                                 alt="Right half of a broken bridge reaching toward the left">
+                                 alt="Right half of a broken bridge reaching toward the left" loading="lazy" decoding="async">
                         </picture>
                     </div>
                 </div>
@@ -268,7 +271,7 @@
                 <picture>
                     <source srcset="../../assets/blog/building-your-own-thinking-tools/shattered-terminal.webp" type="image/webp">
                     <img src="../../assets/blog/building-your-own-thinking-tools/shattered-terminal.png"
-                         alt="Shattered terminal window emerging from stone">
+                         alt="Shattered terminal window emerging from stone" loading="lazy" decoding="async">
                 </picture>
             </figure>
 
@@ -295,7 +298,7 @@
                 <picture>
                     <source srcset="../../assets/blog/building-your-own-thinking-tools/human-ai-collaboration.webp" type="image/webp">
                     <img src="../../assets/blog/building-your-own-thinking-tools/human-ai-collaboration.png"
-                         alt="Two hands reaching toward each other representing human-AI collaboration">
+                         alt="Two hands reaching toward each other representing human-AI collaboration" loading="lazy" decoding="async">
                 </picture>
             </figure>
 
@@ -336,6 +339,8 @@
 
     </article>
 
+    </main>
+
     <footer class="footer">
         <div class="container">
             <p class="footer-nav">
@@ -350,83 +355,65 @@
         </div>
     </footer>
 
+    <script src="../../assets/js/site-ui.js" defer></script>
+    <script src="../../assets/js/typewriter.js" defer></script>
     <script>
-        // Mobile Menu
-        const menuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-
-        menuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            menuBtn.classList.toggle('active');
-        });
-    </script>
-    <script src="../../assets/js/typewriter.js"></script>
-    <script>
-        // Navbar scroll behavior
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Bridge halves scroll animation — smooth lerp
+        // Bring the bridge halves together as the figure enters the viewport.
         (function() {
             var figure = document.getElementById('bridge-figure');
             var left = document.getElementById('bridge-left');
             var right = document.getElementById('bridge-right');
             if (!figure || !left || !right) return;
 
-            var maxShift = 100; // start fully off to the sides (100%)
-            var currentShift = maxShift;
-            var targetShift = maxShift;
-            var ease = 0.08; // lerp factor — lower = smoother/slower
-            var ticking = false;
+            var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+            var currentShift = 0;
+            var targetShift = 0;
+            var frame = 0;
 
             function getTarget() {
-                var rect = figure.getBoundingClientRect();
                 var windowH = window.innerHeight;
-                var start = windowH;
-                var end = windowH * 0.35;
-                var progress = (start - rect.top) / (start - end);
+                var progress = (windowH - figure.getBoundingClientRect().top) / (windowH * 0.65);
                 progress = Math.max(0, Math.min(1, progress));
-                // Ease-out curve for natural deceleration
-                progress = 1 - Math.pow(1 - progress, 3);
-                return maxShift * (1 - progress);
+                return 100 * Math.pow(1 - progress, 3);
+            }
+
+            function render() {
+                left.style.transform = 'translateX(-' + currentShift + '%)';
+                right.style.transform = 'translateX(' + currentShift + '%)';
             }
 
             function tick() {
-                currentShift += (targetShift - currentShift) * ease;
-                // Snap when close enough
-                if (Math.abs(currentShift - targetShift) < 0.1) {
-                    currentShift = targetShift;
-                }
-                left.style.transform = 'translateX(-' + currentShift + '%)';
-                right.style.transform = 'translateX(' + currentShift + '%)';
-
-                if (Math.abs(currentShift - targetShift) > 0.1) {
-                    requestAnimationFrame(tick);
-                } else {
-                    ticking = false;
-                }
+                frame = 0;
+                if (motion.matches) return;
+                currentShift += (targetShift - currentShift) * 0.08;
+                if (Math.abs(currentShift - targetShift) < 0.1) currentShift = targetShift;
+                render();
+                if (currentShift !== targetShift) frame = requestAnimationFrame(tick);
             }
 
             function onScroll() {
+                if (motion.matches) return;
                 targetShift = getTarget();
-                if (!ticking) {
-                    ticking = true;
-                    requestAnimationFrame(tick);
+                if (!frame) frame = requestAnimationFrame(tick);
+            }
+
+            function updateMotion() {
+                if (frame) cancelAnimationFrame(frame);
+                frame = 0;
+                if (motion.matches) {
+                    left.style.transform = 'none';
+                    right.style.transform = 'none';
+                } else {
+                    currentShift = targetShift = getTarget();
+                    render();
                 }
             }
 
             window.addEventListener('scroll', onScroll, { passive: true });
-            // Set initial position
-            targetShift = getTarget();
-            currentShift = targetShift;
-            left.style.transform = 'translateX(-' + currentShift + '%)';
-            right.style.transform = 'translateX(' + currentShift + '%)';
+            window.addEventListener('resize', onScroll, { passive: true });
+            if (motion.addEventListener) motion.addEventListener('change', updateMotion);
+            else motion.addListener(updateMotion);
+            updateMotion();
         })();
     </script>
     <script src="../../assets/js/post-registry.js"></script>

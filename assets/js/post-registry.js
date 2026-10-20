@@ -3,6 +3,7 @@
  *
  * Define all post metadata here. This registry is used to sync
  * metadata across post pages, lab index, and homepage.
+ * Refresh readTime from article prose with tools/sync-post-metadata.py --write.
  */
 
 window.POST_REGISTRY = {
@@ -22,7 +23,7 @@ window.POST_REGISTRY = {
     statusLabel: 'Building',
     dateISO: '2026-02-16',
     dateFormatted: 'February 16, 2026',
-    readTime: 4
+    readTime: 5
   },
   'building-your-own-thinking-tools': {
     title: 'I\'ve Spent My Career on Other People\'s Projects. Here\'s What Happened When I Started Building My Own.',
@@ -31,7 +32,7 @@ window.POST_REGISTRY = {
     statusLabel: 'Exploring',
     dateISO: '2026-02-10',
     dateFormatted: 'February 10, 2026',
-    readTime: 6  // fallback; auto-calculated on post pages
+    readTime: 4
   },
   'shipping-the-lab': {
     title: 'Shipping the Lab: A Build Log',
